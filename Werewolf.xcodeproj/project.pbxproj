@@ -14,13 +14,18 @@
 		FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC2B18F87E7A00BB0B81 /* main.m */; };
 		FED1DC3018F87E7A00BB0B81 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC2F18F87E7A00BB0B81 /* AppDelegate.m */; };
 		FED1DC3318F87E7A00BB0B81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED1DC3118F87E7A00BB0B81 /* Main.storyboard */; };
-		FED1DC3618F87E7A00BB0B81 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC3518F87E7A00BB0B81 /* ViewController.m */; };
+		FED1DC3618F87E7A00BB0B81 /* TitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC3518F87E7A00BB0B81 /* TitleViewController.m */; };
 		FED1DC3818F87E7A00BB0B81 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FED1DC3718F87E7A00BB0B81 /* Images.xcassets */; };
 		FED1DC3F18F87E7A00BB0B81 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC3E18F87E7A00BB0B81 /* XCTest.framework */; };
 		FED1DC4018F87E7A00BB0B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */; };
 		FED1DC4118F87E7A00BB0B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2318F87E7A00BB0B81 /* UIKit.framework */; };
 		FED1DC4918F87E7A00BB0B81 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FED1DC4718F87E7A00BB0B81 /* InfoPlist.strings */; };
 		FED1DC4B18F87E7A00BB0B81 /* WerewolfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC4A18F87E7A00BB0B81 /* WerewolfTests.m */; };
+		FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */; };
+		FED1DC5A18F8833000BB0B81 /* LoadGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC5918F8833000BB0B81 /* LoadGameViewController.m */; };
+		FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6018F8AE5000BB0B81 /* Constants.m */; };
+		FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6418F8B5DA00BB0B81 /* Game.m */; };
+		FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6718F8BF3600BB0B81 /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +50,24 @@
 		FED1DC2E18F87E7A00BB0B81 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FED1DC2F18F87E7A00BB0B81 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FED1DC3218F87E7A00BB0B81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FED1DC3418F87E7A00BB0B81 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FED1DC3518F87E7A00BB0B81 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FED1DC3418F87E7A00BB0B81 /* TitleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleViewController.h; sourceTree = "<group>"; };
+		FED1DC3518F87E7A00BB0B81 /* TitleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleViewController.m; sourceTree = "<group>"; };
 		FED1DC3718F87E7A00BB0B81 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FED1DC3D18F87E7A00BB0B81 /* WerewolfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WerewolfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED1DC3E18F87E7A00BB0B81 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FED1DC4618F87E7A00BB0B81 /* WerewolfTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WerewolfTests-Info.plist"; sourceTree = "<group>"; };
 		FED1DC4818F87E7A00BB0B81 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FED1DC4A18F87E7A00BB0B81 /* WerewolfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WerewolfTests.m; sourceTree = "<group>"; };
+		FED1DC5518F8832200BB0B81 /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
+		FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
+		FED1DC5818F8833000BB0B81 /* LoadGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGameViewController.h; sourceTree = "<group>"; };
+		FED1DC5918F8833000BB0B81 /* LoadGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadGameViewController.m; sourceTree = "<group>"; };
+		FED1DC5F18F8AE5000BB0B81 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		FED1DC6018F8AE5000BB0B81 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		FED1DC6318F8B5DA00BB0B81 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		FED1DC6418F8B5DA00BB0B81 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		FED1DC6618F8BF3600BB0B81 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		FED1DC6718F8BF3600BB0B81 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +130,9 @@
 				FED1DC2E18F87E7A00BB0B81 /* AppDelegate.h */,
 				FED1DC2F18F87E7A00BB0B81 /* AppDelegate.m */,
 				FED1DC3118F87E7A00BB0B81 /* Main.storyboard */,
-				FED1DC3418F87E7A00BB0B81 /* ViewController.h */,
-				FED1DC3518F87E7A00BB0B81 /* ViewController.m */,
+				FED1DC6218F8B5CC00BB0B81 /* Model */,
+				FED1DC5B18F8A32800BB0B81 /* Data */,
+				FED1DC5418F882D000BB0B81 /* View Controllers */,
 				FED1DC3718F87E7A00BB0B81 /* Images.xcassets */,
 				FED1DC2618F87E7A00BB0B81 /* Supporting Files */,
 			);
@@ -150,6 +166,39 @@
 				FED1DC4718F87E7A00BB0B81 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FED1DC5418F882D000BB0B81 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FED1DC3418F87E7A00BB0B81 /* TitleViewController.h */,
+				FED1DC3518F87E7A00BB0B81 /* TitleViewController.m */,
+				FED1DC5518F8832200BB0B81 /* CreateGameViewController.h */,
+				FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */,
+				FED1DC5818F8833000BB0B81 /* LoadGameViewController.h */,
+				FED1DC5918F8833000BB0B81 /* LoadGameViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FED1DC5B18F8A32800BB0B81 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FED1DC5F18F8AE5000BB0B81 /* Constants.h */,
+				FED1DC6018F8AE5000BB0B81 /* Constants.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		FED1DC6218F8B5CC00BB0B81 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FED1DC6318F8B5DA00BB0B81 /* Game.h */,
+				FED1DC6418F8B5DA00BB0B81 /* Game.m */,
+				FED1DC6618F8BF3600BB0B81 /* Player.h */,
+				FED1DC6718F8BF3600BB0B81 /* Player.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,8 +266,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FED1DC1B18F87E7A00BB0B81 /* Werewolf */,
 				FED1DC3C18F87E7A00BB0B81 /* WerewolfTests */,
+				FED1DC1B18F87E7A00BB0B81 /* Werewolf */,
 			);
 		};
 /* End PBXProject section */
@@ -249,9 +298,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FED1DC3618F87E7A00BB0B81 /* ViewController.m in Sources */,
+				FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */,
+				FED1DC3618F87E7A00BB0B81 /* TitleViewController.m in Sources */,
 				FED1DC3018F87E7A00BB0B81 /* AppDelegate.m in Sources */,
+				FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */,
 				FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */,
+				FED1DC5A18F8833000BB0B81 /* LoadGameViewController.m in Sources */,
+				FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */,
+				FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -365,7 +419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -6,18 +6,24 @@
 //  Copyright (c) 2014 Lauren Lee. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TitleViewController.h"
+#import "CreateGameViewController.h"
+#import "LoadGameViewController.h"
 
-@interface ViewController ()
+@interface TitleViewController ()
+
+
 
 @end
 
-@implementation ViewController
+@implementation TitleViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

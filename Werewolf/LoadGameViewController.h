@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LoadGameViewController.h
 //  Werewolf
 //
 //  Created by Lauren Lee on 4/11/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface LoadGameViewController : UIViewController
 
 @end
