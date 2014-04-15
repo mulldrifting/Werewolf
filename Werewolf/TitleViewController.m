@@ -7,8 +7,7 @@
 //
 
 #import "TitleViewController.h"
-#import "CreateGameViewController.h"
-#import "LoadGameViewController.h"
+#import "LoadSetupViewController.h"
 
 @interface TitleViewController ()
 

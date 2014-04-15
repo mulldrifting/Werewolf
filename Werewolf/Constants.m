@@ -10,7 +10,7 @@
 
 @implementation Constants
 
-+ (NSArray *)roleArray
++ (NSArray *)listOfDefinedRoles
 {
     static NSArray *inst = nil;
     static dispatch_once_t onceToken;

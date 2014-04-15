@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68618FC919300CA3021 /* LoadSetupViewController.m */; };
+		FE99B68B18FC92F400CA3021 /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68A18FC92F400CA3021 /* PickerController.m */; };
+		FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */; };
+		FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */; };
+		FEB53BFE18FB63AC00598B64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */; };
+		FEB53C0118FB701900598B64 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0018FB701900598B64 /* iCarousel.m */; };
+		FEB53C0518FB729500598B64 /* GameSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0418FB729500598B64 /* GameSetup.m */; };
+		FEB53C0A18FBA7AC00598B64 /* iCarouselExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0618FBA7AC00598B64 /* iCarouselExampleViewController.m */; };
+		FEB53C0B18FBA7AC00598B64 /* iCarouselExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0818FBA7AC00598B64 /* iCarouselExampleAppDelegate.m */; };
+		FEB53C0E18FBA7BA00598B64 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FEB53C0C18FBA7BA00598B64 /* background.png */; };
+		FEB53C0F18FBA7BA00598B64 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = FEB53C0D18FBA7BA00598B64 /* page.png */; };
 		FED1DC2018F87E7A00BB0B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */; };
 		FED1DC2218F87E7A00BB0B81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */; };
 		FED1DC2418F87E7A00BB0B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2318F87E7A00BB0B81 /* UIKit.framework */; };
@@ -22,7 +33,6 @@
 		FED1DC4918F87E7A00BB0B81 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FED1DC4718F87E7A00BB0B81 /* InfoPlist.strings */; };
 		FED1DC4B18F87E7A00BB0B81 /* WerewolfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC4A18F87E7A00BB0B81 /* WerewolfTests.m */; };
 		FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */; };
-		FED1DC5A18F8833000BB0B81 /* LoadGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC5918F8833000BB0B81 /* LoadGameViewController.m */; };
 		FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6018F8AE5000BB0B81 /* Constants.m */; };
 		FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6418F8B5DA00BB0B81 /* Game.m */; };
 		FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6718F8BF3600BB0B81 /* Player.m */; };
@@ -39,6 +49,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE99B68518FC919300CA3021 /* LoadSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadSetupViewController.h; sourceTree = "<group>"; };
+		FE99B68618FC919300CA3021 /* LoadSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSetupViewController.m; sourceTree = "<group>"; };
+		FE99B68918FC92F400CA3021 /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
+		FE99B68A18FC92F400CA3021 /* PickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerController.m; sourceTree = "<group>"; };
+		FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Common.h"; sourceTree = "<group>"; };
+		FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Common.m"; sourceTree = "<group>"; };
+		FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperTableViewCell.h; sourceTree = "<group>"; };
+		FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperTableViewCell.m; sourceTree = "<group>"; };
+		FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FEB53BFF18FB701900598B64 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../Cocoapods/iCarousel-master/iCarousel/iCarousel.h"; sourceTree = "<group>"; };
+		FEB53C0018FB701900598B64 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../Cocoapods/iCarousel-master/iCarousel/iCarousel.m"; sourceTree = "<group>"; };
+		FEB53C0318FB729500598B64 /* GameSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetup.h; sourceTree = "<group>"; };
+		FEB53C0418FB729500598B64 /* GameSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSetup.m; sourceTree = "<group>"; };
+		FEB53C0618FBA7AC00598B64 /* iCarouselExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarouselExampleViewController.m; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleViewController.m"; sourceTree = "<group>"; };
+		FEB53C0718FBA7AC00598B64 /* iCarouselExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarouselExampleViewController.h; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleViewController.h"; sourceTree = "<group>"; };
+		FEB53C0818FBA7AC00598B64 /* iCarouselExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarouselExampleAppDelegate.m; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleAppDelegate.m"; sourceTree = "<group>"; };
+		FEB53C0918FBA7AC00598B64 /* iCarouselExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarouselExampleAppDelegate.h; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleAppDelegate.h"; sourceTree = "<group>"; };
+		FEB53C0C18FBA7BA00598B64 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = "../../Cocoapods/iCarousel-master/Examples/Resources/background.png"; sourceTree = "<group>"; };
+		FEB53C0D18FBA7BA00598B64 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page.png; path = "../../Cocoapods/iCarousel-master/Examples/Resources/page.png"; sourceTree = "<group>"; };
 		FED1DC1C18F87E7A00BB0B81 /* Werewolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werewolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,8 +89,6 @@
 		FED1DC4A18F87E7A00BB0B81 /* WerewolfTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WerewolfTests.m; sourceTree = "<group>"; };
 		FED1DC5518F8832200BB0B81 /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
 		FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
-		FED1DC5818F8833000BB0B81 /* LoadGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadGameViewController.h; sourceTree = "<group>"; };
-		FED1DC5918F8833000BB0B81 /* LoadGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadGameViewController.m; sourceTree = "<group>"; };
 		FED1DC5F18F8AE5000BB0B81 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		FED1DC6018F8AE5000BB0B81 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		FED1DC6318F8B5DA00BB0B81 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -75,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB53BFE18FB63AC00598B64 /* QuartzCore.framework in Frameworks */,
 				FED1DC2218F87E7A00BB0B81 /* CoreGraphics.framework in Frameworks */,
 				FED1DC2418F87E7A00BB0B81 /* UIKit.framework in Frameworks */,
 				FED1DC2018F87E7A00BB0B81 /* Foundation.framework in Frameworks */,
@@ -94,6 +122,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE99B68818FC928F00CA3021 /* Object Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE99B68918FC92F400CA3021 /* PickerController.h */,
+				FE99B68A18FC92F400CA3021 /* PickerController.m */,
+			);
+			name = "Object Controllers";
+			sourceTree = "<group>";
+		};
+		FEB53C0218FB71E000598B64 /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				FEB53C0C18FBA7BA00598B64 /* background.png */,
+				FEB53C0D18FBA7BA00598B64 /* page.png */,
+				FEB53C0618FBA7AC00598B64 /* iCarouselExampleViewController.m */,
+				FEB53C0718FBA7AC00598B64 /* iCarouselExampleViewController.h */,
+				FEB53C0818FBA7AC00598B64 /* iCarouselExampleAppDelegate.m */,
+				FEB53C0918FBA7AC00598B64 /* iCarouselExampleAppDelegate.h */,
+				FEB53BFF18FB701900598B64 /* iCarousel.h */,
+				FEB53C0018FB701900598B64 /* iCarousel.m */,
+			);
+			name = iCarousel;
+			sourceTree = "<group>";
+		};
 		FED1DC1318F87E7A00BB0B81 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +168,7 @@
 		FED1DC1E18F87E7A00BB0B81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */,
 				FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */,
 				FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */,
 				FED1DC2318F87E7A00BB0B81 /* UIKit.framework */,
@@ -130,11 +183,15 @@
 				FED1DC2E18F87E7A00BB0B81 /* AppDelegate.h */,
 				FED1DC2F18F87E7A00BB0B81 /* AppDelegate.m */,
 				FED1DC3118F87E7A00BB0B81 /* Main.storyboard */,
+				FED1DC5418F882D000BB0B81 /* View Controllers */,
+				FE99B68818FC928F00CA3021 /* Object Controllers */,
 				FED1DC6218F8B5CC00BB0B81 /* Model */,
 				FED1DC5B18F8A32800BB0B81 /* Data */,
-				FED1DC5418F882D000BB0B81 /* View Controllers */,
-				FED1DC3718F87E7A00BB0B81 /* Images.xcassets */,
+				FEB53C0218FB71E000598B64 /* iCarousel */,
 				FED1DC2618F87E7A00BB0B81 /* Supporting Files */,
+				FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */,
+				FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */,
+				FED1DC3718F87E7A00BB0B81 /* Images.xcassets */,
 			);
 			path = Werewolf;
 			sourceTree = "<group>";
@@ -173,10 +230,12 @@
 			children = (
 				FED1DC3418F87E7A00BB0B81 /* TitleViewController.h */,
 				FED1DC3518F87E7A00BB0B81 /* TitleViewController.m */,
+				FE99B68518FC919300CA3021 /* LoadSetupViewController.h */,
+				FE99B68618FC919300CA3021 /* LoadSetupViewController.m */,
 				FED1DC5518F8832200BB0B81 /* CreateGameViewController.h */,
 				FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */,
-				FED1DC5818F8833000BB0B81 /* LoadGameViewController.h */,
-				FED1DC5918F8833000BB0B81 /* LoadGameViewController.m */,
+				FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */,
+				FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -197,6 +256,8 @@
 				FED1DC6418F8B5DA00BB0B81 /* Game.m */,
 				FED1DC6618F8BF3600BB0B81 /* Player.h */,
 				FED1DC6718F8BF3600BB0B81 /* Player.m */,
+				FEB53C0318FB729500598B64 /* GameSetup.h */,
+				FEB53C0418FB729500598B64 /* GameSetup.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -278,6 +339,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FED1DC3818F87E7A00BB0B81 /* Images.xcassets in Resources */,
+				FEB53C0F18FBA7BA00598B64 /* page.png in Resources */,
+				FEB53C0E18FBA7BA00598B64 /* background.png in Resources */,
 				FED1DC2A18F87E7A00BB0B81 /* InfoPlist.strings in Resources */,
 				FED1DC3318F87E7A00BB0B81 /* Main.storyboard in Resources */,
 			);
@@ -300,11 +363,18 @@
 			files = (
 				FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */,
 				FED1DC3618F87E7A00BB0B81 /* TitleViewController.m in Sources */,
+				FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */,
+				FEB53C0B18FBA7AC00598B64 /* iCarouselExampleAppDelegate.m in Sources */,
+				FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */,
 				FED1DC3018F87E7A00BB0B81 /* AppDelegate.m in Sources */,
 				FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */,
+				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
 				FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */,
-				FED1DC5A18F8833000BB0B81 /* LoadGameViewController.m in Sources */,
+				FE99B68B18FC92F400CA3021 /* PickerController.m in Sources */,
+				FEB53C0118FB701900598B64 /* iCarousel.m in Sources */,
+				FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */,
 				FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */,
+				FEB53C0A18FBA7AC00598B64 /* iCarouselExampleViewController.m in Sources */,
 				FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +580,7 @@
 				FED1DC5018F87E7A00BB0B81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FED1DC5118F87E7A00BB0B81 /* Build configuration list for PBXNativeTarget "WerewolfTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +589,7 @@
 				FED1DC5318F87E7A00BB0B81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,8 +10,14 @@
 
 static const int MAX_NUM_PEOPLE = 99;
 
+typedef NS_ENUM(NSInteger, pickerType) {
+    kSetupPicker,
+    kRolePicker,
+    numberOfPickers
+};
+
 @interface Constants : NSObject
 
-+ (NSArray *)roleArray;
++ (NSArray *)listOfDefinedRoles;
 
 @end

@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameSetup.h"
 
 @interface Game : NSObject
 
+@property (strong, nonatomic) GameSetup *gameSetup;
 @property (strong, nonatomic) NSMutableArray *players, *roles;
 @property (nonatomic) NSInteger numPlayers;
 @property (nonatomic) BOOL isDay;

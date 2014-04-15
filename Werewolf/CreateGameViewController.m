@@ -7,31 +7,25 @@
 //
 
 #import "CreateGameViewController.h"
+#import "PickerController.h"
+#import "StepperTableViewCell.h"
 #import "Game.h"
+#import "GameSetup.h"
+#import "NSDictionary+Common.h"
 
-typedef NS_ENUM(NSInteger, pickerType) {
-    kNumPlayerPicker,
-    kRolePicker
-};
+@interface CreateGameViewController () <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
-typedef NS_ENUM(NSInteger, componentNum) {
-    kFirstComponent,
-    kSecondComponent,
-    numberOfComponents
-};
-
-@interface CreateGameViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
-
-@property (weak, nonatomic) IBOutlet UITextField *numPlayersTextField;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *rolePicker;
+@property (strong, nonatomic) PickerController *pickerController;
+
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *addRoleButton;
-@property (weak, nonatomic) IBOutlet UILabel *currentRolesLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *createGameButton;
-
-@property (nonatomic) NSInteger numPlayers;
-@property (strong, nonatomic) NSMutableArray *roleArray;
+@property (strong, nonatomic) GameSetup *testSetup;
+@property (strong, nonatomic) NSMutableDictionary *currentRoles;
 
 @end
 
@@ -41,88 +35,100 @@ typedef NS_ENUM(NSInteger, componentNum) {
 {
     [super viewDidLoad];
     
+    // Set up scroll view
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    
     // Initialize and set up text field
-    self.numPlayersTextField.delegate = self;
-    [self.numPlayersTextField addTarget:self.numPlayersTextField action:@selector(resignFirstResponder) forControlEvents:UIControlEventEditingDidEndOnExit];
+//    self.numPlayersTextField.delegate = self;
+//    [self.numPlayersTextField addTarget:self.numPlayersTextField action:@selector(resignFirstResponder) forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    self.numPlayers = self.numberInTextField;
+//    self.numPlayers = self.numberInTextField;
 
-    // Initialize and set up picker view
-    self.rolePicker.delegate = self;
-    self.rolePicker.dataSource = self;
+    // Set up table view
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
-    // Initialize add role button
+    // Initialize and set up picker views
+    self.pickerController = [PickerController new];
+    self.rolePicker.delegate = self.pickerController;
+    self.rolePicker.dataSource = self.pickerController;
+    self.rolePicker.tag = kRolePicker;
+    
+    // Game setup test
+    self.testSetup = [[GameSetup alloc] init];
+    
+    // Initialize buttons
+//    [self.backButton addTarget:self action:@selector(saveRoles:) forControlEvents:UIControlEventTouchUpInside];
     [self.addRoleButton addTarget:self action:@selector(addRole:) forControlEvents:UIControlEventTouchUpInside];
     
     // Make keyboard disappear upon tapping outside text field
-    UITapGestureRecognizer *tapOutside = [[UITapGestureRecognizer alloc]
-                                          initWithTarget:self
-                                          action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tapOutside];
+//    UITapGestureRecognizer *tapOutside = [[UITapGestureRecognizer alloc]
+//                                          initWithTarget:self
+//                                          action:@selector(dismissKeyboard)];
+//    [self.view addGestureRecognizer:tapOutside];
+    
+    // Create dictionary of roles
+    self.currentRoles = [NSMutableDictionary dictionaryWithDictionary:self.testSetup.roles];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+
+#pragma mark - Table View Methods
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [self.numPlayersTextField endEditing:YES];
+    return [self.currentRoles count];
 }
 
--(void)dismissKeyboard
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.numPlayersTextField resignFirstResponder];
+    
+    StepperTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    NSString *aKey = [self.currentRoles keyAtIndex:indexPath.row];
+    NSNumber *anObject = [self.currentRoles objectForKey:aKey];
+    cell.roleLabel.text = aKey;
+    cell.stepper.value = [anObject doubleValue];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)cell.stepper.value];
+    
+    return cell;
 }
 
-#pragma mark - UIPickerView Methods
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return numberOfComponents;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    if (component == kFirstComponent) {
-        return MAX_NUM_PEOPLE;
-    } else {
-        return [[Constants roleArray] count];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [self.currentRoles removeObjectForKey:[self.currentRoles keyAtIndex:indexPath.row]];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (component == kFirstComponent) {
-        return [NSString stringWithFormat:@"%d",row];
-    } else {
-        return [Constants roleArray][row];
-    }
-}
 
 #pragma mark - UITextField Methods
 
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    self.numPlayers = self.numberInTextField;
-    NSLog(@"%d",self.numPlayers);
-}
+//-(void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//    self.numPlayers = self.numberInTextField;
+//    NSLog(@"%d",self.numPlayers);
+//}
 
--(NSInteger)numberInTextField
-{
-    return [self.numPlayersTextField.text intValue];
-}
+//-(NSInteger)numberInTextField
+//{
+//    return [self.numPlayersTextField.text intValue];
+//}
 
 #pragma mark - Button Methods
 
--(void)setRole:(id)sender
+-(void)addRole:(id)sender
 {
-    NSInteger roleCount = [self.rolePicker selectedRowInComponent:kFirstComponent];
-    NSInteger roleRow = [self.rolePicker selectedRowInComponent:kSecondComponent];
-    NSString *role = [Constants roleArray][roleRow];
+    NSInteger roleRow = [self.rolePicker selectedRowInComponent:0];
+    NSString *role = [Constants listOfDefinedRoles][roleRow];
     
-    for (int i = 0; i < roleCount; i++) {
-        [self.roleArray addObject:(NSString *)role];
-    }
+    [self.currentRoles setValue:[NSNumber numberWithInteger:1] forKey:role];
     
-    NSString *roleString = [NSString stringWithFormat:@"\n%d %@",roleCount,role];
-    self.currentRolesLabel.text = [self.currentRolesLabel.text stringByAppendingString:roleString];
+//    NSString *roleString = [NSString stringWithFormat:@"\n%d %@",roleCount,role];
+//    self.currentRolesLabel.text = [self.currentRolesLabel.text stringByAppendingString:roleString];
+
 }
 
 /*
