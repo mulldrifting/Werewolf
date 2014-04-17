@@ -7,15 +7,16 @@
 //
 
 #import "LoadSetupViewController.h"
-#import "PickerController.h"
+#import "CreateGameViewController.h"
+#import "GameData.h"
 
 
-@interface LoadSetupViewController ()
+@interface LoadSetupViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIPickerView *setupPicker;
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
 
-@property (strong, nonatomic) PickerController *pickerController;
+@property (strong, nonatomic) GameSetup *gameSetup;
 
 @end
 
@@ -25,25 +26,55 @@
 {
     [super viewDidLoad];
     
-    self.pickerController = [PickerController new];
-    self.setupPicker.delegate = self.pickerController;
-    self.setupPicker.dataSource = self.pickerController;
+    self.setupPicker.delegate = self;
+    self.setupPicker.dataSource = self;
     self.setupPicker.tag = kSetupPicker;
+}
 
+#pragma mark - Button Methods
+
+-(void)setupSelected
+{
+    NSInteger selectedRow = [self.setupPicker selectedRowInComponent:0];
+    
+    self.gameSetup = [[GameData sharedData] gameSetups][selectedRow];
+}
+
+#pragma mark - Picker Methods
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [[[GameData sharedData] gameSetups] count]; //temporary value
+    
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    GameSetup *gameSetup = [[GameData sharedData] gameSetups][row];
+    return gameSetup.name;
+    
+//    return @"Game Setup"; // temporary value
     
 }
 
 
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self setupSelected];
+    
+    if ([segue.identifier isEqualToString:@"showCreateGameSegue"])
+    {
+        CreateGameViewController *destination = segue.destinationViewController;
+        destination.testSetup = self.gameSetup;
+    }
 }
-*/
+
 
 @end

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE38613D18FF755900ED8483 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = FE38613C18FF755900ED8483 /* GameData.m */; };
 		FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68618FC919300CA3021 /* LoadSetupViewController.m */; };
-		FE99B68B18FC92F400CA3021 /* PickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68A18FC92F400CA3021 /* PickerController.m */; };
 		FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */; };
 		FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */; };
 		FEB53BFE18FB63AC00598B64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */; };
@@ -49,10 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE38613B18FF755900ED8483 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		FE38613C18FF755900ED8483 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		FE99B68518FC919300CA3021 /* LoadSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadSetupViewController.h; sourceTree = "<group>"; };
 		FE99B68618FC919300CA3021 /* LoadSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSetupViewController.m; sourceTree = "<group>"; };
-		FE99B68918FC92F400CA3021 /* PickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerController.h; sourceTree = "<group>"; };
-		FE99B68A18FC92F400CA3021 /* PickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerController.m; sourceTree = "<group>"; };
 		FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Common.h"; sourceTree = "<group>"; };
 		FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Common.m"; sourceTree = "<group>"; };
 		FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperTableViewCell.h; sourceTree = "<group>"; };
@@ -122,15 +122,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FE99B68818FC928F00CA3021 /* Object Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FE99B68918FC92F400CA3021 /* PickerController.h */,
-				FE99B68A18FC92F400CA3021 /* PickerController.m */,
-			);
-			name = "Object Controllers";
-			sourceTree = "<group>";
-		};
 		FEB53C0218FB71E000598B64 /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +175,6 @@
 				FED1DC2F18F87E7A00BB0B81 /* AppDelegate.m */,
 				FED1DC3118F87E7A00BB0B81 /* Main.storyboard */,
 				FED1DC5418F882D000BB0B81 /* View Controllers */,
-				FE99B68818FC928F00CA3021 /* Object Controllers */,
 				FED1DC6218F8B5CC00BB0B81 /* Model */,
 				FED1DC5B18F8A32800BB0B81 /* Data */,
 				FEB53C0218FB71E000598B64 /* iCarousel */,
@@ -245,6 +235,8 @@
 			children = (
 				FED1DC5F18F8AE5000BB0B81 /* Constants.h */,
 				FED1DC6018F8AE5000BB0B81 /* Constants.m */,
+				FE38613B18FF755900ED8483 /* GameData.h */,
+				FE38613C18FF755900ED8483 /* GameData.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -370,7 +362,7 @@
 				FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */,
 				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
 				FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */,
-				FE99B68B18FC92F400CA3021 /* PickerController.m in Sources */,
+				FE38613D18FF755900ED8483 /* GameData.m in Sources */,
 				FEB53C0118FB701900598B64 /* iCarousel.m in Sources */,
 				FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */,
 				FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */,

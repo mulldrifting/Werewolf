@@ -31,7 +31,8 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)valueChanged:(UIStepper *)sender {
+- (IBAction)valueChanged:(UIStepper *)sender
+{
     double value = [sender value];
     
     [self.numberLabel setText:[NSString stringWithFormat:@"%d", (int)value]];

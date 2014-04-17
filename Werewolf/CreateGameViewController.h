@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameSetup.h"
 
 @interface CreateGameViewController : UIViewController
 
+@property (weak, nonatomic) GameSetup *testSetup;
 
 @end

@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GameSetup : NSObject
+@interface GameSetup : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSDictionary *roles;
+@property (strong, nonatomic) NSNumber *numPlayers;
+@property (strong, nonatomic) NSMutableDictionary *roles;
+@property (strong, nonatomic) NSMutableDictionary *settings;
+
+-(id)initWithName:(NSString*)name roles:(NSMutableDictionary*)roles;
+-(NSNumber*)calculateNumPlayers;
 
 @end

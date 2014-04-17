@@ -7,6 +7,7 @@
 //
 
 #import "PickerController.h"
+#import "CreateGameViewController.h"
 
 @implementation PickerController
 
@@ -37,7 +38,7 @@
             if (row == 0) {
                 return @"Add a Role";
             } else {
-                return [Constants listOfDefinedRoles][row-1];
+                return [row-1];
             }
             
     }
