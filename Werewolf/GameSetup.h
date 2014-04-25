@@ -11,11 +11,11 @@
 @interface GameSetup : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSNumber *numPlayers;
-@property (strong, nonatomic) NSMutableDictionary *roles;
+@property (strong, nonatomic) NSMutableDictionary *roleNumbers;
+@property (strong, nonatomic) NSArray *sortedRoles;
 @property (strong, nonatomic) NSMutableDictionary *settings;
 
 -(id)initWithName:(NSString*)name roles:(NSMutableDictionary*)roles;
--(NSNumber*)calculateNumPlayers;
+-(NSNumber*)numPlayers;
 
 @end

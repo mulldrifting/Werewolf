@@ -30,13 +30,33 @@
     
     // path from application documents
     NSString *plistPath = [[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:@"gameSetupList.plist"];
+    
+    // path from main bundle
+    NSString *pathBundle = [[NSBundle mainBundle] pathForResource:@"gameSetupList" ofType:@"plist"];
 
-    if ([GameData checkForPlistFileInDocs:@"gameSetupList.plist"])
+    if ([self checkForPlistFileAtPath:plistPath])
     {
         return [NSKeyedUnarchiver unarchiveObjectWithFile:plistPath];
     }
+    else if ([self checkForPlistFileAtPath:pathBundle])
+    {
+        // create an array from main bundle plist
+        NSArray *plistGameSetups = [[NSArray alloc] initWithContentsOfFile:pathBundle];
+
+        [plistGameSetups enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            GameSetup *newSetup = [[GameSetup alloc] initWithName:obj[@"name"] roles:obj[@"roles"]];
+            [gameSetups addObject:newSetup];
+        }];
+        
+        return gameSetups;
+        
+    }
+    else {
+        return gameSetups;
+    }
     
-    return gameSetups;
+
 }
 
 +(NSString *)applicationDocumentsDirectory
@@ -44,12 +64,12 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 }
 
-+(BOOL)checkForPlistFileInDocs:(NSString*)fileName
++(BOOL)checkForPlistFileAtPath:(NSString*)path
 {
     NSFileManager *myManager = [NSFileManager defaultManager];
-    NSString *pathForPlistInDocs = [[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:fileName];
+//    NSString *pathForPlistInDocs = [[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:fileName];
     
-    return [myManager fileExistsAtPath:pathForPlistInDocs];
+    return [myManager fileExistsAtPath:path];
 }
 
 -(void)save {

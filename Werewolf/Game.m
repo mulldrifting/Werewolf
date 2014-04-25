@@ -24,7 +24,7 @@
     return shared;
 }
 
-- (id)initWithRoles:(NSMutableArray *)roles numPlayers:(NSInteger)numPlayers
+- (id)initWithRoles:(NSMutableArray *)roles numPlayers:(NSNumber*)numPlayers
 {
     if (self = [super init]) {
         _numPlayers = numPlayers;

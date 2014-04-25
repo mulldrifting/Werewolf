@@ -33,9 +33,12 @@
 
 - (IBAction)valueChanged:(UIStepper *)sender
 {
-    double value = [sender value];
+    int value = (int)[sender value];
     
-    [self.numberLabel setText:[NSString stringWithFormat:@"%d", (int)value]];
+    [self.delegate setValue:value forRole:self.roleLabel.text];
+    
+    [self.numberLabel setText:[NSString stringWithFormat:@"%d", value]];
+    
 }
 
 @end

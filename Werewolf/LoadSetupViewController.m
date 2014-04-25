@@ -11,12 +11,9 @@
 #import "GameData.h"
 
 
-@interface LoadSetupViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface LoadSetupViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIPickerView *setupPicker;
-@property (weak, nonatomic) IBOutlet UIButton *selectButton;
-
-@property (strong, nonatomic) GameSetup *gameSetup;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -26,42 +23,43 @@
 {
     [super viewDidLoad];
     
-    self.setupPicker.delegate = self;
-    self.setupPicker.dataSource = self;
-    self.setupPicker.tag = kSetupPicker;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.navigationController setNavigationBarHidden:NO];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
 }
 
 #pragma mark - Button Methods
 
 -(void)setupSelected
 {
-    NSInteger selectedRow = [self.setupPicker selectedRowInComponent:0];
-    
-    self.gameSetup = [[GameData sharedData] gameSetups][selectedRow];
+//    self.gameSetup = [[GameData sharedData] gameSetups][selectedRow];
 }
 
-#pragma mark - Picker Methods
+- (IBAction) pressedBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+#pragma mark - Table View Methods
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [[[GameData sharedData] gameSetups] count];
 }
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[[GameData sharedData] gameSetups] count]; //temporary value
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetupCell" forIndexPath:indexPath];
+    cell.textLabel.text = [[[GameData sharedData] gameSetups][indexPath.row] name];
+    return cell;
 }
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    GameSetup *gameSetup = [[GameData sharedData] gameSetups][row];
-    return gameSetup.name;
-    
-//    return @"Game Setup"; // temporary value
-    
-}
-
 
 #pragma mark - Navigation
 
@@ -72,7 +70,7 @@
     if ([segue.identifier isEqualToString:@"showCreateGameSegue"])
     {
         CreateGameViewController *destination = segue.destinationViewController;
-        destination.testSetup = self.gameSetup;
+        destination.gameSetup = [[[GameData sharedData] gameSetups] objectAtIndex:[[_tableView indexPathForSelectedRow] row]];
     }
 }
 

@@ -18,4 +18,5 @@
 
 -(void)addNewGameSetup:(GameSetup *)newGameSetup;
 -(void)removeGameDataAtIndex:(NSInteger)row;
+
 @end

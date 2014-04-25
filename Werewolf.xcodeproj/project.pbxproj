@@ -36,6 +36,7 @@
 		FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6018F8AE5000BB0B81 /* Constants.m */; };
 		FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6418F8B5DA00BB0B81 /* Game.m */; };
 		FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6718F8BF3600BB0B81 /* Player.m */; };
+		FEF34247190894DF003AC14F /* gameSetupList.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF34246190894DF003AC14F /* gameSetupList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		FED1DC6418F8B5DA00BB0B81 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		FED1DC6618F8BF3600BB0B81 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		FED1DC6718F8BF3600BB0B81 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		FEF34246190894DF003AC14F /* gameSetupList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gameSetupList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				FED1DC2618F87E7A00BB0B81 /* Supporting Files */,
 				FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */,
 				FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */,
+				FEF34246190894DF003AC14F /* gameSetupList.plist */,
 				FED1DC3718F87E7A00BB0B81 /* Images.xcassets */,
 			);
 			path = Werewolf;
@@ -330,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF34247190894DF003AC14F /* gameSetupList.plist in Resources */,
 				FED1DC3818F87E7A00BB0B81 /* Images.xcassets in Resources */,
 				FEB53C0F18FBA7BA00598B64 /* page.png in Resources */,
 				FEB53C0E18FBA7BA00598B64 /* background.png in Resources */,

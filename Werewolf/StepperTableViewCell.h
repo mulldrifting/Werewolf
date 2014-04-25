@@ -7,8 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CreateGameViewController.h"
+
+@protocol StepperTableViewCellProtocol <NSObject>
+
+@optional
+
+- (void)setValue:(int)value forRole:(NSString*)role;
+
+@end
 
 @interface StepperTableViewCell : UITableViewCell 
+
+@property (unsafe_unretained, nonatomic) id<StepperTableViewCellProtocol> delegate;
 
 @property (weak, nonatomic) IBOutlet UIStepper *stepper;
 @property (weak, nonatomic) IBOutlet UILabel *roleLabel;

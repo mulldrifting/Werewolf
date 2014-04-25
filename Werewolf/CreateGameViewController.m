@@ -12,18 +12,15 @@
 #import "GameData.h"
 #import "NSDictionary+Common.h"
 
-@interface CreateGameViewController () <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate>
+@interface CreateGameViewController () <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, StepperTableViewCellProtocol>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *rolePicker;
-
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UIButton *addRoleButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *startButton;
 
 //@property (strong, nonatomic) NSMutableDictionary *currentRoles;
-@property (strong, nonatomic) NSMutableArray *availableRoles;
+//@property (strong, nonatomic) NSMutableArray *availableRoles;
 
 @end
 
@@ -32,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController setNavigationBarHidden:NO];
     
     // Set up scroll view
 //    self.automaticallyAdjustsScrollViewInsets = NO;
@@ -49,25 +48,25 @@
     
     // Initialize and set up picker views
 //    self.pickerController = [PickerController new];
-    self.rolePicker.delegate = self;
-    self.rolePicker.dataSource = self;
-    self.rolePicker.tag = kRolePicker;
+//    self.rolePicker.delegate = self;
+//    self.rolePicker.dataSource = self;
+//    self.rolePicker.tag = kRolePicker;
     
     // Game setup test
-//    self.testSetup = [[GameSetup alloc] init];
+//    self.gameSetup = [[GameSetup alloc] init];
     
-    NSLog(@"%@",self.testSetup.roles);
+    NSLog(@"%@",self.gameSetup.roleNumbers);
     
     // Available roles setup
-    self.availableRoles = [NSMutableArray arrayWithArray:[Constants listOfDefinedRoles]];
-    for (NSString *role in [self.testSetup.roles allKeys]) {
-        [self.availableRoles removeObject:role];
-    }
+//    self.availableRoles = [NSMutableArray arrayWithArray:[Constants listOfDefinedRoles]];
+//    for (NSString *role in [self.gameSetup.roles allKeys]) {
+//        [self.availableRoles removeObject:role];
+//    }
     
     
     // Initialize buttons
 //    [self.backButton addTarget:self action:@selector(saveRoles:) forControlEvents:UIControlEventTouchUpInside];
-    [self.addRoleButton addTarget:self action:@selector(addRole:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.addRoleButton addTarget:self action:@selector(addRole:) forControlEvents:UIControlEventTouchUpInside];
     
     // Make keyboard disappear upon tapping outside text field
 //    UITapGestureRecognizer *tapOutside = [[UITapGestureRecognizer alloc]
@@ -76,23 +75,29 @@
 //    [self.view addGestureRecognizer:tapOutside];
     
     // Create dictionary of roles
-//    self.currentRoles = [NSMutableDictionary dictionaryWithDictionary:self.testSetup.roles];
+//    self.currentRoles = [NSMutableDictionary dictionaryWithDictionary:self.gameSetup.roles];
+}
+
+- (void)setValue:(int)value forRole:(NSString*)role
+{
+    [self.gameSetup.roleNumbers setValue:[NSNumber numberWithInt:value] forKey:role];
 }
 
 #pragma mark - Table View Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.testSetup.roles count];
+    return [self.gameSetup.roleNumbers count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    StepperTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    StepperTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoleCell" forIndexPath:indexPath];
+    cell.delegate = self;
     
-    NSString *aKey = [self.testSetup.roles keyAtIndex:indexPath.row];
-    NSNumber *anObject = [self.testSetup.roles objectForKey:aKey];
+    NSString *aKey = [self.gameSetup.roleNumbers keyAtIndex:indexPath.row];
+    NSNumber *anObject = [self.gameSetup.roleNumbers objectForKey:aKey];
     cell.roleLabel.text = aKey;
     cell.stepper.value = [anObject doubleValue];
     cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)cell.stepper.value];
@@ -100,16 +105,16 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [self.availableRoles addObject:[self.testSetup.roles keyAtIndex:indexPath.row]];
-        [self.testSetup.roles removeObjectForKey:[self.testSetup.roles keyAtIndex:indexPath.row]];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.rolePicker reloadAllComponents];
-    }
-}
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+////        [self.availableRoles addObject:[self.gameSetup.roles keyAtIndex:indexPath.row]];
+//        [self.gameSetup.roles removeObjectForKey:[self.gameSetup.roles keyAtIndex:indexPath.row]];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [self.rolePicker reloadAllComponents];
+//    }
+//}
 
 
 #pragma mark - UITextField Methods
@@ -127,31 +132,31 @@
 
 #pragma mark - Button Methods
 
--(void)addRole:(id)sender
-{
-    NSInteger selectedRow = [self.rolePicker selectedRowInComponent:0];
-    
-    if (selectedRow == 0) {
-        return;
-    }
-    
-    NSString *role = self.availableRoles[selectedRow-1];
-    
-    if ([self.availableRoles containsObject:role]) {
-        
-        [self.testSetup.roles setValue:[NSNumber numberWithInteger:1] forKey:role];
-        [self.availableRoles removeObject:role];
-        [self.tableView reloadData];
-        [self.rolePicker reloadAllComponents];
-    }
-}
+//-(void)addRole:(id)sender
+//{
+//    NSInteger selectedRow = [self.rolePicker selectedRowInComponent:0];
+//    
+//    if (selectedRow == 0) {
+//        return;
+//    }
+//    
+//    NSString *role = self.availableRoles[selectedRow-1];
+//    
+//    if ([self.availableRoles containsObject:role]) {
+//        
+//        [self.gameSetup.roles setValue:[NSNumber numberWithInteger:1] forKey:role];
+//        [self.availableRoles removeObject:role];
+//        [self.tableView reloadData];
+//        [self.rolePicker reloadAllComponents];
+//    }
+//}
 
 -(IBAction)startGame:(id)sender
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Save Setup As" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Save Setup As" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", @"Don't Save", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     
-    NSString *numPlayers = [[self.testSetup calculateNumPlayers] stringValue];
+    NSString *numPlayers = [[self.gameSetup numPlayers] stringValue];
     
     [[alertView textFieldAtIndex:0] setDelegate:self];
     [[alertView textFieldAtIndex:0] setText:[NSString stringWithFormat:@"%@P ", numPlayers]];
@@ -169,32 +174,33 @@
     UITextField *textField = [alertView textFieldAtIndex:0];
     
     if (buttonIndex == 1) {
-        GameSetup *newGameSetup = [[GameSetup alloc] initWithName:textField.text roles:self.testSetup.roles];
+        
+        GameSetup *newGameSetup = [[GameSetup alloc] initWithName:textField.text roles:self.gameSetup.roleNumbers];
         [[GameData sharedData] addNewGameSetup:newGameSetup];
     }
 }
 
 #pragma mark - Picker Methods
 
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
+//-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+//{
+//    return 1;
+//}
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [self.availableRoles count] + 1;
-    
-}
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    if (row == 0) {
-        return @"Add a Role";
-    } else {
-        return self.availableRoles[row-1];
-    }
-}
+//-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+//{
+//    return [self.availableRoles count] + 1;
+//    
+//}
+//
+//-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    if (row == 0) {
+//        return @"Add a Role";
+//    } else {
+//        return self.availableRoles[row-1];
+//    }
+//}
 
 
 #pragma mark - Navigation

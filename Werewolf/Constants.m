@@ -16,14 +16,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         inst = @[
-                 @"Werewolf",
-                 @"Seer",
-                 @"Priest",
-                 @"Vigilante",
-                 @"Minion",
-                 @"Hunter",
                  @"Assassin",
-                 @"Villager"
+                 @"Hunter",
+                 @"Minion",
+                 @"Priest",
+                 @"Seer",
+                 @"Vigilante",
+                 @"Villager",
+                 @"Werewolf"
                  ];
     });
     return inst;
