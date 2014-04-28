@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GameSetup : NSObject <NSCoding>
+@interface GameSetup : NSObject <NSCoding, NSCopying>
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSMutableDictionary *roleNumbers;
-@property (strong, nonatomic) NSArray *sortedRoles;
-@property (strong, nonatomic) NSMutableDictionary *settings;
+@property (copy, nonatomic) NSString *name;
+@property (strong, nonatomic) NSMutableDictionary *roleNumbers, *settings;
+@property (strong, nonatomic) NSMutableArray *roles;
 
--(id)initWithName:(NSString*)name roles:(NSMutableDictionary*)roles;
--(NSNumber*)numPlayers;
+-(id)initWithName:(NSString*)name roleNumbers:(NSMutableDictionary*)roleNumbers settings:(NSMutableDictionary*)settings;
+-(int)numPlayers;
 
 @end

@@ -5,9 +5,7 @@
 	<dict>
 		<key>name</key>
 		<string>9P Classic</string>
-		<key>numPlayers</key>
-		<integer>9</integer>
-		<key>roles</key>
+		<key>roleNumbers</key>
 		<dict>
 			<key>Assassin</key>
 			<integer>0</integer>
@@ -30,6 +28,16 @@
 		<dict>
 			<key>PRIEST_CAN_TARGET_SELF</key>
 			<true/>
+			<key>DAY_KILL_ANNOUNCED</key>
+			<true/>
+			<key>NIGHT_KILL_ANNOUNCED</key>
+			<false/>
+			<key>WOLVES_SEE_ROLE_OF_KILL</key>
+			<true/>
+			<key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
+			<false/>
+			<key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
 		</dict>
 	</dict>
 </array>

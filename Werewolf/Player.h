@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Role.h"
 
 @interface Player : NSObject
 
-@property (strong, nonatomic) NSString *name;
-@property (nonatomic) NSInteger position;
-@property (strong, nonatomic) NSString *role;
-
-- (id)initWithPosition:(NSInteger)position;
+@property (copy, nonatomic) NSString *name;
+@property (strong, nonatomic) Role *role;
+@property (nonatomic) BOOL isDead;
 
 @end

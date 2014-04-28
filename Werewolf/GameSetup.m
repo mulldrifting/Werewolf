@@ -8,6 +8,7 @@
 
 #import "GameSetup.h"
 
+
 @implementation GameSetup
 
 -(id)init
@@ -15,32 +16,38 @@
     if (self = [super init])
     {
         _name = @"Game Template";
-        _sortedRoles = [NSArray arrayWithArray:[Constants listOfDefinedRoles]];
-        _roleNumbers = [NSMutableDictionary new];
-        
-        for (NSString *role in _sortedRoles) {
-            [_roleNumbers setObject:[NSNumber numberWithInt:0] forKey:role];
-        }
-        
+        [self createRoleNumbers];
+        _roles = [NSMutableArray new];
         _settings = [NSMutableDictionary
-                     dictionaryWithDictionary: @{@"PRIEST_CAN_TARGET_SELF": @YES}];
+                     dictionaryWithDictionary: [Constants defaultSettings]];
     }
     return self;
 }
 
--(id)initWithName:(NSString *)name roles:(NSMutableDictionary *)roles
+-(id)initWithName:(NSString *)name roleNumbers:(NSMutableDictionary *)roleNumbers settings:(NSMutableDictionary*)settings
 {
     if (self = [super init])
     {
         _name = name;
-        _roleNumbers = roles;
-        _settings = [NSMutableDictionary
-                     dictionaryWithDictionary: @{@"PRIEST_CAN_TARGET_SELF": @YES}];
+        _roleNumbers = roleNumbers;
+        _roles = [NSMutableArray new];
+        _settings = settings;
     }
     return self;
 }
 
--(NSNumber*)numPlayers
+-(void)createRoleNumbers
+{
+    _roleNumbers = [NSMutableDictionary new];
+    
+    for (NSString *role in [Constants listOfDefinedRoles]) {
+        [_roleNumbers setObject:[NSNumber numberWithInt:0] forKey:role];
+    }
+}
+
+
+
+-(int)numPlayers
 {
     int total = 0;
     int numRole = 0;
@@ -48,31 +55,19 @@
     for (NSString *key in [self.roleNumbers allKeys]) {
         numRole = [[self.roleNumbers objectForKey:key] intValue];
         total = total + numRole;
-//        NSLog(@"%@ %@",[NSNumber numberWithInt:numRole],[NSNumber numberWithInt:total]);
-        
     }
     
-    return [NSNumber numberWithInt:total];
+    return total;
 }
 
-- (void)sortByKey:(NSString *)sortKey
-{
-//    //Sort teacher and student arrays by first name
-//    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:YES];
-//    NSArray *sortDescriptors = @[nameDescriptor];
-//    NSArray *sortedRolesArray = [_roles sortedArrayUsingDescriptors:sortDescriptors];
-//    
-//    //Set teacher and student arrays to sorted arrays
-//    _roles = [NSMutableArray arrayWithArray:sortedRolesArray];
-    
-}
+#pragma mark - NSCoding Methods
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
     if (self) {
         self.name = [aDecoder decodeObjectForKey:@"name"];
-        self.roleNumbers = [aDecoder decodeObjectForKey:@"roles"];
+        self.roleNumbers = [aDecoder decodeObjectForKey:@"roleNumbers"];
         self.settings = [aDecoder decodeObjectForKey:@"settings"];
     }
     return self;
@@ -81,8 +76,26 @@
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:self.roleNumbers forKey:@"roles"];
+    [aCoder encodeObject:self.roleNumbers forKey:@"roleNumbers"];
     [aCoder encodeObject:self.settings forKey:@"settings"];
 }
 
+#pragma mark - NSCopying Methods
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    
+    if (copy) {
+        [copy setName:self.name];
+        [copy setRoleNumbers:self.roleNumbers];
+        [copy setRoles:self.roles];
+        [copy setSettings:self.settings];
+    }
+    
+    return copy;
+}
+
+
 @end
+

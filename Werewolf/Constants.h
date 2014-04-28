@@ -16,8 +16,21 @@ typedef NS_ENUM(NSInteger, pickerType) {
     numberOfPickers
 };
 
+typedef NS_ENUM(NSInteger, roleType)
+{
+    kVillager,
+    kWerewolf,
+    kSeer,
+    kPriest,
+    kVigilante,
+    kHunter,
+    kMinion,
+    kAssassin
+};
+
 @interface Constants : NSObject
 
 + (NSArray *)listOfDefinedRoles;
++ (NSDictionary *)defaultSettings;
 
 @end

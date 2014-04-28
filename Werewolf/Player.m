@@ -10,13 +10,12 @@
 
 @implementation Player
 
-- (id)initWithPosition:(NSInteger)position
+- (id)init
 {
     if (self = [super init])
     {
-        _name = @"";
-        _position = position;
-        _role = @"";
+        _name = @"Player";
+        _isDead = NO;
     }
     
     return self;

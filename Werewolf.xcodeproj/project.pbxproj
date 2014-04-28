@@ -7,17 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE21C28B190B33B40048D19C /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE21C28A190B33B40048D19C /* GameViewController.m */; };
 		FE38613D18FF755900ED8483 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = FE38613C18FF755900ED8483 /* GameData.m */; };
 		FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68618FC919300CA3021 /* LoadSetupViewController.m */; };
 		FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */; };
 		FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */; };
+		FEA78589190C3E620084CA04 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA78588190C3E620084CA04 /* Role.m */; };
+		FEA7858D190C3ED60084CA04 /* Werewolf.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7858C190C3ED60084CA04 /* Werewolf.m */; };
+		FEA78590190C3EDD0084CA04 /* Villager.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7858F190C3EDD0084CA04 /* Villager.m */; };
+		FEA78593190C3EE40084CA04 /* Priest.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA78592190C3EE40084CA04 /* Priest.m */; };
+		FEA78596190C3EE90084CA04 /* Seer.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA78595190C3EE90084CA04 /* Seer.m */; };
+		FEA78599190C3EF00084CA04 /* Vigilante.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA78598190C3EF00084CA04 /* Vigilante.m */; };
+		FEA7859C190C3EF50084CA04 /* Hunter.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7859B190C3EF50084CA04 /* Hunter.m */; };
+		FEA7859F190C3EFA0084CA04 /* Minion.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7859E190C3EFA0084CA04 /* Minion.m */; };
+		FEA785A2190C3F090084CA04 /* Assassin.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A1190C3F090084CA04 /* Assassin.m */; };
+		FEA785A5190F05E70084CA04 /* ModPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A4190F05E70084CA04 /* ModPlayer.m */; };
+		FEA785A8190F0F670084CA04 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A7190F0F670084CA04 /* TimerViewController.m */; };
 		FEB53BFE18FB63AC00598B64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */; };
 		FEB53C0118FB701900598B64 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0018FB701900598B64 /* iCarousel.m */; };
 		FEB53C0518FB729500598B64 /* GameSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0418FB729500598B64 /* GameSetup.m */; };
-		FEB53C0A18FBA7AC00598B64 /* iCarouselExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0618FBA7AC00598B64 /* iCarouselExampleViewController.m */; };
-		FEB53C0B18FBA7AC00598B64 /* iCarouselExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0818FBA7AC00598B64 /* iCarouselExampleAppDelegate.m */; };
-		FEB53C0E18FBA7BA00598B64 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FEB53C0C18FBA7BA00598B64 /* background.png */; };
-		FEB53C0F18FBA7BA00598B64 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = FEB53C0D18FBA7BA00598B64 /* page.png */; };
 		FED1DC2018F87E7A00BB0B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */; };
 		FED1DC2218F87E7A00BB0B81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */; };
 		FED1DC2418F87E7A00BB0B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2318F87E7A00BB0B81 /* UIKit.framework */; };
@@ -50,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE21C289190B33B40048D19C /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		FE21C28A190B33B40048D19C /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		FE38613B18FF755900ED8483 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		FE38613C18FF755900ED8483 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		FE99B68518FC919300CA3021 /* LoadSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadSetupViewController.h; sourceTree = "<group>"; };
@@ -58,17 +68,33 @@
 		FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Common.m"; sourceTree = "<group>"; };
 		FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperTableViewCell.h; sourceTree = "<group>"; };
 		FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperTableViewCell.m; sourceTree = "<group>"; };
+		FEA78587190C3E620084CA04 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Role.h; sourceTree = "<group>"; };
+		FEA78588190C3E620084CA04 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Role.m; sourceTree = "<group>"; };
+		FEA7858B190C3ED60084CA04 /* Werewolf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Werewolf.h; sourceTree = "<group>"; };
+		FEA7858C190C3ED60084CA04 /* Werewolf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Werewolf.m; sourceTree = "<group>"; };
+		FEA7858E190C3EDD0084CA04 /* Villager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Villager.h; sourceTree = "<group>"; };
+		FEA7858F190C3EDD0084CA04 /* Villager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Villager.m; sourceTree = "<group>"; };
+		FEA78591190C3EE40084CA04 /* Priest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Priest.h; sourceTree = "<group>"; };
+		FEA78592190C3EE40084CA04 /* Priest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Priest.m; sourceTree = "<group>"; };
+		FEA78594190C3EE90084CA04 /* Seer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seer.h; sourceTree = "<group>"; };
+		FEA78595190C3EE90084CA04 /* Seer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seer.m; sourceTree = "<group>"; };
+		FEA78597190C3EF00084CA04 /* Vigilante.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vigilante.h; sourceTree = "<group>"; };
+		FEA78598190C3EF00084CA04 /* Vigilante.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vigilante.m; sourceTree = "<group>"; };
+		FEA7859A190C3EF50084CA04 /* Hunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hunter.h; sourceTree = "<group>"; };
+		FEA7859B190C3EF50084CA04 /* Hunter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hunter.m; sourceTree = "<group>"; };
+		FEA7859D190C3EFA0084CA04 /* Minion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Minion.h; sourceTree = "<group>"; };
+		FEA7859E190C3EFA0084CA04 /* Minion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Minion.m; sourceTree = "<group>"; };
+		FEA785A0190C3F090084CA04 /* Assassin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assassin.h; sourceTree = "<group>"; };
+		FEA785A1190C3F090084CA04 /* Assassin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assassin.m; sourceTree = "<group>"; };
+		FEA785A3190F05E70084CA04 /* ModPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModPlayer.h; sourceTree = "<group>"; };
+		FEA785A4190F05E70084CA04 /* ModPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModPlayer.m; sourceTree = "<group>"; };
+		FEA785A6190F0F670084CA04 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
+		FEA785A7190F0F670084CA04 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FEB53BFF18FB701900598B64 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = "../../Cocoapods/iCarousel-master/iCarousel/iCarousel.h"; sourceTree = "<group>"; };
 		FEB53C0018FB701900598B64 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../Cocoapods/iCarousel-master/iCarousel/iCarousel.m"; sourceTree = "<group>"; };
 		FEB53C0318FB729500598B64 /* GameSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetup.h; sourceTree = "<group>"; };
 		FEB53C0418FB729500598B64 /* GameSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSetup.m; sourceTree = "<group>"; };
-		FEB53C0618FBA7AC00598B64 /* iCarouselExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarouselExampleViewController.m; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleViewController.m"; sourceTree = "<group>"; };
-		FEB53C0718FBA7AC00598B64 /* iCarouselExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarouselExampleViewController.h; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleViewController.h"; sourceTree = "<group>"; };
-		FEB53C0818FBA7AC00598B64 /* iCarouselExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarouselExampleAppDelegate.m; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleAppDelegate.m"; sourceTree = "<group>"; };
-		FEB53C0918FBA7AC00598B64 /* iCarouselExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarouselExampleAppDelegate.h; path = "../../Cocoapods/iCarousel-master/Examples/Basic iOS Example/iCarouselExampleAppDelegate.h"; sourceTree = "<group>"; };
-		FEB53C0C18FBA7BA00598B64 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = "../../Cocoapods/iCarousel-master/Examples/Resources/background.png"; sourceTree = "<group>"; };
-		FEB53C0D18FBA7BA00598B64 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = page.png; path = "../../Cocoapods/iCarousel-master/Examples/Resources/page.png"; sourceTree = "<group>"; };
 		FED1DC1C18F87E7A00BB0B81 /* Werewolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werewolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,15 +150,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FEA7858A190C3EC90084CA04 /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				FEA78587190C3E620084CA04 /* Role.h */,
+				FEA78588190C3E620084CA04 /* Role.m */,
+				FEA7858B190C3ED60084CA04 /* Werewolf.h */,
+				FEA7858C190C3ED60084CA04 /* Werewolf.m */,
+				FEA7858E190C3EDD0084CA04 /* Villager.h */,
+				FEA7858F190C3EDD0084CA04 /* Villager.m */,
+				FEA78591190C3EE40084CA04 /* Priest.h */,
+				FEA78592190C3EE40084CA04 /* Priest.m */,
+				FEA78594190C3EE90084CA04 /* Seer.h */,
+				FEA78595190C3EE90084CA04 /* Seer.m */,
+				FEA78597190C3EF00084CA04 /* Vigilante.h */,
+				FEA78598190C3EF00084CA04 /* Vigilante.m */,
+				FEA7859A190C3EF50084CA04 /* Hunter.h */,
+				FEA7859B190C3EF50084CA04 /* Hunter.m */,
+				FEA7859D190C3EFA0084CA04 /* Minion.h */,
+				FEA7859E190C3EFA0084CA04 /* Minion.m */,
+				FEA785A0190C3F090084CA04 /* Assassin.h */,
+				FEA785A1190C3F090084CA04 /* Assassin.m */,
+			);
+			name = Roles;
+			sourceTree = "<group>";
+		};
 		FEB53C0218FB71E000598B64 /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
-				FEB53C0C18FBA7BA00598B64 /* background.png */,
-				FEB53C0D18FBA7BA00598B64 /* page.png */,
-				FEB53C0618FBA7AC00598B64 /* iCarouselExampleViewController.m */,
-				FEB53C0718FBA7AC00598B64 /* iCarouselExampleViewController.h */,
-				FEB53C0818FBA7AC00598B64 /* iCarouselExampleAppDelegate.m */,
-				FEB53C0918FBA7AC00598B64 /* iCarouselExampleAppDelegate.h */,
 				FEB53BFF18FB701900598B64 /* iCarousel.h */,
 				FEB53C0018FB701900598B64 /* iCarousel.m */,
 			);
@@ -229,6 +274,10 @@
 				FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */,
 				FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */,
 				FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */,
+				FE21C289190B33B40048D19C /* GameViewController.h */,
+				FE21C28A190B33B40048D19C /* GameViewController.m */,
+				FEA785A6190F0F670084CA04 /* TimerViewController.h */,
+				FEA785A7190F0F670084CA04 /* TimerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -251,8 +300,11 @@
 				FED1DC6418F8B5DA00BB0B81 /* Game.m */,
 				FED1DC6618F8BF3600BB0B81 /* Player.h */,
 				FED1DC6718F8BF3600BB0B81 /* Player.m */,
+				FEA785A3190F05E70084CA04 /* ModPlayer.h */,
+				FEA785A4190F05E70084CA04 /* ModPlayer.m */,
 				FEB53C0318FB729500598B64 /* GameSetup.h */,
 				FEB53C0418FB729500598B64 /* GameSetup.m */,
+				FEA7858A190C3EC90084CA04 /* Roles */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -335,8 +387,6 @@
 			files = (
 				FEF34247190894DF003AC14F /* gameSetupList.plist in Resources */,
 				FED1DC3818F87E7A00BB0B81 /* Images.xcassets in Resources */,
-				FEB53C0F18FBA7BA00598B64 /* page.png in Resources */,
-				FEB53C0E18FBA7BA00598B64 /* background.png in Resources */,
 				FED1DC2A18F87E7A00BB0B81 /* InfoPlist.strings in Resources */,
 				FED1DC3318F87E7A00BB0B81 /* Main.storyboard in Resources */,
 			);
@@ -357,20 +407,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA78590190C3EDD0084CA04 /* Villager.m in Sources */,
 				FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */,
 				FED1DC3618F87E7A00BB0B81 /* TitleViewController.m in Sources */,
+				FEA785A5190F05E70084CA04 /* ModPlayer.m in Sources */,
 				FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */,
-				FEB53C0B18FBA7AC00598B64 /* iCarouselExampleAppDelegate.m in Sources */,
 				FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */,
 				FED1DC3018F87E7A00BB0B81 /* AppDelegate.m in Sources */,
+				FEA785A8190F0F670084CA04 /* TimerViewController.m in Sources */,
 				FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */,
+				FEA785A2190C3F090084CA04 /* Assassin.m in Sources */,
 				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
+				FE21C28B190B33B40048D19C /* GameViewController.m in Sources */,
 				FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */,
 				FE38613D18FF755900ED8483 /* GameData.m in Sources */,
 				FEB53C0118FB701900598B64 /* iCarousel.m in Sources */,
+				FEA7858D190C3ED60084CA04 /* Werewolf.m in Sources */,
+				FEA78593190C3EE40084CA04 /* Priest.m in Sources */,
 				FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */,
+				FEA78589190C3E620084CA04 /* Role.m in Sources */,
+				FEA78599190C3EF00084CA04 /* Vigilante.m in Sources */,
+				FEA78596190C3EE90084CA04 /* Seer.m in Sources */,
 				FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */,
-				FEB53C0A18FBA7AC00598B64 /* iCarouselExampleViewController.m in Sources */,
+				FEA7859F190C3EFA0084CA04 /* Minion.m in Sources */,
+				FEA7859C190C3EF50084CA04 /* Hunter.m in Sources */,
 				FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

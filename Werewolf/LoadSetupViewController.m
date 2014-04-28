@@ -23,10 +23,17 @@
 {
     [super viewDidLoad];
     
+    // Setup table view
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    // Show navigation bar on load game setup screen
     [self.navigationController setNavigationBarHidden:NO];
+    
+    // Add swipe to go back gesture
+    UIScreenEdgePanGestureRecognizer *swipeToGoBack = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
+    swipeToGoBack.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:swipeToGoBack];
     
 }
 
@@ -38,12 +45,8 @@
 
 #pragma mark - Button Methods
 
--(void)setupSelected
+-(void)goBack
 {
-//    self.gameSetup = [[GameData sharedData] gameSetups][selectedRow];
-}
-
-- (IBAction) pressedBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -51,6 +54,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    //return number of game setups in shared data
     return [[[GameData sharedData] gameSetups] count];
 }
 
@@ -65,12 +69,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self setupSelected];
     
     if ([segue.identifier isEqualToString:@"showCreateGameSegue"])
     {
         CreateGameViewController *destination = segue.destinationViewController;
-        destination.gameSetup = [[[GameData sharedData] gameSetups] objectAtIndex:[[_tableView indexPathForSelectedRow] row]];
+        
+        // use selected row to create new copy of Game Setup for editing
+        GameSetup *selectedSetup = [[[GameData sharedData] gameSetups] objectAtIndex:[[_tableView indexPathForSelectedRow] row]];
+        destination.gameSetup = [selectedSetup copy];
     }
 }
 

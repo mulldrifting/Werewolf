@@ -13,15 +13,11 @@
 
 @property (strong, nonatomic) GameSetup *gameSetup;
 @property (strong, nonatomic) NSMutableArray *players, *roles;
-@property (nonatomic) NSNumber* numPlayers;
+@property (nonatomic) int numPlayers;
 @property (nonatomic) BOOL isDay;
 @property (nonatomic) NSInteger currentRound;
 
-+ (Game *)sharedGame;
-
-- (id)initWithRoles:(NSMutableArray *)roles numPlayers:(NSNumber*)numPlayers;
-
-- (BOOL)isGameValid;
-- (void)assignRoles;
+- (id)initWithGameSetup:(GameSetup*)gameSetup;
+- (void)prepareGame;
 
 @end

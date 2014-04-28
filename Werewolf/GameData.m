@@ -31,21 +31,25 @@
     // path from application documents
     NSString *plistPath = [[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:@"gameSetupList.plist"];
     
+    NSLog(@"%@",plistPath);
+    
     // path from main bundle
     NSString *pathBundle = [[NSBundle mainBundle] pathForResource:@"gameSetupList" ofType:@"plist"];
 
     if ([self checkForPlistFileAtPath:plistPath])
     {
+        NSLog(@"unarchive game data from app doc");
         return [NSKeyedUnarchiver unarchiveObjectWithFile:plistPath];
     }
     else if ([self checkForPlistFileAtPath:pathBundle])
     {
+        NSLog(@"init with contents of main bundle plist");
         // create an array from main bundle plist
         NSArray *plistGameSetups = [[NSArray alloc] initWithContentsOfFile:pathBundle];
 
         [plistGameSetups enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            GameSetup *newSetup = [[GameSetup alloc] initWithName:obj[@"name"] roles:obj[@"roles"]];
+            GameSetup *newSetup = [[GameSetup alloc] initWithName:obj[@"name"] roleNumbers:[obj[@"roleNumbers"] mutableCopy] settings:[obj[@"settings"] mutableCopy]];
             [gameSetups addObject:newSetup];
         }];
         

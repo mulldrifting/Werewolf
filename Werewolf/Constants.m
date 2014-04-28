@@ -16,15 +16,31 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         inst = @[
-                 @"Assassin",
+                 @"Villager",
+                 @"Werewolf",
+                 @"Seer",
+                 @"Priest",
+                 @"Vigilante",
                  @"Hunter",
                  @"Minion",
-                 @"Priest",
-                 @"Seer",
-                 @"Vigilante",
-                 @"Villager",
-                 @"Werewolf"
+                 @"Assassin"
                  ];
+    });
+    return inst;
+}
+
++ (NSDictionary *)defaultSettings
+{
+    static NSDictionary *inst = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        inst = @{@"DAY_KILL_ANNOUNCED": @YES,
+                 @"NIGHT_KILL_ANNOUNCED": @NO,
+                 @"WOLVES_SEE_ROLE_OF_KILL": @YES,
+                 @"PRIEST_CAN_TARGET_SELF": @YES,
+                 @"PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW": @NO,
+                 @"SEER_PEEKS_NIGHT_ZERO": @NO
+                 };
     });
     return inst;
 }

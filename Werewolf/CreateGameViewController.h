@@ -11,6 +11,6 @@
 
 @interface CreateGameViewController : UIViewController
 
-@property (weak, nonatomic) GameSetup *gameSetup;
+@property (strong, nonatomic) GameSetup *gameSetup;
 
 @end
