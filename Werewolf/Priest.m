@@ -10,4 +10,14 @@
 
 @implementation Priest
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        self.name = @"Priest";
+    }
+    
+    return self;
+}
+
 @end

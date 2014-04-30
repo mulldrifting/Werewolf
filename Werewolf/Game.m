@@ -29,11 +29,29 @@
         _numPlayers = gameSetup.numPlayers;
         _roles = [NSMutableArray new];
         _players = [NSMutableArray new];
-        _isDay = YES;
+        _isDay = NO;
         _currentRound = 0;
     }
     
     return self;
+}
+
+- (int)prevPlayerWithIndex:(int)index
+{
+    int prevPlayerIndex = index - 1;
+    if (prevPlayerIndex < 0) {
+        prevPlayerIndex = _numPlayers-1;
+    }
+    return prevPlayerIndex;
+}
+
+- (int)nextPlayerWithIndex:(int)index
+{
+    int nextPlayerIndex = index + 1;
+    if (nextPlayerIndex == _numPlayers) {
+        nextPlayerIndex = 0;
+    }
+    return nextPlayerIndex;
 }
 
 #pragma mark - Setup Game Methods
@@ -51,7 +69,7 @@
     for (int i = 0; i < _numPlayers; i++) {
         if (i == 0) {
             ModPlayer *newPlayer = [ModPlayer new];
-            [newPlayer setName:@"Player"];
+            [newPlayer setName:@"(Mod) Player"];
             [_players addObject:newPlayer];
         }
         else {
@@ -64,10 +82,17 @@
 
 - (void)prepareRoles
 {
-    for (NSString *key in _gameSetup.roleNumbers) {
-        for (int i = 0; i < [_gameSetup.roleNumbers[key] intValue]; i++) {
-            [_roles addObject:[self roleForIndex:i]];
+    int keyIndex = 0;
+    
+    for (NSString *roleName in [Constants listOfDefinedRoles]) {
+        
+        int roleNum = [_gameSetup.roleNumbers[roleName] intValue];
+        
+        for (int i = 0; i < roleNum; i++) {
+            [_roles addObject:[self roleForIndex:keyIndex]];
         }
+        
+        keyIndex++;
     }
 }
 
@@ -101,6 +126,7 @@
     int index = 0;
     for (Player *player in _players) {
         player.role = _roles[index];
+        NSLog(@"%@: %@",player.name,[_roles[index] name]);
         index++;
     }
 }

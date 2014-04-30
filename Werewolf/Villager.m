@@ -10,4 +10,14 @@
 
 @implementation Villager
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        self.name = @"Villager";
+    }
+    
+    return self;
+}
+
 @end

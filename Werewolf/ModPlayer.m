@@ -10,9 +10,4 @@
 
 @implementation ModPlayer
 
--(void)setName:(NSString *)name
-{
-//    self.name = [NSString stringWithFormat:@"%@ (Mod)", name];
-}
-
 @end

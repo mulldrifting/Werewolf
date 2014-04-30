@@ -10,4 +10,14 @@
 
 @implementation Seer
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        self.name = @"Seer";
+    }
+    
+    return self;
+}
+
 @end

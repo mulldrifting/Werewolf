@@ -10,4 +10,13 @@
 
 @implementation Assassin
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        self.name = @"Assassin";
+    }
+    
+    return self;
+}
 @end

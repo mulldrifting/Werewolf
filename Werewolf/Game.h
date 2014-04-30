@@ -19,5 +19,7 @@
 
 - (id)initWithGameSetup:(GameSetup*)gameSetup;
 - (void)prepareGame;
+- (int)prevPlayerWithIndex:(int)index;
+- (int)nextPlayerWithIndex:(int)index;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TimerViewController.h"
 #import "iCarousel.h"
 #import "Game.h"
 
@@ -14,6 +15,7 @@
 
 @property (nonatomic, strong) IBOutlet iCarousel *carousel;
 
+@property (strong, nonatomic) TimerViewController *timerViewController;
 @property (strong, nonatomic) Game *game;
 
 @end

@@ -8,7 +8,13 @@
 
 #import "TimerViewController.h"
 
-@interface TimerViewController ()
+@interface TimerViewController () <TTCounterLabelDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *plusOneMinButton;
+@property (weak, nonatomic) IBOutlet UIButton *minusOneMinButton;
 
 @end
 
@@ -26,13 +32,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    
+    [self setupCounter];
+    
+    _titleLabel.text = [NSString stringWithFormat:@"Day %d", _game.currentRound];
+}
+
+- (void)setupCounter
+{
+    _counterLabel.countDirection = kCountDirectionDown;
+    [_counterLabel setStartValue:600000];
+}
+
+#pragma mark - Button Methods
+
+- (IBAction)startTimer:(id)sender {
+    [_counterLabel start];
+}
+
+- (IBAction)pauseTimer:(id)sender {
+    [_counterLabel stop];
+}
+
+- (IBAction)addMinute:(id)sender {
+    unsigned long long newTime = _counterLabel.currentValue + 60000;
+    [_counterLabel setStartValue:newTime];
+}
+
+- (IBAction)subtractMinute:(id)sender {
+    unsigned long long newTime = _counterLabel.currentValue - 60000;
+    if (newTime <= 0) {
+        [_counterLabel setStartValue:0];
+    }
+    else {
+        [_counterLabel setStartValue:newTime];
+    }
 }
 
 /*

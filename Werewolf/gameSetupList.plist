@@ -14,13 +14,13 @@
 			<key>Minion</key>
 			<integer>0</integer>
 			<key>Priest</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>Seer</key>
 			<integer>1</integer>
 			<key>Vigilante</key>
 			<integer>0</integer>
 			<key>Villager</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>Werewolf</key>
 			<integer>2</integer>
 		</dict>
@@ -38,7 +38,201 @@
 			<false/>
 			<key>SEER_PEEKS_NIGHT_ZERO</key>
 			<false/>
+            <key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+			<key>SEER_SEES_ROLE</key>
+			<false/>
+			<key>VIGILANTE_KILLS_AT_NIGHT</key>
+			<false/>
+			<key>VIGILANTE_KILLS_ONCE_PER_GAME</key>
+			<true/>
 		</dict>
 	</dict>
+	<dict>
+		<key>name</key>
+		<string>7P Classic</string>
+		<key>roleNumbers</key>
+		<dict>
+			<key>Assassin</key>
+			<integer>0</integer>
+			<key>Hunter</key>
+			<integer>0</integer>
+			<key>Minion</key>
+			<integer>0</integer>
+			<key>Priest</key>
+			<integer>0</integer>
+			<key>Seer</key>
+			<integer>1</integer>
+			<key>Vigilante</key>
+			<integer>0</integer>
+			<key>Villager</key>
+			<integer>4</integer>
+			<key>Werewolf</key>
+			<integer>2</integer>
+		</dict>
+		<key>settings</key>
+		<dict>
+			<key>PRIEST_CAN_TARGET_SELF</key>
+			<true/>
+			<key>DAY_KILL_ANNOUNCED</key>
+			<true/>
+			<key>NIGHT_KILL_ANNOUNCED</key>
+			<false/>
+			<key>WOLVES_SEE_ROLE_OF_KILL</key>
+			<true/>
+			<key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
+			<false/>
+			<key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+            <key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+			<key>SEER_SEES_ROLE</key>
+			<false/>
+			<key>VIGILANTE_KILLS_AT_NIGHT</key>
+			<false/>
+			<key>VIGILANTE_KILLS_ONCE_PER_GAME</key>
+			<true/>
+		</dict>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>5P Special</string>
+		<key>roleNumbers</key>
+		<dict>
+			<key>Assassin</key>
+			<integer>0</integer>
+			<key>Hunter</key>
+			<integer>1</integer>
+			<key>Minion</key>
+			<integer>1</integer>
+			<key>Priest</key>
+			<integer>0</integer>
+			<key>Seer</key>
+			<integer>1</integer>
+			<key>Vigilante</key>
+			<integer>0</integer>
+			<key>Villager</key>
+			<integer>1</integer>
+			<key>Werewolf</key>
+			<integer>1</integer>
+		</dict>
+		<key>settings</key>
+		<dict>
+			<key>PRIEST_CAN_TARGET_SELF</key>
+			<true/>
+			<key>DAY_KILL_ANNOUNCED</key>
+			<true/>
+			<key>NIGHT_KILL_ANNOUNCED</key>
+			<false/>
+			<key>WOLVES_SEE_ROLE_OF_KILL</key>
+			<true/>
+			<key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
+			<false/>
+			<key>SEER_PEEKS_NIGHT_ZERO</key>
+			<true/>
+            <key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+			<key>SEER_SEES_ROLE</key>
+			<false/>
+			<key>VIGILANTE_KILLS_AT_NIGHT</key>
+			<false/>
+			<key>VIGILANTE_KILLS_ONCE_PER_GAME</key>
+			<true/>
+		</dict>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>5P Assassin</string>
+		<key>roleNumbers</key>
+		<dict>
+			<key>Assassin</key>
+			<integer>1</integer>
+			<key>Hunter</key>
+			<integer>0</integer>
+			<key>Minion</key>
+			<integer>0</integer>
+			<key>Priest</key>
+			<integer>0</integer>
+			<key>Seer</key>
+			<integer>0</integer>
+			<key>Vigilante</key>
+			<integer>0</integer>
+			<key>Villager</key>
+			<integer>3</integer>
+			<key>Werewolf</key>
+			<integer>1</integer>
+		</dict>
+		<key>settings</key>
+		<dict>
+			<key>PRIEST_CAN_TARGET_SELF</key>
+			<true/>
+			<key>DAY_KILL_ANNOUNCED</key>
+			<true/>
+			<key>NIGHT_KILL_ANNOUNCED</key>
+			<false/>
+			<key>WOLVES_SEE_ROLE_OF_KILL</key>
+			<true/>
+			<key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
+			<false/>
+			<key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+            <key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+			<key>SEER_SEES_ROLE</key>
+			<false/>
+			<key>VIGILANTE_KILLS_AT_NIGHT</key>
+			<false/>
+			<key>VIGILANTE_KILLS_ONCE_PER_GAME</key>
+			<true/>
+		</dict>
+	</dict>
+    
+    <dict>
+		<key>name</key>
+		<string>1P Test</string>
+		<key>roleNumbers</key>
+		<dict>
+			<key>Assassin</key>
+			<integer>0</integer>
+			<key>Hunter</key>
+			<integer>0</integer>
+			<key>Minion</key>
+			<integer>0</integer>
+			<key>Priest</key>
+			<integer>0</integer>
+			<key>Seer</key>
+			<integer>0</integer>
+			<key>Vigilante</key>
+			<integer>0</integer>
+			<key>Villager</key>
+			<integer>0</integer>
+			<key>Werewolf</key>
+			<integer>1</integer>
+		</dict>
+		<key>settings</key>
+		<dict>
+			<key>PRIEST_CAN_TARGET_SELF</key>
+			<true/>
+			<key>DAY_KILL_ANNOUNCED</key>
+			<true/>
+			<key>NIGHT_KILL_ANNOUNCED</key>
+			<false/>
+			<key>WOLVES_SEE_ROLE_OF_KILL</key>
+			<true/>
+			<key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
+			<false/>
+			<key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+            <key>SEER_PEEKS_NIGHT_ZERO</key>
+			<false/>
+			<key>SEER_SEES_ROLE</key>
+			<false/>
+			<key>VIGILANTE_KILLS_AT_NIGHT</key>
+			<false/>
+			<key>VIGILANTE_KILLS_ONCE_PER_GAME</key>
+			<true/>
+		</dict>
+	</dict>
+
 </array>
 </plist>

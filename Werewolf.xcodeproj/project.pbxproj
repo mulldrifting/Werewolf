@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FE21C28B190B33B40048D19C /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE21C28A190B33B40048D19C /* GameViewController.m */; };
 		FE38613D18FF755900ED8483 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = FE38613C18FF755900ED8483 /* GameData.m */; };
+		FE38B7EC190F436E007B514B /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE38B7EB190F436E007B514B /* OpenSans-Regular.ttf */; };
 		FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68618FC919300CA3021 /* LoadSetupViewController.m */; };
 		FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */; };
 		FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */; };
@@ -26,6 +27,8 @@
 		FEB53BFE18FB63AC00598B64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */; };
 		FEB53C0118FB701900598B64 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0018FB701900598B64 /* iCarousel.m */; };
 		FEB53C0518FB729500598B64 /* GameSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0418FB729500598B64 /* GameSetup.m */; };
+		FEC75E911910769900C44A3A /* TTCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E901910769900C44A3A /* TTCounterLabel.m */; };
+		FEC75E961910771700C44A3A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E951910771700C44A3A /* TTTAttributedLabel.m */; };
 		FED1DC2018F87E7A00BB0B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */; };
 		FED1DC2218F87E7A00BB0B81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */; };
 		FED1DC2418F87E7A00BB0B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2318F87E7A00BB0B81 /* UIKit.framework */; };
@@ -62,6 +65,7 @@
 		FE21C28A190B33B40048D19C /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		FE38613B18FF755900ED8483 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		FE38613C18FF755900ED8483 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		FE38B7EB190F436E007B514B /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../Downloads/Open_Sans/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		FE99B68518FC919300CA3021 /* LoadSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadSetupViewController.h; sourceTree = "<group>"; };
 		FE99B68618FC919300CA3021 /* LoadSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSetupViewController.m; sourceTree = "<group>"; };
 		FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Common.h"; sourceTree = "<group>"; };
@@ -95,6 +99,10 @@
 		FEB53C0018FB701900598B64 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = "../../Cocoapods/iCarousel-master/iCarousel/iCarousel.m"; sourceTree = "<group>"; };
 		FEB53C0318FB729500598B64 /* GameSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetup.h; sourceTree = "<group>"; };
 		FEB53C0418FB729500598B64 /* GameSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSetup.m; sourceTree = "<group>"; };
+		FEC75E8F1910769900C44A3A /* TTCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTCounterLabel.h; path = "../../Cocoapods/TTCounterLabel-master/Source/TTCounterLabel.h"; sourceTree = "<group>"; };
+		FEC75E901910769900C44A3A /* TTCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCounterLabel.m; path = "../../Cocoapods/TTCounterLabel-master/Source/TTCounterLabel.m"; sourceTree = "<group>"; };
+		FEC75E941910771700C44A3A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTAttributedLabel.h; path = "../../Cocoapods/TTCounterLabel-master/Sample/Pods/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.h"; sourceTree = "<group>"; };
+		FEC75E951910771700C44A3A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTAttributedLabel.m; path = "../../Cocoapods/TTCounterLabel-master/Sample/Pods/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.m"; sourceTree = "<group>"; };
 		FED1DC1C18F87E7A00BB0B81 /* Werewolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werewolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -184,6 +192,26 @@
 			name = iCarousel;
 			sourceTree = "<group>";
 		};
+		FEC75E8E1910760200C44A3A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */,
+				FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		FEC75E92191076A600C44A3A /* TTCounterLabel */ = {
+			isa = PBXGroup;
+			children = (
+				FEC75E941910771700C44A3A /* TTTAttributedLabel.h */,
+				FEC75E951910771700C44A3A /* TTTAttributedLabel.m */,
+				FEC75E8F1910769900C44A3A /* TTCounterLabel.h */,
+				FEC75E901910769900C44A3A /* TTCounterLabel.m */,
+			);
+			name = TTCounterLabel;
+			sourceTree = "<group>";
+		};
 		FED1DC1318F87E7A00BB0B81 = {
 			isa = PBXGroup;
 			children = (
@@ -224,12 +252,12 @@
 				FED1DC5418F882D000BB0B81 /* View Controllers */,
 				FED1DC6218F8B5CC00BB0B81 /* Model */,
 				FED1DC5B18F8A32800BB0B81 /* Data */,
+				FEC75E8E1910760200C44A3A /* Categories */,
 				FEB53C0218FB71E000598B64 /* iCarousel */,
+				FEC75E92191076A600C44A3A /* TTCounterLabel */,
 				FED1DC2618F87E7A00BB0B81 /* Supporting Files */,
-				FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */,
-				FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */,
-				FEF34246190894DF003AC14F /* gameSetupList.plist */,
 				FED1DC3718F87E7A00BB0B81 /* Images.xcassets */,
+				FE38B7EB190F436E007B514B /* OpenSans-Regular.ttf */,
 			);
 			path = Werewolf;
 			sourceTree = "<group>";
@@ -289,6 +317,7 @@
 				FED1DC6018F8AE5000BB0B81 /* Constants.m */,
 				FE38613B18FF755900ED8483 /* GameData.h */,
 				FE38613C18FF755900ED8483 /* GameData.m */,
+				FEF34246190894DF003AC14F /* gameSetupList.plist */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -385,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE38B7EC190F436E007B514B /* OpenSans-Regular.ttf in Resources */,
 				FEF34247190894DF003AC14F /* gameSetupList.plist in Resources */,
 				FED1DC3818F87E7A00BB0B81 /* Images.xcassets in Resources */,
 				FED1DC2A18F87E7A00BB0B81 /* InfoPlist.strings in Resources */,
@@ -420,9 +450,11 @@
 				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
 				FE21C28B190B33B40048D19C /* GameViewController.m in Sources */,
 				FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */,
+				FEC75E911910769900C44A3A /* TTCounterLabel.m in Sources */,
 				FE38613D18FF755900ED8483 /* GameData.m in Sources */,
 				FEB53C0118FB701900598B64 /* iCarousel.m in Sources */,
 				FEA7858D190C3ED60084CA04 /* Werewolf.m in Sources */,
+				FEC75E961910771700C44A3A /* TTTAttributedLabel.m in Sources */,
 				FEA78593190C3EE40084CA04 /* Priest.m in Sources */,
 				FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */,
 				FEA78589190C3E620084CA04 /* Role.m in Sources */,

@@ -39,7 +39,11 @@
                  @"WOLVES_SEE_ROLE_OF_KILL": @YES,
                  @"PRIEST_CAN_TARGET_SELF": @YES,
                  @"PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW": @NO,
-                 @"SEER_PEEKS_NIGHT_ZERO": @NO
+                 @"SEER_PEEKS_NIGHT_ZERO": @NO,
+                 @"SEER_SEES_ROLE":@NO,
+                 @"VIGILANTE_KILLS_AT_NIGHT": @NO,
+                 @"VIGILANTE_KILLS_ONCE_PER_GAME": @YES
+                 
                  };
     });
     return inst;

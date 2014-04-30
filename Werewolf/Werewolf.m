@@ -10,4 +10,14 @@
 
 @implementation Werewolf
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        self.name = @"Werewolf";
+    }
+    
+    return self;
+}
+
 @end

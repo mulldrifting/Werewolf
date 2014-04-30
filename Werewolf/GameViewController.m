@@ -7,10 +7,18 @@
 //
 
 #import "GameViewController.h"
+#import "Player.h"
+
+#define CONFIRMATION_ALERT_TAG 33700
+#define WAIT_ALERT_TAG 33701
+#define WRONG_NAME_ALERT_TAG 33702
+#define SHOW_ROLE_ALERT_TAG 33703
 
 @interface GameViewController () <iCarouselDataSource, iCarouselDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
-
+@property (strong, nonatomic) UIView *alphaView;
+@property (nonatomic) NSInteger currentPlayerIndex;
+@property (strong, nonatomic) NSString *currentPlayerName;
 
 @end
 
@@ -30,41 +38,293 @@
 {
     [super viewDidLoad];
     
-    _carousel.delegate = self;
-    _carousel.dataSource = self;
-
-    _carousel.type = iCarouselTypeInvertedWheel;
-    _carousel.viewpointOffset = CGSizeMake(50, 0);
-    _carousel.vertical = YES;
-    
     [self.navigationController setNavigationBarHidden:YES];
+    
+    [self setupCarousel];
+    
+    _currentPlayerIndex = 0;
+    
+//    [self createAlphaView];
+    [self showPregameExplanationView];
+    
+    _timerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"timer"];
+    _timerViewController.game = _game;
 }
+
+- (void)moveToNextPlayer
+{
+    [self dismissAlphaView];
+
+    _currentPlayerIndex++;
+    if (_currentPlayerIndex >= _game.numPlayers) {
+        
+        [self showBeginDayView];
+    }
+    
+    [_carousel scrollToItemAtIndex:_currentPlayerIndex animated:YES];
+
+}
+
+- (void)beginDay
+{
+    _game.currentRound++;
+    
+    [self showTimerViewController];
+    
+}
+
+#pragma mark - Timer View Controller Methods
+
+- (void)showTimerViewController
+{
+    [self addChildViewController:_timerViewController];
+    [self.view addSubview:_timerViewController.view];
+    [_timerViewController didMoveToParentViewController:self];
+}
+
+- (void)hideTimerViewController
+{
+    [_timerViewController.view removeFromSuperview];
+    [_timerViewController removeFromParentViewController];
+}
+
+#pragma mark - Button Methods
+
+- (IBAction)goBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Subview Methods
+
+- (void)createAlphaView
+{
+    _alphaView = [[UIView alloc] initWithFrame:self.view.frame];
+    [_alphaView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.7]];
+    [self.view addSubview:_alphaView];
+
+}
+
+- (void)showAlphaView
+{
+    _alphaView = [[UIView alloc] initWithFrame:self.view.frame];
+    [_alphaView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.7]];
+    [self.view addSubview:_alphaView];
+}
+
+-(void)dismissAlphaView
+{
+    [_alphaView removeFromSuperview];
+//    _alphaView.hidden = YES;
+}
+
+- (void)showPregameExplanationView
+{
+    [self showAlphaView];
+    
+    UIView *explanationView = [[UIView alloc] initWithFrame:CGRectMake(35, 100, 250, 250)];
+    [explanationView setBackgroundColor:[UIColor whiteColor]];
+    [explanationView setAlpha:1];
+    explanationView.layer.cornerRadius = 5;
+    explanationView.layer.masksToBounds = YES;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 230, 200)];
+    label.text = @"Before we start, one person will be appointed the Moderator. They will be in charge of the timer. Give this to that person.\n\n\nStarting with the Moderator, players will enter their names and get to see their roles.";
+    label.font = [label.font fontWithSize:15];
+    label.numberOfLines = 20;
+    [explanationView addSubview:label];
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(180, 210, 50, 30)];
+    [button setTitle:@"Got it!" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithWhite:0.600 alpha:1.000] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(dismissAlphaView) forControlEvents:UIControlEventTouchUpInside];
+    [explanationView addSubview:button];
+    
+    [_alphaView addSubview:explanationView];
+}
+
+- (void)showPassRightView
+{
+    [self showAlphaView];
+    
+    UILabel *passRightLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 300, 280)];
+    passRightLabel.text = @"PASS\nRIGHT";
+    passRightLabel.textColor = [UIColor whiteColor];
+    [passRightLabel setFont:[UIFont boldSystemFontOfSize:90]];
+    passRightLabel.numberOfLines = 3;
+    
+    UILabel *arrowLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 250, 300, 80)];
+    arrowLabel.text = @">>>";
+    arrowLabel.textColor = [UIColor whiteColor];
+    [arrowLabel setFont:[UIFont systemFontOfSize:90]];
+    
+//    UILabel *clickToDismissLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 420, 300, 50)];
+//    clickToDismissLabel.text = @"(touch anywhere to dismiss)";
+//    clickToDismissLabel.textColor = [UIColor whiteColor];
+//    [clickToDismissLabel setFont:[UIFont systemFontOfSize:15]];
+
+    [_alphaView addSubview:passRightLabel];
+    [_alphaView addSubview:arrowLabel];
+//    [_alphaView addSubview:clickToDismissLabel];
+    
+    UITapGestureRecognizer *tapToDismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moveToNextPlayer)];
+    [_alphaView addGestureRecognizer:tapToDismiss];
+
+}
+
+- (void)showBeginDayView
+{
+    [self showAlphaView];
+    
+    UILabel *beginDayLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 300, 280)];
+    beginDayLabel.text = [NSString stringWithFormat:@"BEGIN\nDAY %d",_game.currentRound+1];
+    beginDayLabel.textColor = [UIColor whiteColor];
+    [beginDayLabel setFont:[UIFont boldSystemFontOfSize:90]];
+    beginDayLabel.numberOfLines = 3;
+    
+    UILabel *arrowLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 250, 300, 80)];
+    arrowLabel.text = @">>>";
+    arrowLabel.textColor = [UIColor whiteColor];
+    [arrowLabel setFont:[UIFont systemFontOfSize:90]];
+    
+    [_alphaView addSubview:beginDayLabel];
+    [_alphaView addSubview:arrowLabel];
+    
+    UITapGestureRecognizer *tapToDismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(beginDay)];
+    [_alphaView addGestureRecognizer:tapToDismiss];
+
+}
+
+//http://stackoverflow.com/questions/9711248/cut-transparent-hole-in-uiview
+//-(void)addAlphaViewWithHole
+//{
+//    UIView *transparentView = [[UIView alloc] initWithFrame:CGRectMake(0,0,200,400)];
+//    [transparentView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.75]];
+////                                            backgroundColor:[UIColor colorWithWhite:1 alpha:0.75]];
+//    [self.view addSubview:backgroundView];
+//}
+
 
 #pragma mark - Alert View Methods
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UITextField *textField = [alertView textFieldAtIndex:0];
+    UITextField *textField;
     
-    if (buttonIndex == 1) {
-        [_game.players[alertView.tag] setName:textField.text];
+    switch (alertView.tag) {
+            
+        case CONFIRMATION_ALERT_TAG:
+            
+            if (buttonIndex == 0) {
+                [self showWaitAlertView];
+            }
+            else if (buttonIndex == 1) {
+                [self showRoleAlertView];
+            }
+            
+            break;
+            
+        case WAIT_ALERT_TAG:
+            
+            if (buttonIndex == 0) {
+                [self createNameEntryAlertViewWithIndex:_currentPlayerIndex];
+            }
+            else if (buttonIndex == 1) {
+                [self showConfirmationAlertView];
+            }
+            
+            break;
+            
+        case SHOW_ROLE_ALERT_TAG:
+            
+            if (buttonIndex == 0) {
+                [self showPassRightView];
+            }
+            
+            break;
+            
+        default:
+            
+            textField = [alertView textFieldAtIndex:0];
+            
+            if (buttonIndex == 1) {
+                
+                _currentPlayerName = textField.text;
+                [_game.players[alertView.tag] setName:_currentPlayerName];
+                
+                [_carousel reloadData];
+                
+                [self showConfirmationAlertView];
+            }
+            
+            else {
+                [self dismissAlphaView];
+            }
+       
+            break;
     }
-    
-    [_carousel reloadData];
 }
 
-#pragma mark - iCarousel Methods
-
-- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+- (void)createNameEntryAlertViewWithIndex:(NSInteger)index
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Enter Your Name" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     alertView.tag = index;
     [[alertView textFieldAtIndex:0] setDelegate:self];
+    [[alertView textFieldAtIndex:0] setText:[_game.players[index] name]];
+//    [[alertView textFieldAtIndex:0] addTarget:self action:@selector(resignFirstResponder) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+
     [alertView show];
-    
-    //    NSNumber *item = (self.items)[index];
-    //    NSLog(@"Tapped view number: %@", item);
+}
+
+- (void)showConfirmationAlertView
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Hello there, %@!", _currentPlayerName] message:@"Are you ready to see your role?" delegate:self cancelButtonTitle:@"Wait!" otherButtonTitles: @"Yes", nil];
+    alertView.tag = CONFIRMATION_ALERT_TAG;
+    [alertView show];
+}
+
+- (void)showWaitAlertView
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Is %@ your name?", _currentPlayerName] message:@"" delegate:self cancelButtonTitle:@"No" otherButtonTitles: @"Yes", nil];
+    alertView.tag = WAIT_ALERT_TAG;
+    [alertView show];
+
+}
+
+- (void)showRoleAlertView
+{
+    Player *currentPlayer = _game.players[_currentPlayerIndex];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Your Role:" message:[NSString stringWithFormat:@"%@", currentPlayer.role.name] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    alertView.tag = SHOW_ROLE_ALERT_TAG;
+    [alertView show];
+}
+
+#pragma mark - Text Field Methods
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return YES;
+}
+
+#pragma mark - iCarousel Methods
+
+-(void)setupCarousel
+{
+    _carousel.delegate = self;
+    _carousel.dataSource = self;
+    _carousel.type = iCarouselTypeInvertedWheel;
+    _carousel.viewpointOffset = CGSizeMake(50, 0);
+    _carousel.vertical = YES;
+}
+
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+{
+    if (carousel.currentItemIndex == index && _currentPlayerIndex == index)
+    {
+        [self createNameEntryAlertViewWithIndex:index];
+    }
 }
 
 
@@ -75,7 +335,7 @@
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return _game.players.count;
+    return _game.numPlayers;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
@@ -87,7 +347,7 @@
     {
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150.0f, 30.0f)];
         view.contentMode = UIViewContentModeCenter;
-        view.backgroundColor = [UIColor purpleColor];
+        view.backgroundColor = [UIColor colorWithWhite:0.800 alpha:1.000];
         label = [[UILabel alloc] initWithFrame:view.bounds];
         label.backgroundColor = [UIColor clearColor];
         label.font = [label.font fontWithSize:20];
@@ -186,7 +446,7 @@
         }
         case iCarouselOptionVisibleItems:
         {
-            return 99;
+            return 9;
         }
         default:
         {

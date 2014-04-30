@@ -50,6 +50,13 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 -(void)goBack
 {
     [self.navigationController popViewControllerAnimated:YES];

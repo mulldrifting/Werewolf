@@ -10,4 +10,14 @@
 
 @implementation Vigilante
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        self.name = @"Vigilante";
+    }
+    
+    return self;
+}
+
 @end

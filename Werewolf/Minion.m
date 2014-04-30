@@ -10,4 +10,14 @@
 
 @implementation Minion
 
+-(id)init
+{
+    if (self = [super init])
+    {
+        self.name = @"Minion";
+    }
+    
+    return self;
+}
+
 @end

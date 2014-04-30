@@ -12,7 +12,6 @@
 @interface TitleViewController ()
 
 
-
 @end
 
 @implementation TitleViewController
@@ -20,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     [self.navigationController setNavigationBarHidden:YES];
     

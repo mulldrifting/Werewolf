@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TTCounterLabel.h"
+#import "Game.h"
 
 @interface TimerViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet TTCounterLabel *counterLabel;
+
+@property (weak, nonatomic) Game *game;
 
 @end
