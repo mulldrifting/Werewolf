@@ -21,4 +21,15 @@
     return self;
 }
 
+-(id)initWithIndex:(int)index
+{
+    if (self = [super init])
+    {
+        _name = [NSString stringWithFormat:@"Player %d", index];
+        _isDead = NO;
+        _index = index;
+    }
+    return self;
+}
+
 @end

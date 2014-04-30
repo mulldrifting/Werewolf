@@ -7,7 +7,6 @@
 //
 
 #import "Game.h"
-#import "Player.h"
 #import "ModPlayer.h"
 #import "Role.h"
 #import "Werewolf.h"
@@ -29,14 +28,52 @@
         _numPlayers = gameSetup.numPlayers;
         _roles = [NSMutableArray new];
         _players = [NSMutableArray new];
-        _isDay = YES;
+        _isNight = NO;
+        _isOver = NO;
         _currentRound = 0;
     }
     
     return self;
 }
 
-- (int)prevPlayerWithIndex:(int)index
+#pragma mark - Game Logic Methods
+
+- (void)checkGameState
+{
+    int numAlive = 0;
+    int numWolf = 0;
+    int numVillage = 0;
+    
+    for (Player *player in _players) {
+        if (!player.isDead) {
+            
+            numAlive++;
+            
+            if ([player.role.faction isEqualToString:@"Werewolf"]) {
+                numWolf++;
+            }
+            else if ([player.role.faction isEqualToString:@"Villager"]) {
+                numVillage++;
+            }
+        }
+    }
+    
+    if (numWolf >= numVillage) {
+        _isOver = YES;
+    }
+    else {
+        _isOver = NO;
+    }
+}
+
+- (void)endGame
+{
+    
+}
+
+#pragma mark - Player Methods
+
+- (int)prevPlayerIndex:(int)index
 {
     int prevPlayerIndex = index - 1;
     if (prevPlayerIndex < 0) {
@@ -45,13 +82,33 @@
     return prevPlayerIndex;
 }
 
-- (int)nextPlayerWithIndex:(int)index
+- (int)nextPlayerIndex:(int)index
 {
     int nextPlayerIndex = index + 1;
     if (nextPlayerIndex == _numPlayers) {
         nextPlayerIndex = 0;
     }
     return nextPlayerIndex;
+}
+
+- (Player*)nextAlivePlayer:(int)index
+{
+    Player *currentPlayer = _players[[self nextPlayerIndex:index]];
+    NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
+
+    while (currentPlayer.isDead) {
+        currentPlayer = _players[[self nextPlayerIndex:index]];
+        NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
+    }
+    
+    return currentPlayer;
+}
+
+-(void)killPlayerAtIndex:(int)index
+{
+    Player *player = _players[index];
+    player.isDead = YES;
+    [self checkGameState];
 }
 
 #pragma mark - Setup Game Methods
@@ -68,13 +125,12 @@
 {
     for (int i = 0; i < _numPlayers; i++) {
         if (i == 0) {
-            ModPlayer *newPlayer = [ModPlayer new];
+            ModPlayer *newPlayer = [[ModPlayer alloc] initWithIndex:i];
             [newPlayer setName:@"(Mod) Player"];
             [_players addObject:newPlayer];
         }
         else {
-            Player *newPlayer = [Player new];
-            newPlayer.name = [NSString stringWithFormat:@"Player %d", i];
+            Player *newPlayer = [[Player alloc] initWithIndex:i];
             [_players addObject:newPlayer];
         }
     }

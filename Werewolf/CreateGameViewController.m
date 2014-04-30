@@ -55,6 +55,7 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 -(void)goBack

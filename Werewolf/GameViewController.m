@@ -13,15 +13,17 @@
 #define WAIT_ALERT_TAG 33701
 #define WRONG_NAME_ALERT_TAG 33702
 #define SHOW_ROLE_ALERT_TAG 33703
+#define KILL_PLAYER_ALERT_TAG 33704
 
 @interface GameViewController () <iCarouselDataSource, iCarouselDelegate, UIAlertViewDelegate, UITextFieldDelegate, TimerViewControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UILabel *whereToTapLabel;
 
 @property (strong, nonatomic) UIView *alphaView;
+@property (weak, nonatomic) Player *currentPlayer;
 @property (nonatomic) NSInteger currentPlayerIndex;
 @property (strong, nonatomic) NSString *currentPlayerName;
-@property (nonatomic) BOOL isLight;
+@property (nonatomic) BOOL isLightSkinMode;
 
 @end
 
@@ -44,12 +46,13 @@
     NSLog(@"Game View did Load");
     
     [self.navigationController setNavigationBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    _isLightSkinMode = YES;
+    _currentPlayerIndex = 0;
     
     [self setupCarousel];
-    
-    _currentPlayerIndex = 0;
-    _isLight = YES;
-    
+
 //    [self createAlphaView];
     [self showPregameExplanationView];
     [self setupTimerViewController];
@@ -66,7 +69,6 @@
     }
     
     [_carousel scrollToItemAtIndex:_currentPlayerIndex animated:YES];
-
 }
 
 - (void)beginDay
@@ -74,7 +76,7 @@
     [self dismissAlphaView];
     
     _game.currentRound++;
-    _game.isDay = YES;
+    _game.isNight = NO;
     
     [self showTimerViewController];
     
@@ -84,33 +86,43 @@
 {
     [self toggleSkin];
     
+    _currentPlayerIndex = -1;
+    [_carousel scrollToItemAtIndex:_currentPlayerIndex animated:NO];
+    
     [self hideTimerViewController];
     
+//    [self showKillExplanationView];
     
+}
+
+- (void)beginNight
+{
+    _game.isNight = YES;
 }
 
 - (void)toggleSkin
 {
-    if (_isLight) {
+    if (_isLightSkinMode) {
         //change view to dark skin
         
-        _isLight = YES;
+        _isLightSkinMode = NO;
         
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
         [self.view setBackgroundColor:[UIColor colorWithWhite:0.098 alpha:1.000]];
-        [_carousel reloadData];
     }
+    
     else {
         //change view to light skin
         
-        _isLight = NO;
+        _isLightSkinMode = YES;
         
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
         
         [self.view setBackgroundColor:[UIColor whiteColor]];
-        [_carousel reloadData];
     }
+    
+    [_carousel reloadData];
 }
 
 #pragma mark - Timer View Controller Methods
@@ -190,6 +202,36 @@
     [_alphaView addSubview:explanationView];
 }
 
+- (void)showKillExplanationView
+{
+//    [self showAlphaView];
+    
+    UIView *explanationView = [[UIView alloc] initWithFrame:CGRectMake(35, 100, 250, 250)];
+    [explanationView setBackgroundColor:[UIColor whiteColor]];
+    [explanationView setAlpha:1];
+    explanationView.layer.cornerRadius = 5;
+    explanationView.layer.masksToBounds = YES;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 230, 200)];
+    label.text = @"Presumably the village has come to some sort of decision.\n\nPlease select who to kill.";
+    label.font = [label.font fontWithSize:15];
+    label.numberOfLines = 10;
+    [explanationView addSubview:label];
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(180, 210, 50, 30)];
+    [button setTitle:@"OK" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithRed:0.000 green:0.502 blue:1.000 alpha:1.000] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithWhite:0.600 alpha:1.000] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(dismissAlphaView) forControlEvents:UIControlEventTouchUpInside];
+    [explanationView addSubview:button];
+    
+    UITapGestureRecognizer *tapToDismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissAlphaView)];
+    [_alphaView addGestureRecognizer:tapToDismiss];
+    
+    [_alphaView addSubview:explanationView];
+
+}
+
 - (void)showPassRightView
 {
     [self showAlphaView];
@@ -262,27 +304,33 @@
             
         case CONFIRMATION_ALERT_TAG:
             
+            // Asks Player "Are you ready to see your role?"
+            
             if (buttonIndex == 0) {
-                [self showWaitAlertView];
+                [self showWaitAlertView]; // Not ready yet: Wait!
             }
             else if (buttonIndex == 1) {
-                [self showRoleAlertView];
+                [self showRoleAlertView]; // Yes! Show role
             }
             
             break;
             
         case WAIT_ALERT_TAG:
             
+            // Confirms player's name is correct
+            
             if (buttonIndex == 0) {
-                [self createNameEntryAlertViewWithIndex:_currentPlayerIndex];
+                [self createNameEntryAlertViewWithIndex:_currentPlayerIndex]; // Not correct! Change
             }
             else if (buttonIndex == 1) {
-                [self showConfirmationAlertView];
+                [self showConfirmationAlertView]; // Correct! Asks Player if they're ready again
             }
             
             break;
             
         case SHOW_ROLE_ALERT_TAG:
+            
+            // Shows Player their role
             
             if (buttonIndex == 0) {
                 [self showPassRightView];
@@ -290,7 +338,22 @@
             
             break;
             
+        case KILL_PLAYER_ALERT_TAG:
+            
+            // Selects player to kill
+            
+            if (buttonIndex == 1) {
+                // Kill player
+                
+                [_game killPlayerAtIndex:_carousel.currentItemIndex];
+                [_carousel reloadData];
+            }
+            
+            break;
+            
         default:
+            
+            // Allows player to enter their name
             
             textField = [alertView textFieldAtIndex:0];
             
@@ -305,7 +368,7 @@
             }
             
             else {
-                [self dismissAlphaView];
+                [self dismissAlphaView]; // Cancel out
             }
        
             break;
@@ -348,6 +411,14 @@
     [alertView show];
 }
 
+- (void)showKillAlertView
+{
+    Player *currentPlayer = _game.players[_carousel.currentItemIndex];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Kill %@?", currentPlayer.name] message:@"" delegate:self cancelButtonTitle:@"No" otherButtonTitles: @"Yes", nil];
+    alertView.tag = KILL_PLAYER_ALERT_TAG;
+    [alertView show];
+}
+
 #pragma mark - Text Field Methods
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -368,9 +439,29 @@
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    if (carousel.currentItemIndex == index && _currentPlayerIndex == index)
+    if (carousel.currentItemIndex == index)
     {
-        [self createNameEntryAlertViewWithIndex:index];
+        if (_currentPlayerIndex == -1) {
+            
+            //voting: players choose who to kill
+            [self showKillAlertView];
+            
+        }
+        else if (_currentPlayerIndex == index) {
+            
+            if (_game.currentRound == 0) {
+                
+                // pre-game: players enter their names and view roles
+                [self createNameEntryAlertViewWithIndex:index];
+
+            }
+            else if (_game.isNight) {
+                
+                // night: players perform specific role actions
+
+                
+            }
+        }
     }
 }
 
@@ -400,12 +491,20 @@
         label.backgroundColor = [UIColor clearColor];
         label.font = [label.font fontWithSize:20];
         
-        if (_isLight) {
-            label.textColor = [UIColor blackColor];
+        Player *currentPlayer = _game.players[index];
+        
+        if (currentPlayer.isDead) {
+            label.textColor = [UIColor colorWithWhite:0.400 alpha:1.000];
         }
         else {
-            label.textColor = [UIColor whiteColor];
+            if (_isLightSkinMode) {
+                label.textColor = [UIColor blackColor];
+            }
+            else {
+                label.textColor = [UIColor whiteColor];
+            }
         }
+        
         
         label.tag = 1;
         label.adjustsFontSizeToFitWidth = YES;

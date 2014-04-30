@@ -78,8 +78,6 @@
 }
 
 - (IBAction)readyToKillPressed:(id)sender {
-    
-    _game.isDay = NO;
     [self.delegate beginKillSelection];
 }
 

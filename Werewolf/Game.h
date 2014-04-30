@@ -8,18 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "GameSetup.h"
+#import "Player.h"
 
 @interface Game : NSObject
 
 @property (strong, nonatomic) GameSetup *gameSetup;
 @property (strong, nonatomic) NSMutableArray *players, *roles;
 @property (nonatomic) int numPlayers;
-@property (nonatomic) BOOL isDay;
+@property (nonatomic) BOOL isNight, isOver;
 @property (nonatomic) NSInteger currentRound;
 
 - (id)initWithGameSetup:(GameSetup*)gameSetup;
 - (void)prepareGame;
-- (int)prevPlayerWithIndex:(int)index;
-- (int)nextPlayerWithIndex:(int)index;
+- (int)prevPlayerIndex:(int)index;
+- (int)nextPlayerIndex:(int)index;
+- (Player*)nextAlivePlayer:(int)index;
+- (void)killPlayerAtIndex:(int)index;
 
 @end

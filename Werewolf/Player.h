@@ -13,6 +13,9 @@
 
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) Role *role;
+@property (nonatomic) int index;
 @property (nonatomic) BOOL isDead;
+
+-(id)initWithIndex:(int)index;
 
 @end

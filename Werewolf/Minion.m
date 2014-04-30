@@ -15,6 +15,7 @@
     if (self = [super init])
     {
         self.name = @"Minion";
+        self.faction = @"Werewolf";
     }
     
     return self;

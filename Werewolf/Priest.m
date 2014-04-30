@@ -15,6 +15,7 @@
     if (self = [super init])
     {
         self.name = @"Priest";
+        self.faction = @"Villager";
     }
     
     return self;

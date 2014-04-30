@@ -11,6 +11,7 @@
 @interface Role : NSObject
 
 @property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *faction;
 
 - (void)performNightAction;
 
