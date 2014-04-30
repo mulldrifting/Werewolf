@@ -11,10 +11,12 @@
 @interface TimerViewController () <TTCounterLabelDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *plusOneMinButton;
 @property (weak, nonatomic) IBOutlet UIButton *minusOneMinButton;
+@property (weak, nonatomic) IBOutlet UIButton *readyToKillButton;
 
 @end
 
@@ -73,6 +75,12 @@
     else {
         [_counterLabel setStartValue:newTime];
     }
+}
+
+- (IBAction)readyToKillPressed:(id)sender {
+    
+    _game.isDay = NO;
+    [self.delegate beginKillSelection];
 }
 
 /*

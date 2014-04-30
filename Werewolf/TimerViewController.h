@@ -10,10 +10,20 @@
 #import "TTCounterLabel.h"
 #import "Game.h"
 
+@protocol TimerViewControllerProtocol <NSObject>
+
+@optional
+
+- (void)hideTimerViewController;
+- (void)beginKillSelection;
+
+@end
+
 @interface TimerViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet TTCounterLabel *counterLabel;
 
+@property (unsafe_unretained, nonatomic) id<TimerViewControllerProtocol> delegate;
 @property (weak, nonatomic) Game *game;
 
 @end

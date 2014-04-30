@@ -29,7 +29,7 @@
         _numPlayers = gameSetup.numPlayers;
         _roles = [NSMutableArray new];
         _players = [NSMutableArray new];
-        _isDay = NO;
+        _isDay = YES;
         _currentRound = 0;
     }
     

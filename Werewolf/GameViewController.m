@@ -14,11 +14,14 @@
 #define WRONG_NAME_ALERT_TAG 33702
 #define SHOW_ROLE_ALERT_TAG 33703
 
-@interface GameViewController () <iCarouselDataSource, iCarouselDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@interface GameViewController () <iCarouselDataSource, iCarouselDelegate, UIAlertViewDelegate, UITextFieldDelegate, TimerViewControllerProtocol>
+
+@property (weak, nonatomic) IBOutlet UILabel *whereToTapLabel;
 
 @property (strong, nonatomic) UIView *alphaView;
 @property (nonatomic) NSInteger currentPlayerIndex;
 @property (strong, nonatomic) NSString *currentPlayerName;
+@property (nonatomic) BOOL isLight;
 
 @end
 
@@ -38,17 +41,18 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"Game View did Load");
+    
     [self.navigationController setNavigationBarHidden:YES];
     
     [self setupCarousel];
     
     _currentPlayerIndex = 0;
+    _isLight = YES;
     
 //    [self createAlphaView];
     [self showPregameExplanationView];
-    
-    _timerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"timer"];
-    _timerViewController.game = _game;
+    [self setupTimerViewController];
 }
 
 - (void)moveToNextPlayer
@@ -67,13 +71,56 @@
 
 - (void)beginDay
 {
+    [self dismissAlphaView];
+    
     _game.currentRound++;
+    _game.isDay = YES;
     
     [self showTimerViewController];
     
 }
 
+- (void)beginKillSelection
+{
+    [self toggleSkin];
+    
+    [self hideTimerViewController];
+    
+    
+}
+
+- (void)toggleSkin
+{
+    if (_isLight) {
+        //change view to dark skin
+        
+        _isLight = YES;
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        
+        [self.view setBackgroundColor:[UIColor colorWithWhite:0.098 alpha:1.000]];
+        [_carousel reloadData];
+    }
+    else {
+        //change view to light skin
+        
+        _isLight = NO;
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+        
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+        [_carousel reloadData];
+    }
+}
+
 #pragma mark - Timer View Controller Methods
+
+- (void)setupTimerViewController
+{
+    _timerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"timer"];
+    _timerViewController.game = _game;
+    _timerViewController.delegate = self;
+}
 
 - (void)showTimerViewController
 {
@@ -347,10 +394,19 @@
     {
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 150.0f, 30.0f)];
         view.contentMode = UIViewContentModeCenter;
-        view.backgroundColor = [UIColor colorWithWhite:0.800 alpha:1.000];
+//        view.backgroundColor = [UIColor colorWithWhite:0.800 alpha:1.000];
+        view.backgroundColor = [UIColor clearColor];
         label = [[UILabel alloc] initWithFrame:view.bounds];
         label.backgroundColor = [UIColor clearColor];
         label.font = [label.font fontWithSize:20];
+        
+        if (_isLight) {
+            label.textColor = [UIColor blackColor];
+        }
+        else {
+            label.textColor = [UIColor whiteColor];
+        }
+        
         label.tag = 1;
         label.adjustsFontSizeToFitWidth = YES;
         [view addSubview:label];
@@ -433,7 +489,7 @@
         case iCarouselOptionSpacing:
         {
             //add a bit of spacing between the item views
-            return value * .7;
+            return value * 0.9;
         }
         case iCarouselOptionFadeMax:
         {
