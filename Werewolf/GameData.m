@@ -19,6 +19,7 @@
     dispatch_once(&pred, ^{
         shared = [[GameData alloc] init];
         shared.gameSetups = [[GameData gameSetupsFromPlist] mutableCopy];
+        shared.defaultGameSetups = [[GameData defaultGameSetupsFromPlist] mutableCopy];
         [shared sortGameSetups];
     });
     
@@ -31,13 +32,27 @@
     
     // path from application documents
     NSString *plistPath = [[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:@"gameSetupList.plist"];
+
+    // add game setups from application docs directory
+    if ([self checkForPlistFileAtPath:plistPath])
+    {
+//        NSLog(@"unarchive game data from app doc");
+        [gameSetups addObjectsFromArray:[NSKeyedUnarchiver unarchiveObjectWithFile:plistPath]];
+    }
+    
+    return gameSetups;
+}
+
++(NSMutableArray*)defaultGameSetupsFromPlist
+{
+    NSMutableArray *gameSetups = [[NSMutableArray alloc] init];
     
     // path from main bundle
-    NSString *pathBundle = [[NSBundle mainBundle] pathForResource:@"gameSetupList" ofType:@"plist"];
+    NSString *pathBundle = [[NSBundle mainBundle] pathForResource:@"defaultGameSetupList" ofType:@"plist"];
     
     // add game setups from main bundle (default setups)
     if ([self checkForPlistFileAtPath:pathBundle]) {
-
+        
         NSArray *plistGameSetups = [[NSArray alloc] initWithContentsOfFile:pathBundle];
         
         [plistGameSetups enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -45,19 +60,12 @@
             GameSetup *newSetup = [[GameSetup alloc] initWithName:obj[@"name"] roleNumbers:[obj[@"roleNumbers"] mutableCopy] settings:[obj[@"settings"] mutableCopy]];
             [gameSetups addObject:newSetup];
         }];
-
+        
     }
     else {
         
         NSLog(@"Uh oh! No plist in main bundle!");
         //do something about that
-    }
-
-    // add game setups from application docs directory
-    if ([self checkForPlistFileAtPath:plistPath])
-    {
-        NSLog(@"unarchive game data from app doc");
-        [gameSetups addObjectsFromArray:[NSKeyedUnarchiver unarchiveObjectWithFile:plistPath]];
     }
     
     return gameSetups;
@@ -99,7 +107,11 @@
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[nameDescriptor];
     NSArray *sortedGameSetups = [_gameSetups sortedArrayUsingDescriptors:sortDescriptors];
+    NSArray *sortedDefaultGameSetups = [_defaultGameSetups sortedArrayUsingDescriptors:sortDescriptors];
+    
     _gameSetups = [NSMutableArray arrayWithArray:sortedGameSetups];
+    _defaultGameSetups = [NSMutableArray arrayWithArray:sortedDefaultGameSetups];
+    
 }
 
 @end

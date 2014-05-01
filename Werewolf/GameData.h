@@ -12,9 +12,11 @@
 @interface GameData : NSObject
 
 @property (strong, nonatomic) NSMutableArray *gameSetups;
+@property (strong, nonatomic) NSMutableArray *defaultGameSetups;
 
 +(GameData*)sharedData;
 +(NSMutableArray*)gameSetupsFromPlist;
++(NSMutableArray*)defaultGameSetupsFromPlist;
 
 -(void)addNewGameSetup:(GameSetup *)newGameSetup;
 -(void)removeGameDataAtIndex:(NSInteger)row;

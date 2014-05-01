@@ -52,7 +52,7 @@
 		FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6018F8AE5000BB0B81 /* Constants.m */; };
 		FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6418F8B5DA00BB0B81 /* Game.m */; };
 		FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6718F8BF3600BB0B81 /* Player.m */; };
-		FEF34247190894DF003AC14F /* gameSetupList.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF34246190894DF003AC14F /* gameSetupList.plist */; };
+		FEF34247190894DF003AC14F /* defaultGameSetupList.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF34246190894DF003AC14F /* defaultGameSetupList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,7 +145,7 @@
 		FED1DC6418F8B5DA00BB0B81 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		FED1DC6618F8BF3600BB0B81 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		FED1DC6718F8BF3600BB0B81 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		FEF34246190894DF003AC14F /* gameSetupList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gameSetupList.plist; sourceTree = "<group>"; };
+		FEF34246190894DF003AC14F /* defaultGameSetupList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaultGameSetupList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +238,52 @@
 			name = CRProductTour;
 			sourceTree = "<group>";
 		};
+		FEC75EB81912E2EA00C44A3A /* Settings Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FEC75E971911B7FF00C44A3A /* WerewolfViewController.h */,
+				FEC75E981911B7FF00C44A3A /* WerewolfViewController.m */,
+				FEC75E9C1912AB5B00C44A3A /* SettingsViewController.h */,
+				FEC75E9D1912AB5B00C44A3A /* SettingsViewController.m */,
+			);
+			name = "Settings Controller";
+			sourceTree = "<group>";
+		};
+		FEC75EB91912E30E00C44A3A /* Title Page Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FED1DC3418F87E7A00BB0B81 /* TitleViewController.h */,
+				FED1DC3518F87E7A00BB0B81 /* TitleViewController.m */,
+				FEC75EB51912D75700C44A3A /* RulesViewController.h */,
+				FEC75EB61912D75700C44A3A /* RulesViewController.m */,
+			);
+			name = "Title Page Controller";
+			sourceTree = "<group>";
+		};
+		FEC75EBA1912E31800C44A3A /* Game Setup Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FE99B68518FC919300CA3021 /* LoadSetupViewController.h */,
+				FE99B68618FC919300CA3021 /* LoadSetupViewController.m */,
+				FED1DC5518F8832200BB0B81 /* CreateGameViewController.h */,
+				FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */,
+				FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */,
+				FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */,
+			);
+			name = "Game Setup Controller";
+			sourceTree = "<group>";
+		};
+		FEC75EBB1912E32500C44A3A /* Game Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FE21C289190B33B40048D19C /* GameViewController.h */,
+				FE21C28A190B33B40048D19C /* GameViewController.m */,
+				FEA785A6190F0F670084CA04 /* TimerViewController.h */,
+				FEA785A7190F0F670084CA04 /* TimerViewController.m */,
+			);
+			name = "Game Controller";
+			sourceTree = "<group>";
+		};
 		FED1DC1318F87E7A00BB0B81 = {
 			isa = PBXGroup;
 			children = (
@@ -321,24 +367,10 @@
 		FED1DC5418F882D000BB0B81 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FEC75E971911B7FF00C44A3A /* WerewolfViewController.h */,
-				FEC75E981911B7FF00C44A3A /* WerewolfViewController.m */,
-				FEC75E9C1912AB5B00C44A3A /* SettingsViewController.h */,
-				FEC75E9D1912AB5B00C44A3A /* SettingsViewController.m */,
-				FED1DC3418F87E7A00BB0B81 /* TitleViewController.h */,
-				FED1DC3518F87E7A00BB0B81 /* TitleViewController.m */,
-				FEC75EB51912D75700C44A3A /* RulesViewController.h */,
-				FEC75EB61912D75700C44A3A /* RulesViewController.m */,
-				FE99B68518FC919300CA3021 /* LoadSetupViewController.h */,
-				FE99B68618FC919300CA3021 /* LoadSetupViewController.m */,
-				FED1DC5518F8832200BB0B81 /* CreateGameViewController.h */,
-				FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */,
-				FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */,
-				FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */,
-				FE21C289190B33B40048D19C /* GameViewController.h */,
-				FE21C28A190B33B40048D19C /* GameViewController.m */,
-				FEA785A6190F0F670084CA04 /* TimerViewController.h */,
-				FEA785A7190F0F670084CA04 /* TimerViewController.m */,
+				FEC75EB81912E2EA00C44A3A /* Settings Controller */,
+				FEC75EB91912E30E00C44A3A /* Title Page Controller */,
+				FEC75EBA1912E31800C44A3A /* Game Setup Controller */,
+				FEC75EBB1912E32500C44A3A /* Game Controller */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -350,7 +382,7 @@
 				FED1DC6018F8AE5000BB0B81 /* Constants.m */,
 				FE38613B18FF755900ED8483 /* GameData.h */,
 				FE38613C18FF755900ED8483 /* GameData.m */,
-				FEF34246190894DF003AC14F /* gameSetupList.plist */,
+				FEF34246190894DF003AC14F /* defaultGameSetupList.plist */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -448,7 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE38B7EC190F436E007B514B /* OpenSans-Regular.ttf in Resources */,
-				FEF34247190894DF003AC14F /* gameSetupList.plist in Resources */,
+				FEF34247190894DF003AC14F /* defaultGameSetupList.plist in Resources */,
 				FED1DC3818F87E7A00BB0B81 /* Images.xcassets in Resources */,
 				FED1DC2A18F87E7A00BB0B81 /* InfoPlist.strings in Resources */,
 				FED1DC3318F87E7A00BB0B81 /* Main.storyboard in Resources */,
