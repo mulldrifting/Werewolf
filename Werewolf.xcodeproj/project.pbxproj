@@ -29,6 +29,10 @@
 		FEB53C0518FB729500598B64 /* GameSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0418FB729500598B64 /* GameSetup.m */; };
 		FEC75E911910769900C44A3A /* TTCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E901910769900C44A3A /* TTCounterLabel.m */; };
 		FEC75E961910771700C44A3A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E951910771700C44A3A /* TTTAttributedLabel.m */; };
+		FEC75E991911B7FF00C44A3A /* WerewolfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E981911B7FF00C44A3A /* WerewolfViewController.m */; };
+		FEC75E9E1912AB5B00C44A3A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E9D1912AB5B00C44A3A /* SettingsViewController.m */; };
+		FEC75EA31912B95900C44A3A /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EA01912B95900C44A3A /* CRBubble.m */; };
+		FEC75EA41912B95900C44A3A /* CRProductTour.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EA21912B95900C44A3A /* CRProductTour.m */; };
 		FED1DC2018F87E7A00BB0B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */; };
 		FED1DC2218F87E7A00BB0B81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */; };
 		FED1DC2418F87E7A00BB0B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2318F87E7A00BB0B81 /* UIKit.framework */; };
@@ -103,6 +107,14 @@
 		FEC75E901910769900C44A3A /* TTCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTCounterLabel.m; path = "../../Cocoapods/TTCounterLabel-master/Source/TTCounterLabel.m"; sourceTree = "<group>"; };
 		FEC75E941910771700C44A3A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TTTAttributedLabel.h; path = "../../Cocoapods/TTCounterLabel-master/Sample/Pods/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.h"; sourceTree = "<group>"; };
 		FEC75E951910771700C44A3A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TTTAttributedLabel.m; path = "../../Cocoapods/TTCounterLabel-master/Sample/Pods/TTTAttributedLabel/TTTAttributedLabel/TTTAttributedLabel.m"; sourceTree = "<group>"; };
+		FEC75E971911B7FF00C44A3A /* WerewolfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WerewolfViewController.h; sourceTree = "<group>"; };
+		FEC75E981911B7FF00C44A3A /* WerewolfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WerewolfViewController.m; sourceTree = "<group>"; };
+		FEC75E9C1912AB5B00C44A3A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		FEC75E9D1912AB5B00C44A3A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		FEC75E9F1912B95900C44A3A /* CRBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRBubble.h; path = "../../Cocoapods/ProductTour-master/ProductTour/ProductTour/CRBubble.h"; sourceTree = "<group>"; };
+		FEC75EA01912B95900C44A3A /* CRBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRBubble.m; path = "../../Cocoapods/ProductTour-master/ProductTour/ProductTour/CRBubble.m"; sourceTree = "<group>"; };
+		FEC75EA11912B95900C44A3A /* CRProductTour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRProductTour.h; path = "../../Cocoapods/ProductTour-master/ProductTour/ProductTour/CRProductTour.h"; sourceTree = "<group>"; };
+		FEC75EA21912B95900C44A3A /* CRProductTour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CRProductTour.m; path = "../../Cocoapods/ProductTour-master/ProductTour/ProductTour/CRProductTour.m"; sourceTree = "<group>"; };
 		FED1DC1C18F87E7A00BB0B81 /* Werewolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werewolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -212,6 +224,17 @@
 			name = TTCounterLabel;
 			sourceTree = "<group>";
 		};
+		FEC75EA51912B95F00C44A3A /* CRProductTour */ = {
+			isa = PBXGroup;
+			children = (
+				FEC75E9F1912B95900C44A3A /* CRBubble.h */,
+				FEC75EA01912B95900C44A3A /* CRBubble.m */,
+				FEC75EA11912B95900C44A3A /* CRProductTour.h */,
+				FEC75EA21912B95900C44A3A /* CRProductTour.m */,
+			);
+			name = CRProductTour;
+			sourceTree = "<group>";
+		};
 		FED1DC1318F87E7A00BB0B81 = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +277,7 @@
 				FED1DC5B18F8A32800BB0B81 /* Data */,
 				FEC75E8E1910760200C44A3A /* Categories */,
 				FEB53C0218FB71E000598B64 /* iCarousel */,
+				FEC75EA51912B95F00C44A3A /* CRProductTour */,
 				FEC75E92191076A600C44A3A /* TTCounterLabel */,
 				FED1DC2618F87E7A00BB0B81 /* Supporting Files */,
 				FED1DC3718F87E7A00BB0B81 /* Images.xcassets */,
@@ -294,6 +318,10 @@
 		FED1DC5418F882D000BB0B81 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEC75E971911B7FF00C44A3A /* WerewolfViewController.h */,
+				FEC75E981911B7FF00C44A3A /* WerewolfViewController.m */,
+				FEC75E9C1912AB5B00C44A3A /* SettingsViewController.h */,
+				FEC75E9D1912AB5B00C44A3A /* SettingsViewController.m */,
 				FED1DC3418F87E7A00BB0B81 /* TitleViewController.h */,
 				FED1DC3518F87E7A00BB0B81 /* TitleViewController.m */,
 				FE99B68518FC919300CA3021 /* LoadSetupViewController.h */,
@@ -447,6 +475,8 @@
 				FEA785A8190F0F670084CA04 /* TimerViewController.m in Sources */,
 				FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */,
 				FEA785A2190C3F090084CA04 /* Assassin.m in Sources */,
+				FEC75EA31912B95900C44A3A /* CRBubble.m in Sources */,
+				FEC75E9E1912AB5B00C44A3A /* SettingsViewController.m in Sources */,
 				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
 				FE21C28B190B33B40048D19C /* GameViewController.m in Sources */,
 				FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */,
@@ -454,10 +484,12 @@
 				FE38613D18FF755900ED8483 /* GameData.m in Sources */,
 				FEB53C0118FB701900598B64 /* iCarousel.m in Sources */,
 				FEA7858D190C3ED60084CA04 /* Werewolf.m in Sources */,
+				FEC75EA41912B95900C44A3A /* CRProductTour.m in Sources */,
 				FEC75E961910771700C44A3A /* TTTAttributedLabel.m in Sources */,
 				FEA78593190C3EE40084CA04 /* Priest.m in Sources */,
 				FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */,
 				FEA78589190C3E620084CA04 /* Role.m in Sources */,
+				FEC75E991911B7FF00C44A3A /* WerewolfViewController.m in Sources */,
 				FEA78599190C3EF00084CA04 /* Vigilante.m in Sources */,
 				FEA78596190C3EE90084CA04 /* Seer.m in Sources */,
 				FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */,

@@ -16,6 +16,7 @@
     {
         self.name = @"Assassin";
         self.faction = @"Assassin";
+        self.roleID = kAssassin;
     }
     
     return self;

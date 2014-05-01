@@ -12,7 +12,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+    NSDictionary *defaults = @{@"kDefaultTimerStartValue": @600000};
+    [[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
+    
     return YES;
 }
 							

@@ -12,7 +12,6 @@
 
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *faction;
-
-- (void)performNightAction;
+@property (nonatomic) NSInteger roleID;
 
 @end

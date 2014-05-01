@@ -14,9 +14,11 @@
 #define WRONG_NAME_ALERT_TAG 33702
 #define SHOW_ROLE_ALERT_TAG 33703
 #define KILL_PLAYER_ALERT_TAG 33704
+#define PASS_TO_ALERT_TAG 33705
 
 @interface GameViewController () <iCarouselDataSource, iCarouselDelegate, UIAlertViewDelegate, UITextFieldDelegate, TimerViewControllerProtocol>
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *whereToTapLabel;
 
 @property (strong, nonatomic) UIView *alphaView;
@@ -29,16 +31,6 @@
 
 @implementation GameViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-        
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,15 +38,16 @@
     NSLog(@"Game View did Load");
     
     [self.navigationController setNavigationBarHidden:YES];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
     _isLightSkinMode = YES;
+    [self toggleSkin];
     _currentPlayerIndex = 0;
     
     [self setupCarousel];
 
 //    [self createAlphaView];
-    [self showPregameExplanationView];
+//    [self showPregameExplanationView];
     [self setupTimerViewController];
 }
 
@@ -85,9 +78,10 @@
 - (void)beginKillSelection
 {
     [self toggleSkin];
+    [_titleLabel setText:@"Who To Kill?"];
     
     _currentPlayerIndex = -1;
-    [_carousel scrollToItemAtIndex:_currentPlayerIndex animated:NO];
+    [_carousel scrollToItemAtIndex:0 animated:NO];
     
     [self hideTimerViewController];
     
@@ -104,21 +98,15 @@
 {
     if (_isLightSkinMode) {
         //change view to dark skin
-        
         _isLightSkinMode = NO;
-        
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        
         [self.view setBackgroundColor:[UIColor colorWithWhite:0.098 alpha:1.000]];
     }
     
     else {
         //change view to light skin
-        
         _isLightSkinMode = YES;
-        
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-        
         [self.view setBackgroundColor:[UIColor whiteColor]];
     }
     
@@ -159,8 +147,6 @@
 {
     _alphaView = [[UIView alloc] initWithFrame:self.view.frame];
     [_alphaView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.7]];
-    [self.view addSubview:_alphaView];
-
 }
 
 - (void)showAlphaView
@@ -307,10 +293,13 @@
             // Asks Player "Are you ready to see your role?"
             
             if (buttonIndex == 0) {
-                [self showWaitAlertView]; // Not ready yet: Wait!
+                [self showPassToAlertView]; // Wrong person!
             }
             else if (buttonIndex == 1) {
                 [self showRoleAlertView]; // Yes! Show role
+            }
+            else if (buttonIndex == 2) {
+                [self createNameEntryAlertViewWithIndex:_currentPlayerIndex]; // Name incorrect! Change
             }
             
             break;
@@ -325,6 +314,10 @@
             else if (buttonIndex == 1) {
                 [self showConfirmationAlertView]; // Correct! Asks Player if they're ready again
             }
+            
+            break;
+            
+        case PASS_TO_ALERT_TAG:
             
             break;
             
@@ -390,15 +383,26 @@
 
 - (void)showConfirmationAlertView
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Hello there, %@!", _currentPlayerName] message:@"Are you ready to see your role?" delegate:self cancelButtonTitle:@"Wait!" otherButtonTitles: @"Yes", nil];
+    Player *currentPlayer = _game.players[_carousel.currentItemIndex];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Hello there, %@!", currentPlayer.name] message:@"Are you ready to see your role?" delegate:self cancelButtonTitle:[NSString stringWithFormat:@"I'm not %@!", currentPlayer.name] otherButtonTitles: @"Yes", @"Let me fix my name", nil];
     alertView.tag = CONFIRMATION_ALERT_TAG;
     [alertView show];
 }
 
-- (void)showWaitAlertView
+//- (void)showWaitAlertView
+//{
+//    Player *currentPlayer = _game.players[_carousel.currentItemIndex];
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Are you %@?", currentPlayer.name] message:@"" delegate:self cancelButtonTitle:@"No" otherButtonTitles: @"Yes", nil];
+//    alertView.tag = WAIT_ALERT_TAG;
+//    [alertView show];
+//
+//}
+
+- (void)showPassToAlertView
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Is %@ your name?", _currentPlayerName] message:@"" delegate:self cancelButtonTitle:@"No" otherButtonTitles: @"Yes", nil];
-    alertView.tag = WAIT_ALERT_TAG;
+    Player *currentPlayer = _game.players[_carousel.currentItemIndex];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Pass the device to %@", currentPlayer.name] message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    alertView.tag = PASS_TO_ALERT_TAG;
     [alertView show];
 
 }
@@ -406,7 +410,13 @@
 - (void)showRoleAlertView
 {
     Player *currentPlayer = _game.players[_currentPlayerIndex];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Your Role:" message:[NSString stringWithFormat:@"%@", currentPlayer.role.name] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    NSString *additionalMessage = @"";
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Your Role: %@", currentPlayer.role.name]
+                                                        message:additionalMessage
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
     alertView.tag = SHOW_ROLE_ALERT_TAG;
     [alertView show];
 }
@@ -452,7 +462,10 @@
             if (_game.currentRound == 0) {
                 
                 // pre-game: players enter their names and view roles
-                [self createNameEntryAlertViewWithIndex:index];
+//                [self createNameEntryAlertViewWithIndex:index];
+                
+                // night 0: players view their roles and perform first night actions
+                [self showConfirmationAlertView];
 
             }
             else if (_game.isNight) {
@@ -490,22 +503,6 @@
         label = [[UILabel alloc] initWithFrame:view.bounds];
         label.backgroundColor = [UIColor clearColor];
         label.font = [label.font fontWithSize:20];
-        
-        Player *currentPlayer = _game.players[index];
-        
-        if (currentPlayer.isDead) {
-            label.textColor = [UIColor colorWithWhite:0.400 alpha:1.000];
-        }
-        else {
-            if (_isLightSkinMode) {
-                label.textColor = [UIColor blackColor];
-            }
-            else {
-                label.textColor = [UIColor whiteColor];
-            }
-        }
-        
-        
         label.tag = 1;
         label.adjustsFontSizeToFitWidth = YES;
         [view addSubview:label];
@@ -521,6 +518,20 @@
     //views outside of the `if (view == nil) {...}` check otherwise
     //you'll get weird issues with carousel item content appearing
     //in the wrong place in the carousel
+    Player *currentPlayer = _game.players[index];
+    
+    if (currentPlayer.isDead) {
+        label.textColor = [UIColor colorWithWhite:0.400 alpha:1.000];
+    }
+    else {
+        if (_isLightSkinMode) {
+            label.textColor = [UIColor blackColor];
+        }
+        else {
+            label.textColor = [UIColor whiteColor];
+        }
+    }
+
     label.text = [_game.players[index] name];
     
     return view;

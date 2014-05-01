@@ -7,9 +7,16 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Game.h"
+#import "GameSetup.h"
+#import "GameData.h"
+#import "Player.h"
 
 @interface WerewolfTests : XCTestCase
-
+{
+    GameSetup *defaultSetup;
+    Game *game;
+}
 @end
 
 @implementation WerewolfTests
@@ -17,7 +24,10 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    defaultSetup = [[[GameData sharedData] gameSetups] firstObject];
+    game = [[Game alloc] initWithGameSetup:defaultSetup];
+    [game prepareGame];
 }
 
 - (void)tearDown
@@ -28,7 +38,16 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//    XCTAssertEqual(_firstName, _lastName, @"First name and Last name should be equal");
+}
+
+- (void)testKillingAPlayerKillsThemForGood
+{
+    Player *firstPlayer = [game players][0];
+    
+    XCTAssertFalse(firstPlayer.isDead, @"Player should not be dead yet");
+    [game killPlayerAtIndex:0];
+    XCTAssertTrue(firstPlayer.isDead, @"Player should be dead after calling killplayer");
 }
 
 @end

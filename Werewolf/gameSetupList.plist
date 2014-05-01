@@ -38,8 +38,6 @@
 			<false/>
 			<key>SEER_PEEKS_NIGHT_ZERO</key>
 			<false/>
-            <key>SEER_PEEKS_NIGHT_ZERO</key>
-			<false/>
 			<key>SEER_SEES_ROLE</key>
 			<false/>
 			<key>VIGILANTE_KILLS_AT_NIGHT</key>
@@ -83,8 +81,6 @@
 			<key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
 			<false/>
 			<key>SEER_PEEKS_NIGHT_ZERO</key>
-			<false/>
-            <key>SEER_PEEKS_NIGHT_ZERO</key>
 			<false/>
 			<key>SEER_SEES_ROLE</key>
 			<false/>
@@ -130,8 +126,6 @@
 			<false/>
 			<key>SEER_PEEKS_NIGHT_ZERO</key>
 			<true/>
-            <key>SEER_PEEKS_NIGHT_ZERO</key>
-			<false/>
 			<key>SEER_SEES_ROLE</key>
 			<false/>
 			<key>VIGILANTE_KILLS_AT_NIGHT</key>
@@ -175,8 +169,6 @@
 			<key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
 			<false/>
 			<key>SEER_PEEKS_NIGHT_ZERO</key>
-			<false/>
-            <key>SEER_PEEKS_NIGHT_ZERO</key>
 			<false/>
 			<key>SEER_SEES_ROLE</key>
 			<false/>
@@ -223,8 +215,6 @@
 			<false/>
 			<key>SEER_PEEKS_NIGHT_ZERO</key>
 			<false/>
-            <key>SEER_PEEKS_NIGHT_ZERO</key>
-			<false/>
 			<key>SEER_SEES_ROLE</key>
 			<false/>
 			<key>VIGILANTE_KILLS_AT_NIGHT</key>
@@ -268,8 +258,6 @@
         <key>WOLVES_SEE_ROLE_OF_KILL</key>
         <true/>
         <key>PRIEST_CAN_TARGET_SAME_PERSON_TWICE_IN_A_ROW</key>
-        <false/>
-        <key>SEER_PEEKS_NIGHT_ZERO</key>
         <false/>
         <key>SEER_PEEKS_NIGHT_ZERO</key>
         <false/>

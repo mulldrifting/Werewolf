@@ -25,4 +25,6 @@
 - (Player*)nextAlivePlayer:(int)index;
 - (void)killPlayerAtIndex:(int)index;
 
+- (NSString*)getNightInfoForPlayerAtIndex:(int)index;
+
 @end

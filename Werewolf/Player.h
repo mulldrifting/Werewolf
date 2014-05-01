@@ -17,5 +17,6 @@
 @property (nonatomic) BOOL isDead;
 
 -(id)initWithIndex:(int)index;
+- (void)performNightAction;
 
 @end

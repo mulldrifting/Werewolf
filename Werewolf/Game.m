@@ -71,7 +71,49 @@
     
 }
 
-#pragma mark - Player Methods
+#pragma mark - Player Action Methods
+
+//- (NSString*)getNightInfoForPlayerAtIndex:(int)index
+//{
+//    NSString *message;
+//    Player *currentPlayer = _players[index];
+//    
+//    switch (currentPlayer.role.roleID) {
+//        case kVillager:
+//            return @"";
+//            break;
+//        case kWerewolf:
+//            
+//            break;
+//        case kSeer:
+//            
+//            if (_gameSetup.settings[@"SEER_PEEKS_NIGHT_ZERO"]) {
+//                
+//            }
+//            
+//            break;
+//        case kPriest:
+//            return @"";
+//            break;
+//        case kVigilante:
+//            return @"";
+//            break;
+//        case kHunter:
+//            return @"";
+//            break;
+//        case kMinion:
+//            
+//            break;
+//        case kAssassin:
+//            
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
+
+#pragma mark - Player Control Methods
 
 - (int)prevPlayerIndex:(int)index
 {
