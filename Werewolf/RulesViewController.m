@@ -1,18 +1,18 @@
 //
-//  SettingsViewController.m
+//  RulesViewController.m
 //  Werewolf
 //
 //  Created by Lauren Lee on 5/1/14.
 //  Copyright (c) 2014 Lauren Lee. All rights reserved.
 //
 
-#import "SettingsViewController.h"
+#import "RulesViewController.h"
 
-@interface SettingsViewController ()
+@interface RulesViewController ()
 
 @end
 
-@implementation SettingsViewController
+@implementation RulesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,24 +26,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    // Add swipe to go back gesture
+    UIScreenEdgePanGestureRecognizer *swipeToGoBack = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
+    swipeToGoBack.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:swipeToGoBack];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    // Hide navigation bar on this screen
-    [self.navigationController setNavigationBarHidden:YES];
+    // Show navigation bar on this screen
+    [self.navigationController setNavigationBarHidden:NO];
     
-    // Set status bar color to default = black
+    // Set style bar color to default = black
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
 }
 
-- (IBAction)backButtonPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+-(void)goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*

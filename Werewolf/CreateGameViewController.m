@@ -25,9 +25,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Show navigation bar in edit game setup screen
-    [self.navigationController setNavigationBarHidden:NO];
 
     // Set up table view
     self.tableView.delegate = self;
@@ -54,7 +51,10 @@
 {
     [super viewWillAppear:animated];
     
+    // Show navigation bar in edit game setup screen
     [self.navigationController setNavigationBarHidden:NO];
+    
+    // Set style bar to default color = black
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 

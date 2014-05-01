@@ -43,9 +43,12 @@ Companion</string>
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Ljs-gf-8Y4" kind="push" id="kb6-yq-qoS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBV-XN-46N">
-                                <rect key="frame" x="20" y="496" width="20" height="20"/>
+                                <rect key="frame" x="20" y="528" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="settings_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,6 +70,81 @@ Companion</string>
             </objects>
             <point key="canvasLocation" x="639" y="-63"/>
         </scene>
+        <!--Rules View Controller - Rules-->
+        <scene sceneID="Ezo-Gv-IJh">
+            <objects>
+                <viewController id="Ljs-gf-8Y4" customClass="RulesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rsl-uc-DH3"/>
+                        <viewControllerLayoutGuide type="bottom" id="LKy-Ug-FbL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7sd-wF-8ij">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxa-Vk-Ine">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="KeS-Xb-U0M">
+                                        <rect key="frame" x="20" y="0.0" width="280" height="960"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="960" id="LH1-M8-IfL"/>
+                                            <constraint firstAttribute="width" constant="280" id="aDZ-1u-yCz"/>
+                                        </constraints>
+                                        <mutableString key="text">Werewolf is a party game for seven or more players. An odd number is recommended. (This app also contains two unique five-player variants.) 
+
+The game is normally played using cards and a moderator who has all the information but isn't in the game. This app allows everyone to participate, without the need for additional materials.
+
+The app will assign every person a hidden role. There are two types of people: Villagers and Werewolves. 
+
+The Villagers must find the Werewolves before the Werewolves slowly kill them off one by one! 
+
+The game progresses in phases: Day and Night. 
+
+During the Day, everyone discusses who they think is a Werewolf. There is only one way to find out for sure, however, and that is to kill them. (The town demands justice.) 
+
+A timer will count down the minutes, but when that timer runs out, the Village must make a decision: Who to kill? 
+
+The app will record your selection and reveal whether a Werewolf was eliminated or not. And immediately, Night will fall. There is no talking during the Night phase. 
+
+At Night, the phone will be passed in a circle. The Werewolves will decide who they want to kill. Everyone else will pick who they think is a Werewolf. (Other special roles can have their own Night actions.)
+
+Once the phone has been completely passed around, the app will reveal who died in the night. And Day begins again. 
+
+The game ends either with all the Werewolves dying or until it is impossible for the Villagers to win. This happens when the Werewolves outnumber or even with the Villagers. 
+
+To learn about special roles, go to the Game Creation screen and click on the role you want to investigate. </mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KeS-Xb-U0M" secondAttribute="trailing" constant="20" id="0SW-TF-Mqp"/>
+                                    <constraint firstItem="KeS-Xb-U0M" firstAttribute="top" secondItem="cxa-Vk-Ine" secondAttribute="top" id="3LO-aS-wRw"/>
+                                    <constraint firstAttribute="bottom" secondItem="KeS-Xb-U0M" secondAttribute="bottom" id="9DJ-at-lJN"/>
+                                    <constraint firstAttribute="height" constant="568" id="Kwv-Gs-Oew"/>
+                                    <constraint firstAttribute="width" constant="320" id="cqs-UP-NC1"/>
+                                    <constraint firstItem="KeS-Xb-U0M" firstAttribute="leading" secondItem="cxa-Vk-Ine" secondAttribute="leading" constant="20" id="pW8-4h-ByB"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cxa-Vk-Ine" firstAttribute="top" secondItem="7sd-wF-8ij" secondAttribute="top" id="RkY-hY-DZj"/>
+                            <constraint firstItem="LKy-Ug-FbL" firstAttribute="top" secondItem="cxa-Vk-Ine" secondAttribute="bottom" id="dca-KS-ZKU"/>
+                            <constraint firstAttribute="trailing" secondItem="cxa-Vk-Ine" secondAttribute="trailing" id="eMH-26-43C"/>
+                            <constraint firstItem="cxa-Vk-Ine" firstAttribute="leading" secondItem="7sd-wF-8ij" secondAttribute="leading" id="o4m-Ru-S1I"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Rules" id="oql-2T-FCg"/>
+                    <size key="freeformSize" width="320" height="1000"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rvP-sI-Q1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1183" y="436"/>
+        </scene>
         <!--Werewolf View Controller-->
         <scene sceneID="50L-2P-bXG">
             <objects>
@@ -83,7 +161,7 @@ Companion</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8v-6U-9ZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="653"/>
+            <point key="canvasLocation" x="246" y="-727"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Jxj-MQ-RUm">
@@ -124,7 +202,7 @@ Default timer
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="onZ-Ad-wch" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016" y="653"/>
+            <point key="canvasLocation" x="623" y="-727"/>
         </scene>
         <!--Load Setup View Controller - Choose Game Setup-->
         <scene sceneID="dA1-CU-UHh">
@@ -167,7 +245,7 @@ Default timer
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3p-Q8-aij" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039" y="-63"/>
+            <point key="canvasLocation" x="1183" y="-383"/>
         </scene>
         <!--Create Game View Controller - Edit Game Setup-->
         <scene sceneID="lsQ-FL-437">
@@ -248,7 +326,7 @@ Default timer
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sr3-np-HaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1453" y="-63"/>
+            <point key="canvasLocation" x="1597" y="-383"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hc8-Tl-IiD">
@@ -314,7 +392,7 @@ Now, either manually enter or select the name of the Moderator:</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HP9-Zc-V4F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1827" y="279"/>
+            <point key="canvasLocation" x="1971" y="-41"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="J8d-De-raR">
@@ -373,7 +451,7 @@ Now, either manually enter or select the name of the Moderator:</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5K-lI-QIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2214" y="-63"/>
+            <point key="canvasLocation" x="2358" y="-383"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="in7-pP-Vab">
@@ -482,7 +560,7 @@ Now, either manually enter or select the name of the Moderator:</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lV0-8I-omB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2618" y="-63"/>
+            <point key="canvasLocation" x="2762" y="-383"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Sa9-Mf-V99">

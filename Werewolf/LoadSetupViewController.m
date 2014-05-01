@@ -27,9 +27,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    // Show navigation bar on load game setup screen
-    [self.navigationController setNavigationBarHidden:NO];
-    
     // Add swipe to go back gesture
     UIScreenEdgePanGestureRecognizer *swipeToGoBack = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
     swipeToGoBack.edges = UIRectEdgeLeft;
@@ -40,6 +37,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // Show navigation bar on load game setup screen
+    [self.navigationController setNavigationBarHidden:NO];
+
+    // Set style bar color to default = black
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
 }
