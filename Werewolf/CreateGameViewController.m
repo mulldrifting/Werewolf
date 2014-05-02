@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *startButton;
 
+@property (nonatomic) NSIndexPath *expandingIndexPath;
+@property (nonatomic) NSIndexPath *expandedIndexPath;
+
 @end
 
 @implementation CreateGameViewController
@@ -70,30 +73,135 @@
     [self.gameSetup.roleNumbers setValue:[NSNumber numberWithInt:value] forKey:role];
 }
 
-#pragma mark - Table View Methods
+- (NSIndexPath *)actualIndexPathForTappedIndexPath:(NSIndexPath *)indexPath
+{
+	if (self.expandedIndexPath && [indexPath row] > [self.expandedIndexPath row]) {
+		return [NSIndexPath indexPathForRow:[indexPath row] - 1
+								  inSection:[indexPath section]];
+	}
+	
+	return indexPath;
+}
+
+#pragma mark - Table View Data Source Methods
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // if a cell is expanded, take into account
+    if (self.expandedIndexPath) {
+        return [[Constants listOfDefinedRoles] count] + 1;
+    }
     // number of defined roles
     return [[Constants listOfDefinedRoles] count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	
+    // init expanded cell
+	if ([indexPath isEqual:self.expandedIndexPath]) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DescCell"
+                                                                forIndexPath:indexPath];
+        
+        if (cell == nil) {
+            NSLog(@"Desc Cell is nil");
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+//                                          reuseIdentifier:cellIdentifier];
+        }
+        
+        NSIndexPath *theIndexPath = [self actualIndexPathForTappedIndexPath:indexPath];
+		[cell.textLabel setText:[[Constants listOfRoleDescriptions] objectAtIndex:[theIndexPath row] - 1]];
+        cell.textLabel.font = [[cell.textLabel font] fontWithSize:14.0];
+
+        return cell;
+	}
     
-    StepperTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoleCell" forIndexPath:indexPath];
-    
-    // set cell's delegate to self
-    cell.delegate = self;
-    
-    // set cell's values using the list of defined roles and the game setup dictionary roleNumbers
-    NSString *roleString = [Constants listOfDefinedRoles][indexPath.row];
-    cell.roleLabel.text = roleString;
-    cell.stepper.value = [[self.gameSetup.roleNumbers objectForKey:roleString] doubleValue];
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)cell.stepper.value];
-    
-    return cell;
+    // init expanding cell
+	else {
+        
+        StepperTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RoleCell" forIndexPath:indexPath];
+        
+        if (cell == nil) {
+            NSLog(@"Role Cell is nil");
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+//                                          reuseIdentifier:cellIdentifier];
+        }
+        
+        // set cell's delegate to self
+        cell.delegate = self;
+        
+        // set cell's values using the list of defined roles and the game setup dictionary roleNumbers
+        NSString *roleString = [Constants listOfDefinedRoles][indexPath.row];
+        cell.roleLabel.text = roleString;
+        cell.stepper.value = [[self.gameSetup.roleNumbers objectForKey:roleString] doubleValue];
+        cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)cell.stepper.value];
+        
+        return cell;
+
+	}
 }
+
+#pragma mark - Table View Delegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // disable touch on expanded cell
+	UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+	if ([[cell reuseIdentifier] isEqualToString:@"DescCell"]) {
+		return;
+	}
+	
+    // deselect row
+	[tableView deselectRowAtIndexPath:indexPath
+							 animated:NO];
+	
+    // get the actual index path
+	indexPath = [self actualIndexPathForTappedIndexPath:indexPath];
+	
+    // save the expanded cell to delete it later
+	NSIndexPath *theExpandedIndexPath = self.expandedIndexPath;
+	
+    // same row tapped twice - get rid of the expanded cell
+	if ([indexPath isEqual:self.expandingIndexPath]) {
+		self.expandingIndexPath = nil;
+		self.expandedIndexPath = nil;
+	}
+    // add the expanded cell
+	else {
+		self.expandingIndexPath = indexPath;
+		self.expandedIndexPath = [NSIndexPath indexPathForRow:[indexPath row] + 1
+													inSection:[indexPath section]];
+	}
+	
+	[tableView beginUpdates];
+	
+	if (theExpandedIndexPath) {
+		[_tableView deleteRowsAtIndexPaths:@[theExpandedIndexPath]
+							 withRowAnimation:UITableViewRowAnimationNone];
+	}
+	if (self.expandedIndexPath) {
+		[_tableView insertRowsAtIndexPaths:@[self.expandedIndexPath]
+							 withRowAnimation:UITableViewRowAnimationNone];
+	}
+	
+	[tableView endUpdates];
+	
+    // scroll to the expanded cell
+	[_tableView scrollToRowAtIndexPath:indexPath
+							 atScrollPosition:UITableViewScrollPositionMiddle
+									 animated:YES];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath isEqual:self.expandedIndexPath]) {
+        return 100.0;
+    }
+    else {
+        return 50.0;
+    }
+}
+
 
 //-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 //{
@@ -142,7 +250,6 @@
         GameViewController *destination = segue.destinationViewController;
         
         Game *newGame = [[Game alloc] initWithGameSetup:_gameSetup];
-        [newGame prepareGame];
         destination.game = newGame;
     }
     

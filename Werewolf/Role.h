@@ -10,8 +10,8 @@
 
 @interface Role : NSObject
 
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *faction;
+@property (copy, nonatomic) NSString *name, *faction, *target;
 @property (nonatomic) NSInteger roleID;
+@property (strong, nonatomic) NSMutableArray *wolfGuesses;
 
 @end

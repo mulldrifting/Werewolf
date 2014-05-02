@@ -11,6 +11,21 @@
 #import "iCarousel.h"
 #import "Game.h"
 
+typedef NS_ENUM(NSInteger, alertViewType) {
+    kNameEntry,
+    kConfirmation,
+    kKillPlayer,
+    kShowRoleAlert
+};
+
+typedef NS_ENUM(NSInteger, popupViewType) {
+    kPassRight,
+    kBeginDay,
+    kPassToPlayer,
+    kShowRoleView,
+    kShowNightInfoView
+};
+
 @interface GameViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet iCarousel *carousel;

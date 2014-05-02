@@ -22,7 +22,6 @@
 		FEA7859C190C3EF50084CA04 /* Hunter.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7859B190C3EF50084CA04 /* Hunter.m */; };
 		FEA7859F190C3EFA0084CA04 /* Minion.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7859E190C3EFA0084CA04 /* Minion.m */; };
 		FEA785A2190C3F090084CA04 /* Assassin.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A1190C3F090084CA04 /* Assassin.m */; };
-		FEA785A5190F05E70084CA04 /* ModPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A4190F05E70084CA04 /* ModPlayer.m */; };
 		FEA785A8190F0F670084CA04 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A7190F0F670084CA04 /* TimerViewController.m */; };
 		FEB53BFE18FB63AC00598B64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */; };
 		FEB53C0518FB729500598B64 /* GameSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0418FB729500598B64 /* GameSetup.m */; };
@@ -34,6 +33,9 @@
 		FEC75EB11912C41300C44A3A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EAF1912C41300C44A3A /* TTTAttributedLabel.m */; };
 		FEC75EB41912C42500C44A3A /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EB31912C42500C44A3A /* iCarousel.m */; };
 		FEC75EB71912D75700C44A3A /* RulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EB61912D75700C44A3A /* RulesViewController.m */; };
+		FEC75EC219130A7200C44A3A /* NightActionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EC119130A7200C44A3A /* NightActionController.m */; };
+		FEC75EC519130EAB00C44A3A /* CarouselController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EC419130EAB00C44A3A /* CarouselController.m */; };
+		FEC75EC81914025600C44A3A /* AlphaView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EC71914025600C44A3A /* AlphaView.m */; };
 		FED1DC2018F87E7A00BB0B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */; };
 		FED1DC2218F87E7A00BB0B81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */; };
 		FED1DC2418F87E7A00BB0B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED1DC2318F87E7A00BB0B81 /* UIKit.framework */; };
@@ -95,8 +97,6 @@
 		FEA7859E190C3EFA0084CA04 /* Minion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Minion.m; sourceTree = "<group>"; };
 		FEA785A0190C3F090084CA04 /* Assassin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assassin.h; sourceTree = "<group>"; };
 		FEA785A1190C3F090084CA04 /* Assassin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assassin.m; sourceTree = "<group>"; };
-		FEA785A3190F05E70084CA04 /* ModPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModPlayer.h; sourceTree = "<group>"; };
-		FEA785A4190F05E70084CA04 /* ModPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModPlayer.m; sourceTree = "<group>"; };
 		FEA785A6190F0F670084CA04 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		FEA785A7190F0F670084CA04 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -118,6 +118,12 @@
 		FEC75EB31912C42500C44A3A /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = iCarousel/iCarousel.m; sourceTree = SOURCE_ROOT; };
 		FEC75EB51912D75700C44A3A /* RulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesViewController.h; sourceTree = "<group>"; };
 		FEC75EB61912D75700C44A3A /* RulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RulesViewController.m; sourceTree = "<group>"; };
+		FEC75EC019130A7200C44A3A /* NightActionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NightActionController.h; sourceTree = "<group>"; };
+		FEC75EC119130A7200C44A3A /* NightActionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NightActionController.m; sourceTree = "<group>"; };
+		FEC75EC319130EAB00C44A3A /* CarouselController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarouselController.h; sourceTree = "<group>"; };
+		FEC75EC419130EAB00C44A3A /* CarouselController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarouselController.m; sourceTree = "<group>"; };
+		FEC75EC61914025600C44A3A /* AlphaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlphaView.h; sourceTree = "<group>"; };
+		FEC75EC71914025600C44A3A /* AlphaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlphaView.m; sourceTree = "<group>"; };
 		FED1DC1C18F87E7A00BB0B81 /* Werewolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werewolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED1DC1F18F87E7A00BB0B81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FED1DC2118F87E7A00BB0B81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -278,8 +284,14 @@
 			children = (
 				FE21C289190B33B40048D19C /* GameViewController.h */,
 				FE21C28A190B33B40048D19C /* GameViewController.m */,
+				FEC75EC61914025600C44A3A /* AlphaView.h */,
+				FEC75EC71914025600C44A3A /* AlphaView.m */,
 				FEA785A6190F0F670084CA04 /* TimerViewController.h */,
 				FEA785A7190F0F670084CA04 /* TimerViewController.m */,
+				FEC75EC319130EAB00C44A3A /* CarouselController.h */,
+				FEC75EC419130EAB00C44A3A /* CarouselController.m */,
+				FEC75EC019130A7200C44A3A /* NightActionController.h */,
+				FEC75EC119130A7200C44A3A /* NightActionController.m */,
 			);
 			name = "Game Controller";
 			sourceTree = "<group>";
@@ -394,8 +406,6 @@
 				FED1DC6418F8B5DA00BB0B81 /* Game.m */,
 				FED1DC6618F8BF3600BB0B81 /* Player.h */,
 				FED1DC6718F8BF3600BB0B81 /* Player.m */,
-				FEA785A3190F05E70084CA04 /* ModPlayer.h */,
-				FEA785A4190F05E70084CA04 /* ModPlayer.m */,
 				FEB53C0318FB729500598B64 /* GameSetup.h */,
 				FEB53C0418FB729500598B64 /* GameSetup.m */,
 				FEA7858A190C3EC90084CA04 /* Roles */,
@@ -503,9 +513,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEA78590190C3EDD0084CA04 /* Villager.m in Sources */,
+				FEC75EC81914025600C44A3A /* AlphaView.m in Sources */,
 				FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */,
 				FED1DC3618F87E7A00BB0B81 /* TitleViewController.m in Sources */,
-				FEA785A5190F05E70084CA04 /* ModPlayer.m in Sources */,
 				FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */,
 				FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */,
 				FED1DC3018F87E7A00BB0B81 /* AppDelegate.m in Sources */,
@@ -517,6 +527,7 @@
 				FEC75E9E1912AB5B00C44A3A /* SettingsViewController.m in Sources */,
 				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
 				FE21C28B190B33B40048D19C /* GameViewController.m in Sources */,
+				FEC75EC519130EAB00C44A3A /* CarouselController.m in Sources */,
 				FEC75EB11912C41300C44A3A /* TTTAttributedLabel.m in Sources */,
 				FED1DC2C18F87E7A00BB0B81 /* main.m in Sources */,
 				FE38613D18FF755900ED8483 /* GameData.m in Sources */,
@@ -533,6 +544,7 @@
 				FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */,
 				FEA7859F190C3EFA0084CA04 /* Minion.m in Sources */,
 				FEA7859C190C3EF50084CA04 /* Hunter.m in Sources */,
+				FEC75EC219130A7200C44A3A /* NightActionController.m in Sources */,
 				FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

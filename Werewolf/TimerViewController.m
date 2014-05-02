@@ -44,6 +44,9 @@
     [self setupCounter];
     
     _titleLabel.text = [NSString stringWithFormat:@"Day %d", _game.currentRound];
+    
+    UITapGestureRecognizer *tapToStartPause = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleTimerStartPause)];
+    [_counterLabel addGestureRecognizer:tapToStartPause];
 }
 
 - (void)setupCounter
@@ -60,6 +63,16 @@
 
 - (IBAction)pauseTimer:(id)sender {
     [_counterLabel stop];
+}
+
+- (void)toggleTimerStartPause
+{
+    if ([_counterLabel isRunning]) {
+        [_counterLabel stop];
+    }
+    else {
+        [_counterLabel start];
+    }
 }
 
 - (IBAction)addMinute:(id)sender {

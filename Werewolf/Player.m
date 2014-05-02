@@ -10,24 +10,19 @@
 
 @implementation Player
 
-- (id)init
-{
-    if (self = [super init])
-    {
-        _name = @"Player";
-        _isDead = NO;
-    }
-    
-    return self;
-}
-
 -(id)initWithIndex:(int)index
 {
     if (self = [super init])
     {
-        _name = [NSString stringWithFormat:@"Player %d", index];
-        _isDead = NO;
         _index = index;
+        _name = [NSString stringWithFormat:@"Player %d", index];
+        
+
+        _isDead = NO;
+        _isPriestTarget = NO;
+        _isVigilanteTarget = NO;
+        _isWolfTarget = NO;
+
     }
     return self;
 }

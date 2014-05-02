@@ -14,9 +14,9 @@
 @property (copy, nonatomic) NSString *name;
 @property (strong, nonatomic) Role *role;
 @property (nonatomic) int index;
-@property (nonatomic) BOOL isDead;
+@property (nonatomic) BOOL isDead, isWolfTarget, isPriestTarget, isVigilanteTarget;
+
 
 -(id)initWithIndex:(int)index;
-- (void)performNightAction;
 
 @end

@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, roleType)
 @interface Constants : NSObject
 
 + (NSArray *)listOfDefinedRoles;
++ (NSArray *)listOfRoleDescriptions;
 + (NSDictionary *)defaultSettings;
 
 @end

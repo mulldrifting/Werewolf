@@ -7,16 +7,7 @@
 //
 
 #import "Game.h"
-#import "ModPlayer.h"
-#import "Role.h"
-#import "Werewolf.h"
-#import "Villager.h"
-#import "Priest.h"
-#import "Seer.h"
-#import "Vigilante.h"
-#import "Hunter.h"
-#import "Minion.h"
-#import "Assassin.h"
+
 
 @implementation Game
 
@@ -30,7 +21,11 @@
         _players = [NSMutableArray new];
         _isNight = NO;
         _isOver = NO;
+        _didWrap = NO;
         _currentRound = 0;
+        _currentPlayerIndex = 0;
+        
+        [self prepareGame];
     }
     
     return self;
@@ -128,27 +123,66 @@
 {
     int nextPlayerIndex = index + 1;
     if (nextPlayerIndex == _numPlayers) {
+        _didWrap = YES;
         nextPlayerIndex = 0;
     }
     return nextPlayerIndex;
 }
 
-- (Player*)nextAlivePlayer:(int)index
+- (int)nextAlivePlayer:(int)index
 {
     Player *currentPlayer = _players[[self nextPlayerIndex:index]];
-    NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
+//    NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
 
     while (currentPlayer.isDead) {
         currentPlayer = _players[[self nextPlayerIndex:index]];
-        NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
+//        NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
     }
     
-    return currentPlayer;
+    return currentPlayer.index;
+}
+
+-(Player *)currentPlayer
+{
+    return _players[_currentPlayerIndex];
+}
+
+-(Player *)previousPlayer
+{
+    return _players[[self prevPlayerIndex:_currentPlayerIndex]];
+}
+
+-(Player *)randomPlayer
+{
+    return _players[arc4random_uniform([_players count])];
+}
+
+-(Player *)randomNonWerewolf
+{
+    Player *randomPlayer = [self randomPlayer];
+    while ([randomPlayer isKindOfClass:[Werewolf class]]) {
+        randomPlayer = [self randomPlayer];
+    }
+    return randomPlayer;
+}
+
+- (Player*)randomVillager
+{
+    Player *randomPlayer = [self randomPlayer];
+    while (![randomPlayer isKindOfClass:[Villager class]]) {
+        randomPlayer = [self randomPlayer];
+    }
+    return randomPlayer;
 }
 
 -(void)killPlayerAtIndex:(int)index
 {
     Player *player = _players[index];
+    
+    if (player.isDead) {
+        NSLog(@"Tried to kill dead player");
+    }
+    
     player.isDead = YES;
     [self checkGameState];
 }
@@ -167,7 +201,7 @@
 {
     for (int i = 0; i < _numPlayers; i++) {
         if (i == 0) {
-            ModPlayer *newPlayer = [[ModPlayer alloc] initWithIndex:i];
+            Player *newPlayer = [[Player alloc] initWithIndex:i];
             [newPlayer setName:@"(Mod) Player"];
             [_players addObject:newPlayer];
         }

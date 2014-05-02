@@ -29,6 +29,25 @@
     return inst;
 }
 
++ (NSArray *)listOfRoleDescriptions
+{
+    static NSArray *inst = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        inst = @[
+                 @"The Villagers must find the Werewolves before the Werewolves slowly kill them off one by one! Werewolves slowly kill them off one by one!",
+                 @"Werewolf",
+                 @"Seer",
+                 @"Priest",
+                 @"Vigilante",
+                 @"Hunter",
+                 @"Minion",
+                 @"Assassin"
+                 ];
+    });
+    return inst;
+}
+
 + (NSDictionary *)defaultSettings
 {
     static NSDictionary *inst = nil;

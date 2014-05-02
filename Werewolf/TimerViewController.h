@@ -12,8 +12,6 @@
 
 @protocol TimerViewControllerProtocol <NSObject>
 
-@optional
-
 - (void)hideTimerViewController;
 - (void)beginKillSelection;
 
