@@ -8,14 +8,22 @@
 
 #import "CarouselController.h"
 
+
 @implementation CarouselController
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    if (carousel.currentItemIndex == index)
+    if (carousel.currentItemIndex == index && ![_game.players[index] isDead])
     {
         if (_game.isNight) {
             
+            if (_game.currentRound > 0) {
+                [_delegate createAlertViewOfType:kNightAction];
+            }
+            else
+            {
+                NSLog(@"Carousel item selected in night 0");
+            }
             
         }
         else {
@@ -58,7 +66,7 @@
         view.contentMode = UIViewContentModeCenter;
         //        view.backgroundColor = [UIColor colorWithWhite:0.800 alpha:1.000];
         view.backgroundColor = [UIColor clearColor];
-        label = [[UILabel alloc] initWithFrame:view.bounds];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140.0f, 30.0f)];
         label.backgroundColor = [UIColor clearColor];
         label.font = [label.font fontWithSize:20];
         label.tag = 1;

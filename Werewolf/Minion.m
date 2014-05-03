@@ -16,6 +16,7 @@
     {
         self.name = @"Minion";
         self.faction = @"Werewolf";
+        self.seerSees = @"Villager";
         self.roleID = kMinion;
     }
     

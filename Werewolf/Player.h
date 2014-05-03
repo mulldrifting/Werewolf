@@ -11,7 +11,8 @@
 
 @interface Player : NSObject
 
-@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *name, *target;
+@property (strong, nonatomic) NSMutableArray *nightGuesses;
 @property (strong, nonatomic) Role *role;
 @property (nonatomic) int index;
 @property (nonatomic) BOOL isDead, isWolfTarget, isPriestTarget, isVigilanteTarget;

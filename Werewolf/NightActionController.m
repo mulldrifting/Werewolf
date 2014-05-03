@@ -14,7 +14,7 @@ roleType _roleTypes;
 
 -(NSString *)getRoleInfoForPlayer:(Player *)player
 {
-    NSString *message = @"";
+    NSString *message = [Constants listOfRoleDescriptions][player.role.roleID];
     Player *randomPlayer;
     
     switch (player.role.roleID) {
@@ -27,7 +27,7 @@ roleType _roleTypes;
             
         case kWerewolf:
         case kMinion:
-            message = @"The wolves are:\n";
+            message = [message stringByAppendingString:@"\n\nThe wolves are:\n"];
             for (Player *player in _game.players) {
                 if ([player.role isKindOfClass:[Werewolf class]]) {
                     message = [message stringByAppendingString:[NSString stringWithFormat:@"%@\n", player.name]];
@@ -38,17 +38,72 @@ roleType _roleTypes;
         case kSeer:
             randomPlayer = [_game randomNonWerewolf];
             if ([_game.gameSetup.settings objectForKey:@"SEER_PEEKS_NIGHT_ZERO"]) {
-                message = [NSString stringWithFormat:@"%@ looks like a %@", randomPlayer.name, randomPlayer.role.faction];
+                message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\n%@ looks like a %@", randomPlayer.name, randomPlayer.role.seerSees]];
             }
             return message;
             
         case kAssassin:
-            player.role.target = [[_game randomVillager] name];
-            message = [NSString stringWithFormat:@"Your target is:\n%@", [[_game randomVillager] name]];
+            player.target = [[_game randomVillager] name];
+            message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\nYour target is:\n%@", [[_game randomVillager] name]]];
             return message;
             
         default:
             return message;
+    }
+}
+
+-(void)startNightAction
+{
+    switch (_game.currentPlayer.role.roleID) {
+        case kVillager:
+        case kHunter:
+        case kAssassin:
+            [self.delegate updateTapLabelWithString:@"WHO IS WOLF?"];
+            break;
+        case kWerewolf:
+            [self.delegate updateTapLabelWithString:@"WHO TO KILL?"];
+            break;
+        case kSeer:
+            [self.delegate updateTapLabelWithString:@"WHO TO PEEK?"];
+            break;
+        case kPriest:
+            [self.delegate updateTapLabelWithString:@"WHO TO SAVE?"];
+            break;
+        case kVigilante:
+            [self.delegate updateTapLabelWithString:@"WHO TO KILL?"];
+            break;
+        case kMinion:
+            [self.delegate updateTapLabelWithString:@"WHO SHOULD DIE?"];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)handleNightActionWithSelectedPlayer:(Player *)player
+{
+    switch (_game.currentPlayer.role.roleID) {
+        case kVillager:
+        case kHunter:
+        case kMinion:
+        case kAssassin:
+            [_game.currentPlayer.nightGuesses addObject:player];
+            break;
+        case kWerewolf:
+            player.isWolfTarget = YES;
+            break;
+        case kSeer:
+            
+            break;
+        case kPriest:
+            player.isPriestTarget = YES;
+            break;
+        case kVigilante:
+            player.isVigilanteTarget = YES;
+            break;
+            
+        default:
+            break;
     }
 }
 

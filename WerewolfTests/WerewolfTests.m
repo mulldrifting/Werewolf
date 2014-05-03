@@ -27,7 +27,7 @@
 
     defaultSetup = [[[GameData sharedData] gameSetups] firstObject];
     game = [[Game alloc] initWithGameSetup:defaultSetup];
-    [game prepareGame];
+
 }
 
 - (void)tearDown

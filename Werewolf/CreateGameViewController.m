@@ -131,7 +131,8 @@
         cell.delegate = self;
         
         // set cell's values using the list of defined roles and the game setup dictionary roleNumbers
-        NSString *roleString = [Constants listOfDefinedRoles][indexPath.row];
+        NSIndexPath *theIndexPath = [self actualIndexPathForTappedIndexPath:indexPath];
+        NSString *roleString = [Constants listOfDefinedRoles][theIndexPath.row];
         cell.roleLabel.text = roleString;
         cell.stepper.value = [[self.gameSetup.roleNumbers objectForKey:roleString] doubleValue];
         cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)cell.stepper.value];
@@ -194,8 +195,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if ([indexPath isEqual:self.expandedIndexPath]) {
-        return 100.0;
+        return 90.0;
     }
     else {
         return 50.0;

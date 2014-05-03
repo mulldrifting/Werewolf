@@ -13,9 +13,14 @@
 
 typedef NS_ENUM(NSInteger, alertViewType) {
     kNameEntry,
-    kConfirmation,
+    kReadyToSeeRole,
     kKillPlayer,
-    kShowRoleAlert
+    kShowRoleAlert,
+    kNoKillConfirmation,
+    kAreYouX,
+    kIsDead,
+    kNightAction,
+    kSeerPeek
 };
 
 typedef NS_ENUM(NSInteger, popupViewType) {

@@ -157,19 +157,22 @@
     return _players[arc4random_uniform([_players count])];
 }
 
+// Seer
 -(Player *)randomNonWerewolf
 {
     Player *randomPlayer = [self randomPlayer];
-    while ([randomPlayer isKindOfClass:[Werewolf class]]) {
+    while ([randomPlayer.role isKindOfClass:[Werewolf class]] || [randomPlayer isEqual:[self currentPlayer]]) {
         randomPlayer = [self randomPlayer];
+        NSLog(@"%@",[randomPlayer.role name]);
     }
     return randomPlayer;
 }
 
+// Assassin
 - (Player*)randomVillager
 {
     Player *randomPlayer = [self randomPlayer];
-    while (![randomPlayer isKindOfClass:[Villager class]]) {
+    while (![randomPlayer.role isKindOfClass:[Villager class]]) {
         randomPlayer = [self randomPlayer];
     }
     return randomPlayer;
@@ -202,7 +205,7 @@
     for (int i = 0; i < _numPlayers; i++) {
         if (i == 0) {
             Player *newPlayer = [[Player alloc] initWithIndex:i];
-            [newPlayer setName:@"(Mod) Player"];
+            newPlayer.name = @"YOU";
             [_players addObject:newPlayer];
         }
         else {

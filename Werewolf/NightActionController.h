@@ -9,10 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "Game.h"
 
+@protocol NightActionControllerProtocol <NSObject>
+
+-(void)updateTapLabelWithString:(NSString*)string;
+
+@end
+
 @interface NightActionController : NSObject
 
 @property (weak, nonatomic) Game *game;
+@property (unsafe_unretained, nonatomic) id<NightActionControllerProtocol> delegate;
 
 -(NSString *)getRoleInfoForPlayer:(Player *)player;
+-(void)startNightAction;
+-(void)handleNightActionWithSelectedPlayer:(Player *)player;
 
 @end

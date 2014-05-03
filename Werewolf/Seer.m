@@ -16,6 +16,7 @@
     {
         self.name = @"Seer";
         self.faction = @"Villager";
+        self.seerSees = @"Villager";
         self.roleID = kSeer;
     }
     

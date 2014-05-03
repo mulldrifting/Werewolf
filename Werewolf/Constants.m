@@ -35,14 +35,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         inst = @[
-                 @"The Villagers must find the Werewolves before the Werewolves slowly kill them off one by one! Werewolves slowly kill them off one by one!",
-                 @"Werewolf",
-                 @"Seer",
-                 @"Priest",
-                 @"Vigilante",
-                 @"Hunter",
-                 @"Minion",
-                 @"Assassin"
+                 @"Villagers do not have any special powers. They must figure out who the Werewolves are before they get eaten, and all hope is lost.",
+                 @"Werewolves know who's in their pack, and at night they get to secretly kill someone in the Village. They win if they equal or outnumber Villagers.",
+                 @"The Seer is a Villager who can look at someone at night to reveal which side they're on.",
+                 @"The Priest is a Villager who can choose someone at night to save from the Werewolves. If they pick the same target as the Wolves, no one dies.",
+                 @"The Vigilante is a Villager who can shoot someone at night. Hopefully a Werewolf.",
+                 @"The Hunter is a Villager who lets the Village win if they are the last Villager alive.",
+                 @"The Minion looks like a Villager to the Seer but is on the Werewolf side. The Minion knows who the Werewolves are but not vice versa.",
+                 @"The Assassin starts with a random Villager target. Their goal is to convince the Village to kill that person in the Day."
                  ];
     });
     return inst;

@@ -15,9 +15,13 @@
     if (self = [super init])
     {
         _index = index;
-        _name = [NSString stringWithFormat:@"Player %d", index];
         
+        _name = [NSString stringWithFormat:@"Player %d", index];
 
+        _target = @"";
+        
+        _nightGuesses = [NSMutableArray new];
+        
         _isDead = NO;
         _isPriestTarget = NO;
         _isVigilanteTarget = NO;

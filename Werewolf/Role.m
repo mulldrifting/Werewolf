@@ -17,8 +17,6 @@
         _name = @"";
         _faction = @"";
         _roleID = -1;
-        _target = @"";
-        _wolfGuesses = [NSMutableArray new];
     }
     return  self;
 }

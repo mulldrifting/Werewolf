@@ -59,16 +59,15 @@
 - (void)showSettingsView
 {
     
-    // This isn't working - find out why
+    // This isn't working with a dismiss view controller completion - find out why
     NSLog(@"start show settings");
-    [self dismissViewControllerAnimated:YES completion:^{
         
-        NSLog(@"inside completion block");
+
         UIViewController *settingsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"settings"];
         [settingsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
         [self presentViewController:settingsViewController animated:YES completion:nil];
 
-    }];
+
     
     
 }
