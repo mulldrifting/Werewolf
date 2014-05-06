@@ -21,4 +21,9 @@
     return self;
 }
 
+- (NSString *)tapLabel
+{
+    return @"Priest, who do you want to save?";
+}
+
 @end

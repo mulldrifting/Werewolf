@@ -32,4 +32,9 @@
     return message;
 }
 
+-(NSString *)tapLabel
+{
+    return [NSString stringWithFormat:@"%@. Who do you want to kill?", [self.game listOfWolves]];
+}
+
 @end

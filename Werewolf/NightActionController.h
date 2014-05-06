@@ -23,10 +23,8 @@
 @property (weak, nonatomic) Game *game;
 @property (unsafe_unretained, nonatomic) id<NightActionControllerProtocol> delegate;
 
--(NSString *)getRoleInfoForPlayer:(Player *)player;
 -(void)startNightActionWithPlayer:(Player *)player;
 -(void)handleNightActionWithSelectedPlayer:(Player *)player;
-- (NSString*)getNightActionConfirmTitle;
 - (NSString*)getNightActionConfirmMessageForPlayer:(Player*)player;
 
 @end

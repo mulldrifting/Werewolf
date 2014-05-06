@@ -11,5 +11,6 @@
 @interface Priest : Role
 
 -(id)initWithGame:(Game*)game;
+-(NSString *)tapLabel;
 
 @end

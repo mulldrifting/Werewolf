@@ -11,5 +11,6 @@
 @interface Vigilante : Role
 
 -(id)initWithGame:(Game*)game;
+-(NSString *)tapLabel;
 
 @end

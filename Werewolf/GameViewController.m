@@ -446,7 +446,8 @@
         case ALERT_VIEW_TAG + kAreYouX:
             
             if (buttonIndex == 1) {
-                [_nightActionController startNightActionWithPlayer:_game.currentPlayer];
+                [self updateTapLabelWithString:[_game.currentPlayer.role tapLabel]];
+                [self showCornerButtonForCurrentPlayer];
             }
             else {
                 [self showViewOfType:kPassToPlayer];
@@ -818,6 +819,19 @@
         [self moveToNextPlayer];
     }
     
+}
+
+- (void)showCornerButtonForCurrentPlayer
+{
+    switch (_game.currentPlayer.role.roleID) {
+        case kWerewolf:
+        case kVigilante:
+            [self showNoKillCornerButton];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 /*

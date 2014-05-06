@@ -21,4 +21,9 @@
     return self;
 }
 
+- (NSString *)tapLabel
+{
+    return @"Vigilante, do you want to kill someone tonight? You get one shot per game.";
+}
+
 @end

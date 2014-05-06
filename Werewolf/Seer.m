@@ -35,4 +35,9 @@
     return message;
 }
 
+- (NSString *)tapLabel
+{
+    return @"Seer, who do you want to peek?";
+}
+
 @end

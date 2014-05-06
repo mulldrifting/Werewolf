@@ -32,4 +32,9 @@
     return message;
 }
 
+- (NSString *)tapLabel
+{
+    return [NSString stringWithFormat:@"Assassin, your target is %@. Guess who you think the Werewolf is!", self.player.target];
+}
+
 @end

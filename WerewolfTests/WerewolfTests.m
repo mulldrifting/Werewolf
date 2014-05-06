@@ -115,6 +115,12 @@
     XCTAssertFalse(game.isOver, @"New game should not be over after checking game state");
 }
 
+- (void)testTapLabelForRole
+{
+    Role *newRole = [[Werewolf alloc] initWithGame:game];
+    NSLog(@"Tap label should overwrite superclass: %@",[newRole tapLabel]);
+
+}
 
 
 @end

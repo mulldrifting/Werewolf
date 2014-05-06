@@ -31,4 +31,9 @@
     return message;
 }
 
+- (NSString *)tapLabel
+{
+    return [NSString stringWithFormat:@"%@. Who do you think they should kill tonight?", [self.game listOfWolves]];
+}
+
 @end

@@ -60,13 +60,20 @@
 {
     NSString *dayMessage = @"";
     BOOL nobodyDied = YES;
+    BOOL firstString = YES;
     
     for (Player *player in _players) {
         if (player.isWolfTarget || player.isVigilanteTarget) {
             
             if (!player.isPriestTarget) {
                 [self killPlayerAtIndex:player.index];
-                dayMessage = [dayMessage stringByAppendingString:[NSString stringWithFormat:@"%@ was killed in the night!\n\n", player.name]];
+                
+                if (!firstString) {
+                    dayMessage = [dayMessage stringByAppendingString:@"\n"];
+                    firstString = NO;
+                }
+                
+                dayMessage = [dayMessage stringByAppendingString:[NSString stringWithFormat:@"%@ was killed in the night!", player.name]];
                 nobodyDied = NO;
             }
         }
