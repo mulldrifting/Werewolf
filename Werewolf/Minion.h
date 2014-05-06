@@ -11,5 +11,6 @@
 @interface Minion : Role
 
 -(id)initWithGame:(Game*)game;
+- (NSString *)getNightZeroInfo;
 
 @end

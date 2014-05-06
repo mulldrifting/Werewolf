@@ -135,6 +135,7 @@ typedef NS_ENUM(NSInteger, gameSetupType)
 {
     // create the parent view that will hold header Label
     UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 10.0, 300.0, 40.0)];
+    [customView setBackgroundColor:[UIColor whiteColor]];
     
     // create a label object
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0,20.0,100.0,40.0)];

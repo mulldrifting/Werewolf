@@ -21,4 +21,18 @@
     return self;
 }
 
+- (NSString *)getNightZeroInfo
+{
+    NSString *message = [super getNightZeroInfo];
+    Player *randomPlayer = [self.game randomNonWerewolf];
+    BOOL doesSeerPeek = [[self.game.gameSetup.settings objectForKey:@"SEER_PEEKS_NIGHT_ZERO"] boolValue];
+    
+    if (doesSeerPeek) {
+        message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\nYou peek, and %@ looks like a %@", randomPlayer.name, randomPlayer.role.seerSeesAs]];
+        [self.player.seerPeeks addObject:randomPlayer];
+    }
+    
+    return message;
+}
+
 @end

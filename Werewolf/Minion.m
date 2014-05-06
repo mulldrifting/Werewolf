@@ -22,4 +22,13 @@
     return self;
 }
 
+- (NSString *)getNightZeroInfo
+{
+    NSString *message = [super getNightZeroInfo];
+    
+    message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\n%@", [self.game listOfWolves]]];
+    
+    return message;
+}
+
 @end

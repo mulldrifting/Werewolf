@@ -20,6 +20,7 @@
 #import "Hunter.h"
 #import "Minion.h"
 #import "Assassin.h"
+#import "NightActionController.h"
 
 @interface WerewolfTests : XCTestCase
 {
@@ -35,7 +36,7 @@
     [super setUp];
 
     for (GameSetup *setup in [[GameData sharedData] defaultGameSetups]) {
-        if ([setup.name isEqualToString:@"9P Classic"]) {
+        if ([setup.name isEqualToString:@"5P Special"]) {
             defaultSetup = setup;
         }
     }
@@ -68,6 +69,13 @@
     XCTAssertEqual(newRole.game.numPlayers, game.numPlayers, @"The new role's game should contain same number of players as game");
 }
 
+- (void)testWerewolfMethodOverwriteGetNightInfo
+{
+    Role *newRole = [[Werewolf alloc] initWithGame:game];
+    NSLog(@"%@", newRole.getNightZeroInfo);
+}
+
+
 - (void)testPlayerOfRoleIsSameObjectAsPlayer
 {
     for (Player *player in game.players) {
@@ -98,6 +106,13 @@
     XCTAssertFalse(firstPlayer.isDead, @"Player should not be dead yet");
     [game killPlayerAtIndex:0];
     XCTAssertTrue(firstPlayer.isDead, @"Player should be dead after calling killplayer");
+}
+
+- (void)testCheckGameState
+{
+    XCTAssertFalse(game.isOver, @"New game should not be over");
+    [game checkGameState];
+    XCTAssertFalse(game.isOver, @"New game should not be over after checking game state");
 }
 
 

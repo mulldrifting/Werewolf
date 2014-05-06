@@ -22,48 +22,6 @@ roleType _roleTypes;
 
 @implementation NightActionController
 
--(NSString *)getRoleInfoForPlayer:(Player *)player
-{
-    NSString *message = [Constants listOfRoleDescriptions][player.role.roleID];
-    Player *randomPlayer;
-    
-    switch (player.role.roleID) {
-            
-        case kVillager:
-        case kPriest:
-        case kVigilante:
-        case kHunter:
-            return message;
-            
-        case kWerewolf:
-        case kMinion:
-            message = [message stringByAppendingString:@"\n\nThe wolves are:\n"];
-            for (Player *player in _game.players) {
-                if ([player.role isKindOfClass:[Werewolf class]]) {
-                    message = [message stringByAppendingString:[NSString stringWithFormat:@"%@\n", player.name]];
-                }
-            }
-            return message;
-            
-        case kSeer:
-            randomPlayer = [_game randomNonWerewolf];
-            BOOL doesSeerPeek = [[_game.gameSetup.settings objectForKey:@"SEER_PEEKS_NIGHT_ZERO"] boolValue];
-            if (doesSeerPeek) {
-                message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\nYou peek, and %@ looks like a %@", randomPlayer.name, randomPlayer.role.seerSeesAs]];
-                [player.seerPeeks addObject:randomPlayer];
-            }
-            return message;
-            
-        case kAssassin:
-            player.target = [[_game randomVillager] name];
-            message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\nYour target is:\n%@", player.target]];
-            return message;
-            
-        default:
-            return message;
-    }
-}
-
 -(void)startNightActionWithPlayer:(Player *)player
 {
     NSString *message = @"";
@@ -81,20 +39,8 @@ roleType _roleTypes;
             break;
             
         case kWerewolf:
-            
-            for (Player *aPlayer in _game.players) {
-                if ([aPlayer.role isKindOfClass:[Werewolf class]]) {
-                    if (isFirstObject) {
-                        message = [message stringByAppendingString:[NSString stringWithFormat:@"%@", aPlayer.name]];
-                        isFirstObject = NO;
-                    }
-                    else {
-                        message = [message stringByAppendingString:[NSString stringWithFormat:@", %@", aPlayer.name]];
-                    }
-                }
-            }
 
-            [self.delegate updateTapLabelWithString:[NSString stringWithFormat:@"The wolves: %@. Who do you want to kill?", message]];
+            [self.delegate updateTapLabelWithString:[NSString stringWithFormat:@"%@. Who do you want to kill?", [_game listOfWolves]]];
             
             [self.delegate showNoKillCornerButton];
             
@@ -126,20 +72,7 @@ roleType _roleTypes;
             
         case kMinion:
             
-            for (Player *aPlayer in _game.players) {
-                if ([aPlayer.role isKindOfClass:[Werewolf class]]) {
-                    if (isFirstObject) {
-                        message = [message stringByAppendingString:[NSString stringWithFormat:@"%@", aPlayer.name]];
-                        isFirstObject = NO;
-                    }
-                    else {
-                        message = [message stringByAppendingString:[NSString stringWithFormat:@", %@", aPlayer.name]];
-                    }
-                }
-            }
-
-            
-            [self.delegate updateTapLabelWithString:[NSString stringWithFormat:@"The wolves: %@. Who do you think they should kill tonight?", message]];
+            [self.delegate updateTapLabelWithString:[NSString stringWithFormat:@"%@. Who do you think they should kill tonight?", [_game listOfWolves]]];
             
             break;
         default:
@@ -172,39 +105,41 @@ roleType _roleTypes;
         default:
             break;
     }
-}
-
-- (NSString*)getNightActionConfirmTitle
-{
-    NSString *title = @"";
     
-    switch (_game.currentPlayer.role.roleID) {
-            
-        case kVillager:
-        case kAssassin:
-        case kHunter:
-        case kMinion:
-            title = @"Your Selection Was Stored";
-            return title;
-            
-        case kPriest:
-            title = @"Your Target Will Be Saved";
-            return title;
-            
-        case kWerewolf:
-        case kVigilante:
-            title = @"You've Chosen A Kill Target";
-            return title;
-
-        case kSeer:
-            title = @"You Take A Peek";
-            return title;
-            
-        default:
-            return title;
-    }
-
+//    [_delegate createAlertViewOfType:kNightActionConfirm];
 }
+
+//- (NSString*)getNightActionConfirmTitle
+//{
+//    NSString *title = @"";
+//    
+//    switch (_game.currentPlayer.role.roleID) {
+//            
+//        case kVillager:
+//        case kAssassin:
+//        case kHunter:
+//        case kMinion:
+//            title = @"Your Selection Was Stored";
+//            return title;
+//            
+//        case kPriest:
+//            title = @"Your Target Will Be Saved";
+//            return title;
+//            
+//        case kWerewolf:
+//        case kVigilante:
+//            title = @"You've Chosen A Kill Target";
+//            return title;
+//
+//        case kSeer:
+//            title = @"You Take A Peek";
+//            return title;
+//            
+//        default:
+//            return title;
+//    }
+//
+//}
 
 - (NSString*)getNightActionConfirmMessageForPlayer:(Player*)player
 {

@@ -22,4 +22,14 @@
     return self;
 }
 
+- (NSString *)getNightZeroInfo
+{
+    NSString *message = [super getNightZeroInfo];
+    
+    self.player.target = [[self.game randomVillager] name];
+    message = [message stringByAppendingString:[NSString stringWithFormat:@"\n\nYour target is:\n%@", self.player.target]];
+    
+    return message;
+}
+
 @end

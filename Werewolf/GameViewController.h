@@ -21,7 +21,8 @@ typedef NS_ENUM(NSInteger, alertViewType) {
     kIsDead,
     kNightAction,
     kSeerPeek,
-    kNightActionConfirm
+    kNightActionConfirm,
+    kNightResult
 };
 
 typedef NS_ENUM(NSInteger, popupViewType) {

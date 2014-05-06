@@ -26,9 +26,12 @@
     {
         _gameSetup = gameSetup;
         _numPlayers = gameSetup.numPlayers;
+        
         _roles = [NSMutableArray new];
         _players = [NSMutableArray new];
+        _wolves = [NSMutableArray new];
         _gameHistory = [NSMutableArray new];
+
         _isNight = NO;
         _isOver = NO;
         _didWrap = NO;
@@ -53,21 +56,29 @@
 
 #pragma mark - Game Logic Methods
 
-- (void)checkNightResult
+- (NSString *)checkNightResult
 {
+    NSString *dayMessage = @"";
+    BOOL nobodyDied = YES;
     
     for (Player *player in _players) {
         if (player.isWolfTarget || player.isVigilanteTarget) {
             
             if (!player.isPriestTarget) {
                 [self killPlayerAtIndex:player.index];
+                dayMessage = [dayMessage stringByAppendingString:[NSString stringWithFormat:@"%@ was killed in the night!\n\n", player.name]];
+                nobodyDied = NO;
             }
         }
     }
     
-    if (_isOver) {
-        NSLog(@"Game is Over!");
+    [self checkGameState];
+    
+    if (nobodyDied) {
+        dayMessage = [dayMessage stringByAppendingString:@"Nobody died last night!"];
     }
+    
+    return dayMessage;
 }
 
 - (void)resetPlayersNightStatus
@@ -81,19 +92,18 @@
 
 - (void)checkGameState
 {
-    int numAlive = 0;
     int numWolf = 0;
     int numVillage = 0;
     
+    for (Player *wolf in _wolves) {
+        if (!wolf.isDead) {
+            numWolf++;
+        }
+    }
+    
     for (Player *player in _players) {
         if (!player.isDead) {
-            
-            numAlive++;
-            
-            if ([player.role.name isEqualToString:@"Werewolf"]) {
-                numWolf++;
-            }
-            else if ([player.role.faction isEqualToString:@"Villager"]) {
+            if ([player.role.seerSeesAs isEqualToString:@"Non-Werewolf"]) {
                 numVillage++;
             }
         }
@@ -101,6 +111,11 @@
     
     if (numWolf >= numVillage) {
         _isOver = YES;
+        NSLog(@"Wolves equal or outnumber Villagers: GAME OVER");
+    }
+    else if (numWolf == 0) {
+        _isOver = YES;
+        NSLog(@"Wolves are dead: GAME OVER");
     }
     else {
         _isOver = NO;
@@ -175,17 +190,37 @@
     return nextPlayerIndex;
 }
 
+- (Player *)nextPlayerAtIndex:(int)index
+{
+    int nextPlayerIndex = index + 1;
+    if (nextPlayerIndex == _numPlayers) {
+        _didWrap = YES;
+        nextPlayerIndex = 0;
+    }
+    
+    return _players[nextPlayerIndex];
+}
+
 - (int)nextAlivePlayer:(int)index
 {
-    Player *currentPlayer = _players[[self nextPlayerIndex:index]];
-//    NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
+    int i = index;
+    
+    Player *currentPlayer = [self nextPlayerAtIndex:i];
+    
+    if (_didWrap) {
+        return 0;
+    }
 
     while (currentPlayer.isDead) {
-        currentPlayer = _players[[self nextPlayerIndex:index]];
-//        NSLog(@"%@: %hhd", currentPlayer.name, currentPlayer.isDead);
+        i++;
+        currentPlayer = [self nextPlayerAtIndex:i];
+        if (_didWrap) {
+            return 0;
+        }
     }
     
     return currentPlayer.index;
+    
 }
 
 -(Player *)currentPlayer
@@ -200,7 +235,7 @@
 
 -(Player *)randomPlayer
 {
-    return _players[arc4random_uniform([_players count])];
+    return _players[arc4random_uniform((u_int32_t)[_players count])];
 }
 
 // Seer
@@ -209,7 +244,6 @@
     Player *randomPlayer = [self randomPlayer];
     while ([randomPlayer.role isKindOfClass:[Werewolf class]] || [randomPlayer isEqual:[self currentPlayer]]) {
         randomPlayer = [self randomPlayer];
-        NSLog(@"%@",[randomPlayer.role name]);
     }
     return randomPlayer;
 }
@@ -233,7 +267,6 @@
     }
     
     player.isDead = YES;
-    [self checkGameState];
 }
 
 #pragma mark - Setup Game Methods
@@ -308,6 +341,11 @@
     for (Player *player in _players) {
         player.role = _roles[index];
         player.role.player = player;
+        
+        if ([player.role isKindOfClass:[Werewolf class]]) {
+            [_wolves addObject:player];
+        }
+        
         NSLog(@"%@: %@",player.name,[_roles[index] name]);
         index++;
     }
@@ -319,9 +357,26 @@
     for (NSUInteger i = 0; i < count; ++i) {
         // Select a random element between i and end of array to swap with.
         NSInteger nElements = count - i;
-        NSInteger n = arc4random_uniform(nElements) + i;
+        NSInteger n = arc4random_uniform((u_int32_t)nElements) + i;
         [_roles exchangeObjectAtIndex:i withObjectAtIndex:n];
     }
+}
+
+- (NSString *)listOfWolves
+{
+    BOOL isFirstObject = YES;
+    
+    NSString *list = @"The Wolves: ";
+    for (Player *wolf in _wolves) {
+        if (isFirstObject) {
+            list = [list stringByAppendingString:[NSString stringWithFormat:@"%@", wolf.name]];
+            isFirstObject = NO;
+        }
+        else {
+            list = [list stringByAppendingString:[NSString stringWithFormat:@", %@", wolf.name]];
+        }
+    }
+    return list;
 }
 
 @end

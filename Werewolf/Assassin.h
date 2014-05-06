@@ -11,5 +11,6 @@
 @interface Assassin : Role
 
 -(id)initWithGame:(Game*)game;
+- (NSString *)getNightZeroInfo;
 
 @end

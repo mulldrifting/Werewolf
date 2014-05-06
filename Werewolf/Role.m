@@ -18,8 +18,19 @@
         _game = game;
         _faction = @"Villager";
         _seerSeesAs = @"Non-Werewolf";
+        _oncePerGameUsed = NO;
     }
     return self;
+}
+
+-(NSString *)getNightZeroInfo
+{
+    return [Constants listOfRoleDescriptions][_roleID];
+}
+
+-(NSString *)tapLabel
+{
+    return [NSString stringWithFormat:@"%@, guess who you think the Werewolf is!", _name];
 }
 
 @end
