@@ -11,6 +11,15 @@
 #import "GameSetup.h"
 #import "GameData.h"
 #import "Player.h"
+#import "Role.h"
+#import "Werewolf.h"
+#import "Villager.h"
+#import "Priest.h"
+#import "Seer.h"
+#import "Vigilante.h"
+#import "Hunter.h"
+#import "Minion.h"
+#import "Assassin.h"
 
 @interface WerewolfTests : XCTestCase
 {
@@ -25,7 +34,12 @@
 {
     [super setUp];
 
-    defaultSetup = [[[GameData sharedData] gameSetups] firstObject];
+    for (GameSetup *setup in [[GameData sharedData] defaultGameSetups]) {
+        if ([setup.name isEqualToString:@"9P Classic"]) {
+            defaultSetup = setup;
+        }
+    }
+    
     game = [[Game alloc] initWithGameSetup:defaultSetup];
 
 }
@@ -36,9 +50,45 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testNewRoleSubclassInitializer
 {
-//    XCTAssertEqual(_firstName, _lastName, @"First name and Last name should be equal");
+    Role *newRole = [[Werewolf alloc] initWithGame:game];
+    XCTAssertTrue([newRole.name isEqualToString:@"Werewolf"], @"New Werewolf should have name Werewolf");
+}
+
+- (void)testNewRoleSubclassInitializerShouldShareGameAsSuperclass
+{
+    Role *newRole = [[Werewolf alloc] initWithGame:game];
+    XCTAssertNotNil(newRole.game, @"New role should be initialized with Game object");
+}
+
+- (void)testNewRoleSubclassInitializerShouldAccessGameProperties
+{
+    Role *newRole = [[Werewolf alloc] initWithGame:game];
+    XCTAssertEqual(newRole.game.numPlayers, game.numPlayers, @"The new role's game should contain same number of players as game");
+}
+
+- (void)testPlayerOfRoleIsSameObjectAsPlayer
+{
+    for (Player *player in game.players) {
+        XCTAssertEqualObjects(player, player.role.player, @"Player should be same player as Player's role.player");
+    }
+
+}
+
+- (void)testSeerSettings
+{
+    XCTAssertFalse([[defaultSetup.settings objectForKey:@"SEER_PEEKS_NIGHT_ZERO"] boolValue], @"9P Classic settings SEER_PEEKS_NIGHT_ZERO should be false");
+}
+
+- (void)testNewGamePlayersExist
+{
+    XCTAssertNotNil(game.players, @"Game's players array should not be nil");
+}
+
+- (void)testNewGameFirstPlayerExists
+{
+    XCTAssertNotNil(game.players[0], @"Game's first player should exist");
 }
 
 - (void)testKillingAPlayerKillsThemForGood
@@ -49,5 +99,7 @@
     [game killPlayerAtIndex:0];
     XCTAssertTrue(firstPlayer.isDead, @"Player should be dead after calling killplayer");
 }
+
+
 
 @end

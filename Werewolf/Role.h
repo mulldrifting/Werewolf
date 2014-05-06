@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Game.h"
+#import "Player.h"
 
 @interface Role : NSObject
 
-@property (copy, nonatomic) NSString *name, *faction, *seerSees;
+@property (weak, nonatomic) Game *game;
+@property (weak, nonatomic) Player *player;
+@property (copy, nonatomic) NSString *name, *faction, *seerSeesAs;
 @property (nonatomic) NSInteger roleID;
+
+-(id)initWithGame:(Game*)game;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface Minion : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameViewController.h"
 #import "Game.h"
 
 @protocol NightActionControllerProtocol <NSObject>
 
 -(void)updateTapLabelWithString:(NSString*)string;
+- (void)createAlertViewOfType:(NSInteger)type;
+- (void)showNoKillCornerButton;
 
 @end
 
@@ -21,7 +24,9 @@
 @property (unsafe_unretained, nonatomic) id<NightActionControllerProtocol> delegate;
 
 -(NSString *)getRoleInfoForPlayer:(Player *)player;
--(void)startNightAction;
+-(void)startNightActionWithPlayer:(Player *)player;
 -(void)handleNightActionWithSelectedPlayer:(Player *)player;
+- (NSString*)getNightActionConfirmTitle;
+- (NSString*)getNightActionConfirmMessageForPlayer:(Player*)player;
 
 @end

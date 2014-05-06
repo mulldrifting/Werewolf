@@ -10,12 +10,6 @@
 
 static const int MAX_NUM_PEOPLE = 99;
 
-typedef NS_ENUM(NSInteger, pickerType) {
-    kSetupPicker,
-    kRolePicker,
-    numberOfPickers
-};
-
 typedef NS_ENUM(NSInteger, roleType)
 {
     kVillager,

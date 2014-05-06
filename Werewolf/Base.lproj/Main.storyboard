@@ -47,9 +47,13 @@ Companion</string>
                                     <segue destination="Ljs-gf-8Y4" kind="push" id="kb6-yq-qoS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBV-XN-46N">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBV-XN-46N">
                                 <rect key="frame" x="20" y="528" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="IEE-YV-jjj"/>
+                                    <constraint firstAttribute="width" constant="20" id="sO2-pd-Cqz"/>
+                                </constraints>
                                 <state key="normal" image="settings_icon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -59,6 +63,10 @@ Companion</string>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="YBV-XN-46N" secondAttribute="bottom" constant="20" id="9Oy-Vx-SxV"/>
+                            <constraint firstItem="YBV-XN-46N" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="Uga-fB-m6c"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YiQ-Jm-iLz"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -133,7 +141,7 @@ To learn about special roles, go to the Game Creation screen and click on the ro
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cxa-Vk-Ine" firstAttribute="top" secondItem="7sd-wF-8ij" secondAttribute="top" id="RkY-hY-DZj"/>
-                            <constraint firstItem="LKy-Ug-FbL" firstAttribute="top" secondItem="cxa-Vk-Ine" secondAttribute="bottom" id="dca-KS-ZKU"/>
+                            <constraint firstItem="cxa-Vk-Ine" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="LKy-Ug-FbL" secondAttribute="bottom" id="dca-KS-ZKU"/>
                             <constraint firstAttribute="trailing" secondItem="cxa-Vk-Ine" secondAttribute="trailing" id="eMH-26-43C"/>
                             <constraint firstItem="cxa-Vk-Ine" firstAttribute="leading" secondItem="7sd-wF-8ij" secondAttribute="leading" id="o4m-Ru-S1I"/>
                         </constraints>
@@ -432,25 +440,30 @@ Now, either manually enter or select the name of the Moderator:</string>
                                         <rect key="frame" x="11" y="150" width="165" height="74"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <string key="text">TAP TO SELECT:
+                                        <string key="text" base64-UTF8="YES">
+Cg
 </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player Entry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCI-QA-pHa">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCI-QA-pHa">
                                         <rect key="frame" x="20" y="20" width="300" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                         <color key="textColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ya-vL-StZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ya-vL-StZ">
                                 <rect key="frame" x="20" y="538" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="41k-re-wUE"/>
+                                    <constraint firstAttribute="width" constant="35" id="db3-do-qhp"/>
+                                </constraints>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -459,13 +472,23 @@ Now, either manually enter or select the name of the Moderator:</string>
                                     <action selector="goBack:" destination="DLi-M8-I1e" eventType="touchUpInside" id="GIb-Wg-9lL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eO-s0-gU9">
-                                <rect key="frame" x="18" y="514" width="120" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eO-s0-gU9">
+                                <rect key="frame" x="20" y="518" width="120" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Fe5-38-ayU"/>
+                                    <constraint firstAttribute="width" constant="120" id="IM1-fp-6fM"/>
+                                </constraints>
                                 <state key="normal" title="Done"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8eO-s0-gU9" firstAttribute="leading" secondItem="INs-7s-onQ" secondAttribute="leading" constant="20" id="JcV-XR-Jch"/>
+                            <constraint firstItem="Oxy-iV-zyL" firstAttribute="top" secondItem="8eO-s0-gU9" secondAttribute="bottom" constant="20" id="W6h-ch-skX"/>
+                            <constraint firstItem="6ya-vL-StZ" firstAttribute="leading" secondItem="INs-7s-onQ" secondAttribute="leading" constant="20" id="X3l-Aj-HIs"/>
+                            <constraint firstItem="Oxy-iV-zyL" firstAttribute="top" secondItem="6ya-vL-StZ" secondAttribute="bottom" id="wOW-nr-F1e"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qxe-6G-3KJ"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -493,14 +516,14 @@ Now, either manually enter or select the name of the Moderator:</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rvg-Cx-9iU" customClass="TTCounterLabel">
-                                <rect key="frame" x="30" y="170" width="260" height="100"/>
+                                <rect key="frame" x="30" y="161" width="260" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pya-hQ-yvs">
-                                <rect key="frame" x="30" y="160" width="260" height="100"/>
+                                <rect key="frame" x="30" y="151" width="260" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -514,7 +537,7 @@ Now, either manually enter or select the name of the Moderator:</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y17-PE-VXV">
-                                <rect key="frame" x="110" y="114" width="100" height="70"/>
+                                <rect key="frame" x="110" y="105" width="100" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="filled_arrow_up">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -528,7 +551,7 @@ Now, either manually enter or select the name of the Moderator:</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pG-GQ-Wo7">
-                                <rect key="frame" x="110" y="236" width="100" height="70"/>
+                                <rect key="frame" x="110" y="227" width="100" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="filled_arrow_down">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -541,16 +564,24 @@ Now, either manually enter or select the name of the Moderator:</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="iLg-rb-SwM">
-                                <rect key="frame" x="30" y="464" width="260" height="41"/>
+                                <rect key="frame" x="20" y="424" width="280" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
-                                <state key="normal" title="Ready To Vote">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="&lt;A Decision Has Been Made>">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
                                     <action selector="readyToKillPressed:" destination="rYo-2x-Pdh" eventType="touchUpInside" id="ElN-Xf-eN3"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="0tB-Vt-5Ps">
+                                <rect key="frame" x="20" y="289" width="280" height="127"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Good morning! It's time to discuss who the Werewolves are...but there are only so many minutes in a Day. You can decide how you want to vote. Typical methods include single nominations (thumbs up/down), everyone points at whomever, or double nominations (1 vs. 2 fingers). A majority must be reached among all players.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

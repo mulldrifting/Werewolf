@@ -10,4 +10,6 @@
 
 @interface Werewolf : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

@@ -8,30 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "GameSetup.h"
-#import "Player.h"
-#import "Role.h"
-#import "Werewolf.h"
-#import "Villager.h"
-#import "Priest.h"
-#import "Seer.h"
-#import "Vigilante.h"
-#import "Hunter.h"
-#import "Minion.h"
-#import "Assassin.h"
+
+@class Player;
+
 
 @interface Game : NSObject
 
 @property (strong, nonatomic) GameSetup *gameSetup;
-@property (strong, nonatomic) NSMutableArray *players, *roles;
+@property (strong, nonatomic) NSMutableArray *players, *roles, *gameHistory;
 @property (nonatomic) int numPlayers, currentPlayerIndex, currentRound;
 @property (nonatomic) BOOL isNight, isOver, didWrap;
 
 - (id)initWithGameSetup:(GameSetup*)gameSetup;
+- (BOOL)isDuplicateName:(NSString*)name;
 - (int)nextAlivePlayer:(int)index;
 - (Player*)currentPlayer;
 - (Player*)previousPlayer;
-- (Player *)randomPlayer;
-- (Player *)randomNonWerewolf;
+- (Player*)randomPlayer;
+- (Player*)randomNonWerewolf;
 - (Player*)randomVillager;
 - (void)killPlayerAtIndex:(int)index;
 

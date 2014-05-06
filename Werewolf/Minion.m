@@ -10,13 +10,12 @@
 
 @implementation Minion
 
--(id)init
+-(id)initWithGame:(Game*)game
 {
-    if (self = [super init])
+    if (self = [super initWithGame:game])
     {
         self.name = @"Minion";
         self.faction = @"Werewolf";
-        self.seerSees = @"Villager";
         self.roleID = kMinion;
     }
     

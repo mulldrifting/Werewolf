@@ -7,7 +7,7 @@
 //
 
 #import "CarouselController.h"
-
+#import "Player.h"
 
 @implementation CarouselController
 
@@ -18,6 +18,8 @@
         if (_game.isNight) {
             
             if (_game.currentRound > 0) {
+                
+                // Night 1: night-time action phase
                 [_delegate createAlertViewOfType:kNightAction];
             }
             else

@@ -10,13 +10,13 @@
 
 @implementation Werewolf
 
--(id)init
+-(id)initWithGame:(Game*)game
 {
-    if (self = [super init])
+    if (self = [super initWithGame:game])
     {
         self.name = @"Werewolf";
         self.faction = @"Werewolf";
-        self.seerSees = @"Werewolf";
+        self.seerSeesAs = @"Werewolf";
         self.roleID = kWerewolf;
     }
     

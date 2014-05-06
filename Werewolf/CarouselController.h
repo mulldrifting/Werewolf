@@ -23,6 +23,6 @@
 
 @property (unsafe_unretained, nonatomic) id<CarouselControllerProtocol> delegate;
 
-@property (strong, nonatomic) Game *game;
+@property (weak, nonatomic) Game *game;
 
 @end

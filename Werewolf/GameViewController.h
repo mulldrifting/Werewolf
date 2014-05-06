@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, alertViewType) {
     kAreYouX,
     kIsDead,
     kNightAction,
-    kSeerPeek
+    kSeerPeek,
+    kNightActionConfirm
 };
 
 typedef NS_ENUM(NSInteger, popupViewType) {
@@ -28,7 +29,16 @@ typedef NS_ENUM(NSInteger, popupViewType) {
     kBeginDay,
     kPassToPlayer,
     kShowRoleView,
-    kShowNightInfoView
+    kShowNightInfoView,
+    kWolvesDecideKill
+};
+
+typedef NS_ENUM(NSInteger, cornerButtonType)
+{
+    kReadyToStart,
+    kNoKillToday,
+    kNoKillVigilante,
+    kNoKillWerewolf
 };
 
 @interface GameViewController : UIViewController

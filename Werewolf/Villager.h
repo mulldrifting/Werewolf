@@ -10,4 +10,6 @@
 
 @interface Villager : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

@@ -10,4 +10,6 @@
 
 @interface Priest : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

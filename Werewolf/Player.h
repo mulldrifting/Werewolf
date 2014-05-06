@@ -7,17 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Role.h"
+#import "Game.h"
+
+@class Role;
 
 @interface Player : NSObject
 
 @property (copy, nonatomic) NSString *name, *target;
-@property (strong, nonatomic) NSMutableArray *nightGuesses;
+@property (strong, nonatomic) NSMutableArray *nightGuesses, *seerPeeks, *priestSaves;
+@property (weak, nonatomic) Game *game;
 @property (strong, nonatomic) Role *role;
 @property (nonatomic) int index;
 @property (nonatomic) BOOL isDead, isWolfTarget, isPriestTarget, isVigilanteTarget;
 
 
--(id)initWithIndex:(int)index;
+-(id)initWithIndex:(int)index withGame:(Game*)game;
 
 @end

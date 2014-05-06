@@ -10,4 +10,6 @@
 
 @interface Hunter : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

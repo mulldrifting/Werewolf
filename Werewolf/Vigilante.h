@@ -10,4 +10,6 @@
 
 @interface Vigilante : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

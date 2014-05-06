@@ -10,13 +10,11 @@
 
 @implementation Villager
 
--(id)init
+-(id)initWithGame:(Game*)game
 {
-    if (self = [super init])
+    if (self = [super initWithGame:game])
     {
         self.name = @"Villager";
-        self.faction = @"Villager";
-        self.seerSees = @"Villager";
         self.roleID = kVillager;
     }
     

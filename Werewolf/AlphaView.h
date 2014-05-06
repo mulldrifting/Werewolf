@@ -11,6 +11,7 @@
 @interface AlphaView : UIView
 
 - (void)reset;
+- (void)maxAlpha;
 - (void)addBigText:(NSString *)bigText;
 - (void)addBoxView;
 - (void)addExplanationViewWithMessage:(NSString*)message;

@@ -10,13 +10,11 @@
 
 @implementation Seer
 
--(id)init
+-(id)initWithGame:(Game*)game
 {
-    if (self = [super init])
+    if (self = [super initWithGame:game])
     {
         self.name = @"Seer";
-        self.faction = @"Villager";
-        self.seerSees = @"Villager";
         self.roleID = kSeer;
     }
     

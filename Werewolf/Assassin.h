@@ -10,4 +10,6 @@
 
 @interface Assassin : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

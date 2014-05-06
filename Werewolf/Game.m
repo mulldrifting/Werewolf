@@ -7,7 +7,16 @@
 //
 
 #import "Game.h"
-
+#import "Player.h"
+#import "Role.h"
+#import "Werewolf.h"
+#import "Villager.h"
+#import "Priest.h"
+#import "Seer.h"
+#import "Vigilante.h"
+#import "Hunter.h"
+#import "Minion.h"
+#import "Assassin.h"
 
 @implementation Game
 
@@ -19,6 +28,7 @@
         _numPlayers = gameSetup.numPlayers;
         _roles = [NSMutableArray new];
         _players = [NSMutableArray new];
+        _gameHistory = [NSMutableArray new];
         _isNight = NO;
         _isOver = NO;
         _didWrap = NO;
@@ -31,7 +41,39 @@
     return self;
 }
 
+-(BOOL)isDuplicateName:(NSString *)name
+{
+    for (Player *player in _players) {
+        if ([player.name isEqualToString:name]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 #pragma mark - Game Logic Methods
+
+- (void)checkNightResult
+{
+    
+    for (Player *player in _players) {
+        if (player.isWolfTarget || player.isVigilanteTarget) {
+            
+            if (!player.isPriestTarget) {
+                [self killPlayerAtIndex:player.index];
+            }
+        }
+    }
+}
+
+- (void)resetPlayersNightStatus
+{
+    for (Player *player in _players) {
+        player.isPriestTarget = NO;
+        player.isWolfTarget = NO;
+        player.isVigilanteTarget = NO;
+    }
+}
 
 - (void)checkGameState
 {
@@ -204,12 +246,12 @@
 {
     for (int i = 0; i < _numPlayers; i++) {
         if (i == 0) {
-            Player *newPlayer = [[Player alloc] initWithIndex:i];
+            Player *newPlayer = [[Player alloc] initWithIndex:i withGame:self];
             newPlayer.name = @"YOU";
             [_players addObject:newPlayer];
         }
         else {
-            Player *newPlayer = [[Player alloc] initWithIndex:i];
+            Player *newPlayer = [[Player alloc] initWithIndex:i withGame:self];
             [_players addObject:newPlayer];
         }
     }
@@ -235,21 +277,21 @@
 {
     switch (roleType) {
         case kVillager:
-            return [Villager new];
+            return [[Villager alloc] initWithGame:self];
         case kWerewolf:
-            return [Werewolf new];
+            return [[Werewolf alloc] initWithGame:self];
         case kSeer:
-            return [Seer new];
+            return [[Seer alloc] initWithGame:self];
         case kPriest:
-            return [Priest new];
+            return [[Priest alloc] initWithGame:self];
         case kVigilante:
-            return [Vigilante new];
+            return [[Vigilante alloc] initWithGame:self];
         case kHunter:
-            return [Hunter new];
+            return [[Hunter alloc] initWithGame:self];
         case kMinion:
-            return [Minion new];
+            return [[Minion alloc] initWithGame:self];
         case kAssassin:
-            return [Assassin new];
+            return [[Assassin alloc] initWithGame:self];
         default:
             NSLog(@"Unknown role type");
             return [Role new];
@@ -261,6 +303,7 @@
     int index = 0;
     for (Player *player in _players) {
         player.role = _roles[index];
+        player.role.player = player;
         NSLog(@"%@: %@",player.name,[_roles[index] name]);
         index++;
     }

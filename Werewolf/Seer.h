@@ -10,4 +10,6 @@
 
 @interface Seer : Role
 
+-(id)initWithGame:(Game*)game;
+
 @end

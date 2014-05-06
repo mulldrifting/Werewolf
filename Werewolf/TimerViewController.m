@@ -54,6 +54,7 @@
     [self setupCounter];
     
     _titleLabel.text = [NSString stringWithFormat:@"Day %d", _game.currentRound];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
 }
 
@@ -67,7 +68,6 @@
 
 - (void)toggleTimerStartPause
 {
-    NSLog(@"%hhd", [_counterLabel isRunning]);
     if ([_counterLabel isRunning]) {
         [_counterLabel stop];
     }

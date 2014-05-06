@@ -11,14 +11,15 @@
 
 @implementation Role
 
-- (id)init
+-(id)initWithGame:(Game *)game
 {
-    if (self = [super init]) {
-        _name = @"";
-        _faction = @"";
-        _roleID = -1;
+    if (self = [super init])
+    {
+        _game = game;
+        _faction = @"Villager";
+        _seerSeesAs = @"Non-Werewolf";
     }
-    return  self;
+    return self;
 }
 
 @end

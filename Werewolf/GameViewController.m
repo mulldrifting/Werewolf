@@ -11,6 +11,8 @@
 #import "CarouselController.h"
 #import "Player.h"
 #import "AlphaView.h"
+#import "Role.h"
+#import "Seer.h"
 
 
 #define ALERT_VIEW_TAG 33700
@@ -51,11 +53,11 @@
     
     [self turnLight];
     [self setupCarousel];
-    [self setupButton];
+    [self setupCornerButton];
     
     [self.view sendSubviewToBack:_boxView];
 
-    [self updateTapLabelWithString:@"Hello Moderator!\nSelect a player to update their name."];
+    [self updateTapLabelWithString:@"Hello Moderator!\nSelect a player to update their name. (Player 1 is to your right.)"];
     
 //    [self createAlphaView];
 //    [self showPregameExplanationView];
@@ -73,7 +75,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     if (_firstAppearance) {
-        [self beginNameEntry];
+//        [self beginNameEntry];
 //        [_carousel scrollByNumberOfItems:_game.numPlayers duration:1];
         _firstAppearance = NO;
     }
@@ -98,9 +100,21 @@
 
 - (void)showTimerViewController
 {
+    [_alphaView maxAlpha];
+    [self showAlphaView];
+    [_timerViewController.view setAlpha:0.0];
+    
     [self addChildViewController:_timerViewController];
     [self.view addSubview:_timerViewController.view];
     [_timerViewController didMoveToParentViewController:self];
+    
+    [UIView animateWithDuration:2 animations:^{
+        [_timerViewController.view setAlpha:1.0];
+    } completion:^(BOOL finished) {
+        [self dismissAlphaView];
+    }];
+    
+
 }
 
 - (void)hideTimerViewController
@@ -111,29 +125,23 @@
 
 #pragma mark - Game Mode Methods
 
-- (void)beginNameEntry
-{
-//    [self createAlertViewOfType:kNameEntry];
-}
-
-- (void)getNextNameEntry
-{
-    [self moveToNextPlayer];
-    if (_game.didWrap) {
-        NSLog(@"Game did wrap");
-        [self showViewOfType:kBeginDay];
-    }
-    else {
-        [self createAlertViewOfType:kNameEntry];
-    }
-
-}
+//- (void)getNextNameEntry
+//{
+//    [self moveToNextPlayer];
+//    if (_game.didWrap) {
+//        NSLog(@"Game did wrap");
+//        [self showViewOfType:kBeginDay];
+//    }
+//    else {
+//        [self createAlertViewOfType:kNameEntry];
+//    }
+//
+//}
 
 - (void)showRoleToNextPlayer
 {
-    [self moveToNextPlayer];
+    [self dismissAlphaView];
     if (_game.didWrap) {
-        NSLog(@"Game did wrap");
         [self showViewOfType:kBeginDay];
     }
     else {
@@ -143,17 +151,32 @@
 
 - (void)moveToNextNightAction
 {
-    [self moveToNextPlayer];
-    
+    [self dismissAlphaView];
+    if (_game.didWrap) {
+        [self showViewOfType:kBeginDay];
+    }
+    else {
+        [self createAlertViewOfType:kAreYouX];
+    }
 }
 
 // Passing the phone to the next player at night
 - (void)moveToNextPlayer
 {
-    [self dismissAlphaView];
+//    [self dismissAlphaView];
     _game.currentPlayerIndex = [_game nextAlivePlayer:_game.currentPlayerIndex];
-    NSLog(@"Move to %@", [_game.currentPlayer name]);
+//    NSLog(@"Move to %@", [_game.currentPlayer name]);
     [_carousel scrollToItemAtIndex:_game.currentPlayerIndex animated:YES];
+    if (_game.currentRound > 0) {
+        [self resetTapLabel];
+        [self hideCornerButton];
+    }
+}
+
+- (void)scrollToNextPlayer
+{
+    int nextIndex = [_game nextAlivePlayer:_carousel.currentItemIndex];
+    [_carousel scrollToItemAtIndex:nextIndex animated:YES];
 }
 
 - (void)passedToPlayer
@@ -163,7 +186,7 @@
         [self createAlertViewOfType:kReadyToSeeRole];
     }
     else {
-        [self createAlertViewOfType:kNightAction];
+        [self createAlertViewOfType:kAreYouX];
     }
 
 }
@@ -176,6 +199,7 @@
     _game.currentRound++;
     _game.isNight = NO;
     
+    
     [self showTimerViewController];
     
 }
@@ -185,9 +209,7 @@
 {
     [self turnLight];
     [_titleLabel setText:@"Who To Kill?"];
-    [_cornerButton setTitle:@"No Kill Today" forState:UIControlStateNormal];
-    [_cornerButton addTarget:self action:@selector(noKillPressed) forControlEvents:UIControlEventTouchUpInside];
-    [_cornerButton setHidden:NO];
+    [self showNoKillCornerButton];
     [self resetCarousel];
     
     [self hideTimerViewController];
@@ -198,31 +220,44 @@
 
 - (void)beginNight
 {
-    [_cornerButton setHidden:YES];
-    [_cornerButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-    _titleLabel.text = [NSString stringWithFormat:@"Night %d", _game.currentRound];
-    [self turnDark];
-    [self resetCarousel];
-    _game.isNight = YES;
-    if (_game.currentRound == 0) {
-        [self createAlertViewOfType:kReadyToSeeRole];
-    }
-    else
-    {
-        [self createAlertViewOfType:kAreYouX];
-    }
+    [UIView animateWithDuration:2 animations:^{
+        
+        [self hideCornerButton];
+        
+        _titleLabel.text = [NSString stringWithFormat:@"Night %d", _game.currentRound];
+        _game.isNight = YES;
+        [self resetTapLabel];
+        [self resetCarousel];
+        [self turnDark];
+
+    } completion:^(BOOL finished) {
+        
+        if (_game.currentRound == 0) {
+            [self createAlertViewOfType:kReadyToSeeRole];
+        }
+        else
+        {
+            int numWolves = [[_game.gameSetup.roleNumbers objectForKey:@"Werewolf"] intValue];
+            if (numWolves > 1) {
+                [self showViewOfType:kWolvesDecideKill];
+            }
+            else {
+                [self createAlertViewOfType:kAreYouX];
+            }
+        }
+    }];
 }
 
-- (void)noKillPressed
+- (void)wolvesDecidedKill
 {
-    [self createAlertViewOfType:kNoKillConfirmation];
+    [self dismissAlphaView];
+    [self createAlertViewOfType:kAreYouX];
 }
 
 #pragma mark - Changing Skin Methods
 
 - (void)turnDark
 {
-
     //change view to dark skin
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.view setBackgroundColor:[UIColor colorWithWhite:0.098 alpha:1.000]];
@@ -241,18 +276,6 @@
     [_carousel reloadData];
 }
 
-#pragma mark - Button Methods
-
-- (IBAction)goBack:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)setupButton
-{
-    [_cornerButton setTitle:@"Ready To Start" forState:UIControlStateNormal];
-    _cornerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [_cornerButton addTarget:self action:@selector(beginNight) forControlEvents:UIControlEventTouchUpInside];
-}
 
 #pragma mark - Subview Methods
 
@@ -269,6 +292,7 @@
 
 - (void)showViewOfType:(NSInteger)type
 {
+    [self dismissAlphaView];
     UITapGestureRecognizer *tapToDismiss;
     
     switch (type) {
@@ -300,14 +324,11 @@
             [_alphaView addGestureRecognizer:tapToDismiss];
             break;
             
-//        case kShowRoleView:
-//            
-//
-//            break;
-//            
-//        case kShowNightInfoView:
-//            
-//            break;
+        case kWolvesDecideKill:
+            
+            [_alphaView addExplanationViewWithMessage:@"Moderator, please memorize and then do the following:\n\n1) Say \"Village, go to sleep.\"\n\n2) Close your eyes.\n\n3) Say \"Wolves wake up. Pick who to kill.\"\n\n4) Wait ten seconds.\n\n5) Say \"Wolves go to sleep.\"\n\n6) Say \"Everyone wake up.\"\n\n7) Then starting with you, use the phone to perform night actions."];
+            tapToDismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wolvesDecidedKill)];
+            [_alphaView addGestureRecognizer:tapToDismiss];
             
         default:
             break;
@@ -318,6 +339,33 @@
 
 
 #pragma mark - Alert View Methods
+
+-(void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == ALERT_VIEW_TAG + kNameEntry) {
+        
+        Player *currentSelectedPlayer = _game.players[_carousel.currentItemIndex];
+        UITextField *textField = [alertView textFieldAtIndex:0];
+        
+        if (buttonIndex == 1) {
+            if ([_game isDuplicateName:textField.text]) {
+                [alertView setMessage:@"That's the same name as someone else. Pick another."];
+            }
+            else {
+                [currentSelectedPlayer setName:textField.text];
+                [_carousel reloadData];
+                if (_game.isNight) {
+                    [self createAlertViewOfType:kReadyToSeeRole];
+                }
+            }
+        }
+        else {
+            if (_game.isNight) {
+                [self createAlertViewOfType:kReadyToSeeRole];
+            }
+        }
+    }
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -334,11 +382,15 @@
             textField = [alertView textFieldAtIndex:0];
             
             if (buttonIndex == 1) {
-                [currentSelectedPlayer setName:textField.text];
-                [_carousel reloadData];
-                if (_game.isNight) {
-                    [self createAlertViewOfType:kReadyToSeeRole];
-                }
+
+                    [currentSelectedPlayer setName:textField.text];
+                    [_carousel reloadData];
+                    if (_game.isNight) {
+                        [self createAlertViewOfType:kReadyToSeeRole];
+                    }
+                    else{
+                        [self scrollToNextPlayer];
+                    }
             }
             break;
             
@@ -364,6 +416,7 @@
             
             if (buttonIndex == 0) {
                 [self showViewOfType:kPassRight];
+                [self moveToNextPlayer];
             }
             
             break;
@@ -394,7 +447,7 @@
         case ALERT_VIEW_TAG + kAreYouX:
             
             if (buttonIndex == 1) {
-                [_nightActionController startNightAction];
+                [_nightActionController startNightActionWithPlayer:_game.currentPlayer];
             }
             else {
                 [self showViewOfType:kPassToPlayer];
@@ -406,10 +459,8 @@
         case ALERT_VIEW_TAG + kNightAction:
             
             if (buttonIndex == 1) {
-                [_nightActionController handleNightActionWithSelectedPlayer:_game.players[_carousel.currentItemIndex]];
-                if (![_game.currentPlayer isKindOfClass:[Seer class]]) {
-                    [self moveToNextNightAction];
-                }
+                [_nightActionController handleNightActionWithSelectedPlayer:currentSelectedPlayer];
+                [self createAlertViewOfType:kNightActionConfirm];
             }
             
             break;
@@ -417,9 +468,18 @@
         case ALERT_VIEW_TAG + kSeerPeek:
             
             if (buttonIndex == 0) {
-                [self moveToNextNightAction];
+                [self showViewOfType:kPassRight];
+                [self moveToNextPlayer];
+
             }
             break;
+            
+        case ALERT_VIEW_TAG + kNightActionConfirm:
+            
+            if (buttonIndex == 0) {
+                [self showViewOfType:kPassRight];
+                [self moveToNextPlayer];
+            }
             
         default:
             
@@ -429,36 +489,39 @@
 
 - (void)createAlertViewOfType:(NSInteger)type
 {
+    UIAlertView *alertView;
     Player *currentSelectedPlayer = _game.players[_carousel.currentItemIndex];
     
     switch (type) {
             
         {case kNameEntry:
-            
         
-            _alertView = [[UIAlertView alloc] initWithTitle:@"Enter Name Of Player"
+            alertView = [[UIAlertView alloc] initWithTitle:@"Enter Name Of Player"
                                                     message:@""
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"OK", nil];
+                                          otherButtonTitles:@"Submit", nil];
+            
+            
             
 //            switch (_game.currentPlayerIndex) {
 //                case 0:
-//                    _alertView = [[UIAlertView alloc] initWithTitle:@"Hello Moderator!" message:@"Please enter everyone's names, starting with yours" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//                    alertView = [[UIAlertView alloc] initWithTitle:@"Hello Moderator!" message:@"Please enter everyone's names, starting with yours" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
 //                    break;
 //                case 1:
-//                    _alertView = [[UIAlertView alloc] initWithTitle:@"Enter The Name Of The Player To Your Right" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//                    alertView = [[UIAlertView alloc] initWithTitle:@"Enter The Name Of The Player To Your Right" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
 //                    break;
 //                default:
-//                    _alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Enter The Name Of The Player To The Right Of %@", _game.previousPlayer.name] message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//                    alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Enter The Name Of The Player To The Right Of %@", _game.previousPlayer.name] message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
 //                    break;
 //            }
             
-            _alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-            _alertView.tag = ALERT_VIEW_TAG + kNameEntry;
-            [[_alertView textFieldAtIndex:0] setDelegate:self];
-            [[_alertView textFieldAtIndex:0] setText:[currentSelectedPlayer name]];
-            [[_alertView textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
+            alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+            alertView.tag = ALERT_VIEW_TAG + kNameEntry;
+            [[alertView textFieldAtIndex:0] setDelegate:self];
+            [[alertView textFieldAtIndex:0] setText:[currentSelectedPlayer name]];
+            [[alertView textFieldAtIndex:0] setClearButtonMode:UITextFieldViewModeWhileEditing];
+            [[alertView textFieldAtIndex:0] setAutocapitalizationType:UITextAutocapitalizationTypeWords];
             
             break;
         }
@@ -466,73 +529,84 @@
         {case kReadyToSeeRole:
             
           
-            _alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Hello %@", _game.currentPlayer.name]
+            alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Hello %@", _game.currentPlayer.name]
                                                     message:@"Ready to see your role?"
                                                    delegate:self
                                           cancelButtonTitle:[NSString stringWithFormat:@"I'm not %@!", _game.currentPlayer.name]
                                           otherButtonTitles: @"Yes, show me my role!", @"Yes, but let me fix my name", nil];
-            _alertView.tag = ALERT_VIEW_TAG + kReadyToSeeRole;
+            alertView.tag = ALERT_VIEW_TAG + kReadyToSeeRole;
             break;
         }
             
         {case kKillPlayer:
             
-            _alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Kill %@?", currentSelectedPlayer.name]
+            alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Kill %@?", currentSelectedPlayer.name]
                                                     message:@""
                                                    delegate:self
                                           cancelButtonTitle:@"No"
                                           otherButtonTitles: @"Yes", nil];
-            _alertView.tag = ALERT_VIEW_TAG + kKillPlayer;
+            alertView.tag = ALERT_VIEW_TAG + kKillPlayer;
             break;}
             
         case kShowRoleAlert:
             
-            _alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Your Role: %@", [_game.currentPlayer.role name]]
+            alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Your Role: %@", [_game.currentPlayer.role name]]
                                                     message:[_nightActionController getRoleInfoForPlayer:_game.currentPlayer]
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles: nil];
-            _alertView.tag = ALERT_VIEW_TAG + kShowRoleAlert;
+            alertView.tag = ALERT_VIEW_TAG + kShowRoleAlert;
             break;
             
         case kNoKillConfirmation:
             
-            _alertView = [[UIAlertView alloc] initWithTitle:@"Are You Sure?"
+            alertView = [[UIAlertView alloc] initWithTitle:@"Are You Sure?"
                                                     message:@"Not killing is usually inadvisable for the village"
                                                    delegate:self
                                           cancelButtonTitle:@"Cancel"
                                           otherButtonTitles:@"We're sure", nil];
-            _alertView.tag = ALERT_VIEW_TAG + kNoKillConfirmation;
+            alertView.tag = ALERT_VIEW_TAG + kNoKillConfirmation;
             break;
             
         case kAreYouX:
             
-            _alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Are You %@?", [_game.currentPlayer name]]
+            alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Are You %@?", [_game.currentPlayer name]]
                                                     message:@""
                                                    delegate:self
                                           cancelButtonTitle:@"No"
                                           otherButtonTitles:@"Yes", nil];
-            _alertView.tag = ALERT_VIEW_TAG + kAreYouX;
+            alertView.tag = ALERT_VIEW_TAG + kAreYouX;
             break;
             
         case kNightAction:
             
-            _alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"You've selected %@", [currentSelectedPlayer name]]
+            alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"You've selected %@", [currentSelectedPlayer name]]
                                                     message:@"Final answer?"
                                                    delegate:self
                                           cancelButtonTitle:@"No"
                                           otherButtonTitles:@"Yes", nil];
-            _alertView.tag = ALERT_VIEW_TAG + kNightAction;
+            alertView.tag = ALERT_VIEW_TAG + kNightAction;
             break;
             
         case kSeerPeek:
             
-            _alertView = [[UIAlertView alloc] initWithTitle:@"You Take A Peek"
-                                                    message:[NSString stringWithFormat:@"%@ looks like a %@", currentSelectedPlayer.name, currentSelectedPlayer.role.seerSees]
+            alertView = [[UIAlertView alloc] initWithTitle:@"You Take A Peek"
+                                                    message:[NSString stringWithFormat:@"%@ looks like a %@", currentSelectedPlayer.name, currentSelectedPlayer.role.seerSeesAs]
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
-            _alertView.tag = ALERT_VIEW_TAG + kSeerPeek;
+            alertView.tag = ALERT_VIEW_TAG + kSeerPeek;
+            break;
+            
+        case kNightActionConfirm:
+            
+            alertView = [[UIAlertView alloc] initWithTitle:[_nightActionController getNightActionConfirmTitle]
+                                                    message:[_nightActionController getNightActionConfirmMessageForPlayer:currentSelectedPlayer]
+                                                   delegate:self
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+            alertView.tag = ALERT_VIEW_TAG + kNightActionConfirm;
+            
             break;
             
         default:
@@ -540,8 +614,8 @@
             break;
     }
     
-    _alertView.transform = CGAffineTransformTranslate(_alertView.transform, 0, -100.0);
-    [_alertView show];
+
+    [alertView show];
 }
 
 
@@ -570,6 +644,53 @@
 //    alertView.tag = SHOW_ROLE_ALERT_TAG;
     [alertView show];
 }
+
+-(BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    if (alertView.tag == ALERT_VIEW_TAG + kNameEntry) {
+        UITextField *textfield = [alertView textFieldAtIndex:0];
+        
+        if ([textfield.text length] > 0) {
+            if ([_game isDuplicateName:textfield.text]) {
+                [alertView setMessage:@"Same or duplicate name! Please change to something different."];
+                return NO;
+            }
+            else
+            {
+                [alertView setMessage:@""];
+                return YES;
+            }
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
+#pragma mark - Text Field Methods
+
+//-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    int textLength = [textField.text length];
+//    int replacementLength = [string length];
+//    
+//    NSLog(@"%@ %@",textField.text, string);
+//    
+//    BOOL hasCharacters = (replacementLength > 0) || (textLength > 1);
+//    if (hasCharacters) {
+//        UIButton *submitButton = [[alertView subviews] lastObject];
+//        if ([_game isDuplicateName:string]) {
+//            [submitButton setEnabled:NO];
+//            [alertView setMessage:@"That's the same name as someone else!"];
+//        }
+//        else {
+//            [submitButton setEnabled:YES];
+//            [alertView setMessage:@""];
+//        }
+//    }
+//    
+//    return YES;
+//}
 
 #pragma mark - iCarousel Methods
 
@@ -606,7 +727,46 @@
 
 -(void)resetTapLabel
 {
-    [_whereToTapLabel setText:@"TAP TO SELECT:"];
+    [_whereToTapLabel setText:@""];
+}
+
+#pragma mark - Button Methods
+
+- (IBAction)goBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setupCornerButton
+{
+    [_cornerButton setTitle:@"Ready To Start" forState:UIControlStateNormal];
+    [_cornerButton addTarget:self action:@selector(beginNight) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)hideCornerButton
+{
+    [_cornerButton setHidden:YES];
+    [_cornerButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+}
+
+- (void)showNoKillCornerButton
+{
+    [_cornerButton setTitle:@"No Kill" forState:UIControlStateNormal];
+    [_cornerButton addTarget:self action:@selector(noKillPressed) forControlEvents:UIControlEventTouchUpInside];
+    [_cornerButton setHidden:NO];
+
+}
+
+- (void)noKillPressed
+{
+    if (!_game.isNight) {
+        [self createAlertViewOfType:kNoKillConfirmation];
+    }
+    else {
+        [self showViewOfType:kPassRight];
+        [self moveToNextPlayer];
+    }
+    
 }
 
 /*
