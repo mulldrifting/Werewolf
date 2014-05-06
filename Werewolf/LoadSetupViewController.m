@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, gameSetupType)
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     
     // Add swipe to go back gesture
     UIScreenEdgePanGestureRecognizer *swipeToGoBack = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];

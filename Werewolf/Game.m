@@ -64,6 +64,10 @@
             }
         }
     }
+    
+    if (_isOver) {
+        NSLog(@"Game is Over!");
+    }
 }
 
 - (void)resetPlayersNightStatus
@@ -86,7 +90,7 @@
             
             numAlive++;
             
-            if ([player.role.faction isEqualToString:@"Werewolf"]) {
+            if ([player.role.name isEqualToString:@"Werewolf"]) {
                 numWolf++;
             }
             else if ([player.role.faction isEqualToString:@"Villager"]) {

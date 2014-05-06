@@ -184,7 +184,7 @@ roleType _roleTypes;
         case kAssassin:
         case kHunter:
         case kMinion:
-            title = @"Your Selection Has Been Stored";
+            title = @"Your Selection Was Stored";
             return title;
             
         case kPriest:
