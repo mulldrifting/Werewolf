@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AppDelegate+CoreDataContext.h"
 
 @implementation AppDelegate
 
@@ -15,6 +16,16 @@
 
     NSDictionary *defaults = @{@"kDefaultTimerStartValue": @600000};
     [[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
+        self.objectContext = context;
+    }];
+    
+    
+    self.gameData = [NSEntityDescription insertNewObjectForEntityForName:@"GameData"
+                                                  inManagedObjectContext:self.objectContext];
+    [self.gameData addInitialGameSetups];
     
     return YES;
 }

@@ -2,23 +2,26 @@
 //  GameData.h
 //  Werewolf
 //
-//  Created by Lauren Lee on 4/16/14.
+//  Created by Lauren Lee on 5/7/14.
 //  Copyright (c) 2014 Lauren Lee. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "GameSetup.h"
+#import <CoreData/CoreData.h>
 
-@interface GameData : NSObject
+@class GameSetup;
 
-@property (strong, nonatomic) NSMutableArray *gameSetups;
-@property (strong, nonatomic) NSMutableArray *defaultGameSetups;
+@interface GameData : NSManagedObject
 
-+(GameData*)sharedData;
-+(NSMutableArray*)gameSetupsFromPlist;
-+(NSMutableArray*)defaultGameSetupsFromPlist;
+@property (nonatomic, retain) NSSet *gameSetups;
+@end
 
--(void)addNewGameSetup:(GameSetup *)newGameSetup;
--(void)removeGameDataAtIndex:(NSInteger)row;
+@interface GameData (CoreDataGeneratedAccessors)
+
+- (void)addInitialGameSetups;
+- (void)addGameSetupsObject:(GameSetup *)value;
+- (void)removeGameSetupsObject:(GameSetup *)value;
+- (void)addGameSetups:(NSSet *)values;
+- (void)removeGameSetups:(NSSet *)values;
 
 @end

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="GameData" representedClassName="GameData" syncable="YES">
+        <relationship name="gameSetups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GameSetup" inverseName="gameData" inverseEntity="GameSetup" syncable="YES"/>
+    </entity>
+    <entity name="GameSetup" representedClassName="GameSetup" syncable="YES">
+        <attribute name="kDayKillAnnounced" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="kNightKillAnnounced" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="kWolvesSeeRoleOfKill" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numAssassin" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numHunter" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numMinion" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numPriest" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numSeer" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numVigilante" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numVillager" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="numWerewolf" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="gameData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GameData" inverseName="gameSetups" inverseEntity="GameData" syncable="YES"/>
+    </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="GameSetup" positionX="-216" positionY="81" width="128" height="238"/>
+        <element name="Player" positionX="-54" positionY="81" width="128" height="58"/>
+        <element name="GameData" positionX="-405" positionY="81" width="128" height="58"/>
+    </elements>
+</model>

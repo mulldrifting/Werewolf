@@ -8,6 +8,7 @@
 
 #import "LoadSetupViewController.h"
 #import "CreateGameViewController.h"
+#import "AppDelegate+CoreDataContext.h"
 #import "GameData.h"
 
 typedef NS_ENUM(NSInteger, gameSetupType)
@@ -19,6 +20,8 @@ typedef NS_ENUM(NSInteger, gameSetupType)
 @interface LoadSetupViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) NSManagedObjectContext *objectContext;
+@property (weak, nonatomic) GameData *gameData;
 
 @end
 
@@ -32,12 +35,21 @@ typedef NS_ENUM(NSInteger, gameSetupType)
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
     
     // Add swipe to go back gesture
     UIScreenEdgePanGestureRecognizer *swipeToGoBack = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
     swipeToGoBack.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:swipeToGoBack];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
+        self.objectContext = context;
+    }];
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"GameData"];
+    NSError *error;
+    self.gameData = [[self.objectContext executeFetchRequest:request error:&error] firstObject];
     
 }
 

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameData.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIManagedDocument *managedDocument;
 @property (strong, nonatomic) NSManagedObjectContext *objectContext;
+@property (strong, nonatomic) GameData *gameData;
 
 @end

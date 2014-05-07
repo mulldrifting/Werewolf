@@ -2,117 +2,50 @@
 //  GameData.m
 //  Werewolf
 //
-//  Created by Lauren Lee on 4/16/14.
+//  Created by Lauren Lee on 5/7/14.
 //  Copyright (c) 2014 Lauren Lee. All rights reserved.
 //
 
 #import "GameData.h"
+#import "GameSetup.h"
+
 
 @implementation GameData
 
-// singleton of GameData
-+(GameData *)sharedData
+@dynamic gameSetups;
+
+- (void)addInitialGameSetups
 {
-    static dispatch_once_t pred;
-    static GameData *shared = nil;
+    GameSetup *assassinSetup = [NSEntityDescription insertNewObjectForEntityForName:@"GameSetup" inManagedObjectContext:self.managedObjectContext];
+    assassinSetup.name = @"5P Assassin";
+    assassinSetup.numWerewolf = @1;
+    assassinSetup.numVillager = @3;
+    assassinSetup.numAssassin = @1;
+    assassinSetup.gameData = self;
     
-    dispatch_once(&pred, ^{
-        shared = [[GameData alloc] init];
-        shared.gameSetups = [[GameData gameSetupsFromPlist] mutableCopy];
-        shared.defaultGameSetups = [[GameData defaultGameSetupsFromPlist] mutableCopy];
-        [shared sortGameSetups];
-    });
-    
-    return shared;
-}
+    GameSetup *fivesSetup = [NSEntityDescription insertNewObjectForEntityForName:@"GameSetup" inManagedObjectContext:self.managedObjectContext];
+    fivesSetup.name = @"5P Special";
+    fivesSetup.numWerewolf = @1;
+    fivesSetup.numVillager = @1;
+    fivesSetup.numHunter = @1;
+    fivesSetup.numSeer = @1;
+    fivesSetup.numMinion = @1;
+    fivesSetup.gameData = self;
 
-+(NSMutableArray*)gameSetupsFromPlist
-{
-    NSMutableArray *gameSetups = [[NSMutableArray alloc] init];
-    
-    // path from application documents
-    NSString *plistPath = [[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:@"gameSetupList.plist"];
+    GameSetup *sevensSetup = [NSEntityDescription insertNewObjectForEntityForName:@"GameSetup" inManagedObjectContext:self.managedObjectContext];
+    sevensSetup.name = @"7P Classic";
+    sevensSetup.numWerewolf = @2;
+    sevensSetup.numVillager = @4;
+    sevensSetup.numSeer = @1;
+    sevensSetup.kWolvesSeeRoleOfKill = @NO;
+    sevensSetup.gameData = self;
 
-    // add game setups from application docs directory
-    if ([self checkForPlistFileAtPath:plistPath])
-    {
-//        NSLog(@"unarchive game data from app doc");
-        [gameSetups addObjectsFromArray:[NSKeyedUnarchiver unarchiveObjectWithFile:plistPath]];
-    }
-    
-    return gameSetups;
-}
-
-+(NSMutableArray*)defaultGameSetupsFromPlist
-{
-    NSMutableArray *gameSetups = [[NSMutableArray alloc] init];
-    
-    // path from main bundle
-    NSString *pathBundle = [[NSBundle mainBundle] pathForResource:@"defaultGameSetupList" ofType:@"plist"];
-    
-    // add game setups from main bundle (default setups)
-    if ([self checkForPlistFileAtPath:pathBundle]) {
-        
-        NSArray *plistGameSetups = [[NSArray alloc] initWithContentsOfFile:pathBundle];
-        
-        [plistGameSetups enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-            GameSetup *newSetup = [[GameSetup alloc] initWithName:obj[@"name"] roleNumbers:[obj[@"roleNumbers"] mutableCopy] settings:[obj[@"settings"] mutableCopy]];
-            [gameSetups addObject:newSetup];
-        }];
-        
-    }
-    else {
-        
-        NSLog(@"Uh oh! No plist in main bundle!");
-        //do something about that
-    }
-    
-    return gameSetups;
-}
-
-+(NSString *)applicationDocumentsDirectory
-{
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-+(BOOL)checkForPlistFileAtPath:(NSString*)path
-{
-    NSFileManager *myManager = [NSFileManager defaultManager];
-//    NSString *pathForPlistInDocs = [[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:fileName];
-    
-    return [myManager fileExistsAtPath:path];
-}
-
--(void)save {
-    [NSKeyedArchiver archiveRootObject:self.gameSetups toFile:[[GameData applicationDocumentsDirectory] stringByAppendingPathComponent:@"gameSetupList.plist"]];
-}
-
-
--(void)addNewGameSetup:(GameSetup *)newGameSetup
-{
-    [_gameSetups insertObject:newGameSetup atIndex:0];
-    [[GameData sharedData] save];
-}
-
--(void)removeGameDataAtIndex:(NSInteger)row
-{
-    [_gameSetups removeObjectAtIndex:row];
-    [[GameData sharedData] save];
-}
-
--(void)sortGameSetups
-{
-    //Sort game setups by name
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = @[nameDescriptor];
-    NSArray *sortedGameSetups = [_gameSetups sortedArrayUsingDescriptors:sortDescriptors];
-    NSArray *sortedDefaultGameSetups = [_defaultGameSetups sortedArrayUsingDescriptors:sortDescriptors];
-    
-    _gameSetups = [NSMutableArray arrayWithArray:sortedGameSetups];
-    _defaultGameSetups = [NSMutableArray arrayWithArray:sortedDefaultGameSetups];
-    
+    GameSetup *ninesSetup = [NSEntityDescription insertNewObjectForEntityForName:@"GameSetup" inManagedObjectContext:self.managedObjectContext];
+    ninesSetup.name = @"9P Classic";
+    ninesSetup.numWerewolf = @2;
+    ninesSetup.numVillager = @6;
+    ninesSetup.numSeer = @1;
+    ninesSetup.gameData = self;
 }
 
 @end
-
