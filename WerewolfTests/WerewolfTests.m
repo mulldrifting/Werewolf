@@ -47,6 +47,9 @@
 
 - (void)tearDown
 {
+    game = nil;
+    defaultSetup = nil;
+    
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
@@ -81,7 +84,6 @@
     for (Player *player in game.players) {
         XCTAssertEqualObjects(player, player.role.player, @"Player should be same player as Player's role.player");
     }
-
 }
 
 - (void)testSeerSettings
@@ -119,8 +121,35 @@
 {
     Role *newRole = [[Werewolf alloc] initWithGame:game];
     NSLog(@"Tap label should overwrite superclass: %@",[newRole tapLabel]);
-
 }
 
+- (void)testWolfRandomPickForTwoPlayers
+{
+    Player *firstPlayer = game.players[0];
+    Player *secondPlayer = game.players[1];
+    [game.wolfTargets addObject:firstPlayer];
+    [game.wolfTargets addObject:secondPlayer];
+    
+    if (game.wolfTargets.count > 0) {
+        Player* targetPlayer = game.wolfTargets[arc4random_uniform((u_int32_t)[game.wolfTargets count])];
+        targetPlayer.isWolfTarget = YES;
+    }
+    
+    XCTAssertTrue(firstPlayer.isWolfTarget || secondPlayer.isWolfTarget, @"One out of two players in wolfTargets should be a wolf target.");
+    XCTAssertFalse(firstPlayer.isWolfTarget && secondPlayer.isWolfTarget, @"Both players should not be wolfTargets");
+}
+
+- (void)testWolfRandomPickForOnePlayer
+{
+    Player *firstPlayer = game.players[0];
+    [game.wolfTargets addObject:firstPlayer];
+    
+    if (game.wolfTargets.count > 0) {
+        Player* targetPlayer = game.wolfTargets[arc4random_uniform((u_int32_t)[game.wolfTargets count])];
+        targetPlayer.isWolfTarget = YES;
+    }
+    
+    XCTAssertTrue(firstPlayer.isWolfTarget, @"When there's only one player in wolfTargets, that player should always be the target");
+}
 
 @end

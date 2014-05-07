@@ -31,6 +31,7 @@
         _players = [NSMutableArray new];
         _wolves = [NSMutableArray new];
         _gameHistory = [NSMutableArray new];
+        _wolfTargets = [NSMutableArray new];
 
         _isNight = NO;
         _isOver = NO;
@@ -62,6 +63,11 @@
     BOOL nobodyDied = YES;
     BOOL firstString = YES;
     
+    if (_wolfTargets.count > 0) {
+        Player* targetPlayer = _wolfTargets[arc4random_uniform((u_int32_t)[_wolfTargets count])];
+        targetPlayer.isWolfTarget = YES;
+    }
+    
     for (Player *player in _players) {
         if (player.isWolfTarget || player.isVigilanteTarget) {
             
@@ -86,15 +92,6 @@
     }
     
     return dayMessage;
-}
-
-- (void)resetPlayersNightStatus
-{
-    for (Player *player in _players) {
-        player.isPriestTarget = NO;
-        player.isWolfTarget = NO;
-        player.isVigilanteTarget = NO;
-    }
 }
 
 - (void)checkGameState
@@ -136,45 +133,16 @@
 
 #pragma mark - Player Action Methods
 
-//- (NSString*)getNightInfoForPlayerAtIndex:(int)index
-//{
-//    NSString *message;
-//    Player *currentPlayer = _players[index];
-//    
-//    switch (currentPlayer.role.roleID) {
-//        case kVillager:
-//            return @"";
-//            break;
-//        case kWerewolf:
-//            
-//            break;
-//        case kSeer:
-//            
-//            if (_gameSetup.settings[@"SEER_PEEKS_NIGHT_ZERO"]) {
-//                
-//            }
-//            
-//            break;
-//        case kPriest:
-//            return @"";
-//            break;
-//        case kVigilante:
-//            return @"";
-//            break;
-//        case kHunter:
-//            return @"";
-//            break;
-//        case kMinion:
-//            
-//            break;
-//        case kAssassin:
-//            
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//}
+- (void)resetPlayersNightStatus
+{
+    for (Player *player in _players) {
+        player.isPriestTarget = NO;
+        player.isWolfTarget = NO;
+        player.isVigilanteTarget = NO;
+    }
+}
+
+
 
 #pragma mark - Player Control Methods
 

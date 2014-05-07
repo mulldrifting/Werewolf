@@ -22,64 +22,6 @@ roleType _roleTypes;
 
 @implementation NightActionController
 
--(void)startNightActionWithPlayer:(Player *)player
-{
-    NSString *message = @"";
-    BOOL isFirstObject = YES;
-    
-    switch (_game.currentPlayer.role.roleID) {
-        case kVillager:
-            [self.delegate updateTapLabelWithString:@"Villager, guess who you think the Werewolf is!"];
-            break;
-        case kHunter:
-            [self.delegate updateTapLabelWithString:@"Hunter, guess who you think the Werewolf is!"];
-            break;
-        case kAssassin:
-            [self.delegate updateTapLabelWithString:[NSString stringWithFormat:@"Assassin, your target is %@. Guess who you think the Werewolf is!", player.target]];
-            break;
-            
-        case kWerewolf:
-
-            [self.delegate updateTapLabelWithString:[NSString stringWithFormat:@"%@. Who do you want to kill?", [_game listOfWolves]]];
-            
-            [self.delegate showNoKillCornerButton];
-            
-            break;
-            
-        case kSeer:
-            
-//            for (Player *aPlayer in player.seerPeeks) {
-//                if (isFirstObject) {
-//                    message = [message stringByAppendingString:[NSString stringWithFormat:@"%@ (%@)", aPlayer.name, aPlayer.role.seerSeesAs]];
-//                    isFirstObject = NO;
-//                }
-//                else {
-//                    message = [message stringByAppendingString:[NSString stringWithFormat:@", %@ (%@)", aPlayer.name, aPlayer.role.seerSeesAs]];
-//                }
-//
-//            }
-            
-            [self.delegate updateTapLabelWithString:@"Seer, who do you want to peek?"];
-            break;
-            
-        case kPriest:
-            [self.delegate updateTapLabelWithString:@"Priest, who do you want to save?"];
-            break;
-        case kVigilante:
-            [self.delegate updateTapLabelWithString:@"Vigilante, Do you want to kill someone tonight? If so, select a Player. If not, select No Kill."];
-            [self.delegate showNoKillCornerButton];
-            break;
-            
-        case kMinion:
-            
-            [self.delegate updateTapLabelWithString:[NSString stringWithFormat:@"%@. Who do you think they should kill tonight?", [_game listOfWolves]]];
-            
-            break;
-        default:
-            break;
-    }
-}
-
 -(void)handleNightActionWithSelectedPlayer:(Player *)player
 {
     switch (_game.currentPlayer.role.roleID) {
@@ -90,7 +32,7 @@ roleType _roleTypes;
             [_game.currentPlayer.nightGuesses addObject:player];
             break;
         case kWerewolf:
-            player.isWolfTarget = YES;
+            [_game.wolfTargets addObject:player];
             break;
         case kSeer:
             [_game.currentPlayer.seerPeeks addObject:player];

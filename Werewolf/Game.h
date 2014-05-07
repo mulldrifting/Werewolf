@@ -15,7 +15,7 @@
 @interface Game : NSObject
 
 @property (strong, nonatomic) GameSetup *gameSetup;
-@property (strong, nonatomic) NSMutableArray *players, *roles, *wolves, *gameHistory;
+@property (strong, nonatomic) NSMutableArray *players, *roles, *wolves, *wolfTargets, *gameHistory;
 @property (nonatomic) int numPlayers, currentPlayerIndex, currentRound;
 @property (nonatomic) BOOL isNight, isOver, didWrap;
 
