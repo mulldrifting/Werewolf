@@ -11,6 +11,7 @@
 		FE38613D18FF755900ED8483 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = FE38613C18FF755900ED8483 /* GameData.m */; };
 		FE38B7EC190F436E007B514B /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE38B7EB190F436E007B514B /* OpenSans-Regular.ttf */; };
 		FE7EB1ED1918402900650193 /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7EB1EC1918402900650193 /* AlertViewController.m */; };
+		FE8094F6191AD3BD001A3F3C /* AppDelegate+CoreDataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8094F5191AD3BD001A3F3C /* AppDelegate+CoreDataContext.m */; };
 		FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68618FC919300CA3021 /* LoadSetupViewController.m */; };
 		FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */; };
 		FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */; };
@@ -77,6 +78,8 @@
 		FE38B7EB190F436E007B514B /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../../../../Downloads/Open_Sans/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		FE7EB1EB1918402900650193 /* AlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewController.h; sourceTree = "<group>"; };
 		FE7EB1EC1918402900650193 /* AlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewController.m; sourceTree = "<group>"; };
+		FE8094F4191AD3BD001A3F3C /* AppDelegate+CoreDataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+CoreDataContext.h"; sourceTree = "<group>"; };
+		FE8094F5191AD3BD001A3F3C /* AppDelegate+CoreDataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreDataContext.m"; sourceTree = "<group>"; };
 		FE99B68518FC919300CA3021 /* LoadSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadSetupViewController.h; sourceTree = "<group>"; };
 		FE99B68618FC919300CA3021 /* LoadSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSetupViewController.m; sourceTree = "<group>"; };
 		FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Common.h"; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 			children = (
 				FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */,
 				FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */,
+				FE8094F4191AD3BD001A3F3C /* AppDelegate+CoreDataContext.h */,
+				FE8094F5191AD3BD001A3F3C /* AppDelegate+CoreDataContext.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				FEC75EAA1912C38A00C44A3A /* CRBubble.m in Sources */,
 				FEC75E9E1912AB5B00C44A3A /* SettingsViewController.m in Sources */,
 				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
+				FE8094F6191AD3BD001A3F3C /* AppDelegate+CoreDataContext.m in Sources */,
 				FE21C28B190B33B40048D19C /* GameViewController.m in Sources */,
 				FEC75EC519130EAB00C44A3A /* CarouselController.m in Sources */,
 				FE7EB1ED1918402900650193 /* AlertViewController.m in Sources */,

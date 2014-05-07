@@ -1,5 +1,5 @@
 //
-//  LLAppDelegate+CoreDataContext.h
+//  AppDelegate+CoreDataContext.h
 //  Werewolf
 //
 //  Created by Lauren Lee on 5/7/14.

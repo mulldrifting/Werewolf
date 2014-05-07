@@ -1,17 +1,14 @@
 //
-//  LLAppDelegate+CoreDataContext.m
+//  AppDelegate+CoreDataContext.m
 //  Werewolf
 //
 //  Created by Lauren Lee on 5/7/14.
 //  Copyright (c) 2014 Lauren Lee. All rights reserved.
 //
 
-#import "LLAppDelegate+CoreDataContext.h"
+#import "AppDelegate+CoreDataContext.h"
 
-@implementation LLAppDelegate (CoreDataContext)
-
-
-@implementation LLAppDelegate (CoreDataContext)
+@implementation AppDelegate (CoreDataContext)
 
 - (void)createManagedObjectContext:(void (^)(NSManagedObjectContext *))completion
 {
@@ -46,5 +43,6 @@
         completion(self.objectContext);
     }
 }
+
 
 @end
