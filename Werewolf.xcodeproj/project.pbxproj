@@ -14,6 +14,7 @@
 		FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68618FC919300CA3021 /* LoadSetupViewController.m */; };
 		FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */; };
 		FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */; };
+		FE9ED60E1919D5BC00640EBF /* EndGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE9ED60D1919D5BC00640EBF /* EndGameViewController.m */; };
 		FEA78589190C3E620084CA04 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA78588190C3E620084CA04 /* Role.m */; };
 		FEA7858D190C3ED60084CA04 /* Werewolf.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7858C190C3ED60084CA04 /* Werewolf.m */; };
 		FEA78590190C3EDD0084CA04 /* Villager.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA7858F190C3EDD0084CA04 /* Villager.m */; };
@@ -82,6 +83,8 @@
 		FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Common.m"; sourceTree = "<group>"; };
 		FE99B69218FCA16300CA3021 /* StepperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperTableViewCell.h; sourceTree = "<group>"; };
 		FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperTableViewCell.m; sourceTree = "<group>"; };
+		FE9ED60C1919D5BC00640EBF /* EndGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndGameViewController.h; sourceTree = "<group>"; };
+		FE9ED60D1919D5BC00640EBF /* EndGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndGameViewController.m; sourceTree = "<group>"; };
 		FEA78587190C3E620084CA04 /* Role.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Role.h; sourceTree = "<group>"; };
 		FEA78588190C3E620084CA04 /* Role.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Role.m; sourceTree = "<group>"; };
 		FEA7858B190C3ED60084CA04 /* Werewolf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Werewolf.h; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 				FEC75EB91912E30E00C44A3A /* Title Page Controller */,
 				FEC75EBA1912E31800C44A3A /* Game Setup Controller */,
 				FEC75EBB1912E32500C44A3A /* Game Controller */,
+				FE9ED60C1919D5BC00640EBF /* EndGameViewController.h */,
+				FE9ED60D1919D5BC00640EBF /* EndGameViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -539,6 +544,7 @@
 				FE38613D18FF755900ED8483 /* GameData.m in Sources */,
 				FEA7858D190C3ED60084CA04 /* Werewolf.m in Sources */,
 				FEC75EAB1912C38A00C44A3A /* CRProductTour.m in Sources */,
+				FE9ED60E1919D5BC00640EBF /* EndGameViewController.m in Sources */,
 				FEA78593190C3EE40084CA04 /* Priest.m in Sources */,
 				FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */,
 				FEC75EB01912C41300C44A3A /* TTCounterLabel.m in Sources */,

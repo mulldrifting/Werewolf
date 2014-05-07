@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "EndGameViewController.h"
 #import "NightActionController.h"
 #import "CarouselController.h"
 #import "Player.h"
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *whereToTapLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cornerButton;
 
+@property (strong, nonatomic) EndGameViewController *endGameViewController;
 @property (strong, nonatomic) NightActionController *nightActionController;
 @property (strong, nonatomic) CarouselController *carouselController;
 
@@ -114,13 +116,31 @@
         [self dismissAlphaView];
     }];
     
-
 }
 
 - (void)hideTimerViewController
 {
     [_timerViewController.view removeFromSuperview];
     [_timerViewController removeFromParentViewController];
+}
+
+#pragma mark - End Game View Controller
+
+- (void)showEndGameViewController
+{
+    [_alphaView maxAlpha];
+    [self showAlphaView];
+    [_endGameViewController.view setAlpha:0.0];
+    
+    [self addChildViewController:_endGameViewController];
+    [self.view addSubview:_endGameViewController.view];
+    [_endGameViewController didMoveToParentViewController:self];
+    
+    [UIView animateWithDuration:2 animations:^{
+        [_endGameViewController.view setAlpha:1.0];
+    } completion:^(BOOL finished) {
+        [self dismissAlphaView];
+    }];
 }
 
 #pragma mark - Game Mode Methods
@@ -505,7 +525,17 @@
         case ALERT_VIEW_TAG + kNightResult:
             
             if (buttonIndex == 0) {
-                [self beginDay];
+                
+                if (_game.isOver) {
+                    _endGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"endGame"];
+                    _endGameViewController.game = _game;
+                    [self showEndGameViewController];
+
+                }
+                else {
+                    [self beginDay];
+                }
+                
             }
             
             break;

@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Lauren Lee. All rights reserved.
 //
 
+#import "AppDelegate.h"
 
+@interface AppDelegate (CoreDataContext)
 
-@interface LLAppDelegate (CoreDataContext)
+- (void)createManagedObjectContext:(void (^)(NSManagedObjectContext *context))completion;
 
 @end
