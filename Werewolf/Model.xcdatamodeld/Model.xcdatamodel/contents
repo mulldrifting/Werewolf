@@ -4,6 +4,7 @@
         <relationship name="gameSetups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GameSetup" inverseName="gameData" inverseEntity="GameSetup" syncable="YES"/>
     </entity>
     <entity name="GameSetup" representedClassName="GameSetup" syncable="YES">
+        <attribute name="isDefault" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="kDayKillAnnounced" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="kNightKillAnnounced" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="kWolvesSeeRoleOfKill" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -22,8 +23,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GameSetup" positionX="-216" positionY="81" width="128" height="238"/>
-        <element name="Player" positionX="-54" positionY="81" width="128" height="58"/>
-        <element name="GameData" positionX="-405" positionY="81" width="128" height="58"/>
+        <element name="GameData" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="GameSetup" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Player" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

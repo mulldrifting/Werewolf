@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameSetup.h"
 
 @interface GameSettingsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) GameSetup *gameSetup;
 
 @end

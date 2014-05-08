@@ -14,7 +14,8 @@
 		FE8094F9191AD5F9001A3F3C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE8094F7191AD5F9001A3F3C /* Model.xcdatamodeld */; };
 		FE809515191AEBEE001A3F3C /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE809514191AEBEE001A3F3C /* SettingsTableViewCell.m */; };
 		FE809518191AEEBE001A3F3C /* GameSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE809517191AEEBE001A3F3C /* GameSettingsViewController.m */; };
-		FE809521191AF4EA001A3F3C /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = FE809520191AF4EA001A3F3C /* GameData.m */; };
+		FE809523191AFC9D001A3F3C /* Models in Resources */ = {isa = PBXBuildFile; fileRef = FE809522191AFC9D001A3F3C /* Models */; };
+		FE809526191B1264001A3F3C /* NSManagedObject+Clone.m in Sources */ = {isa = PBXBuildFile; fileRef = FE809525191B1264001A3F3C /* NSManagedObject+Clone.m */; };
 		FE99B68718FC919300CA3021 /* LoadSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B68618FC919300CA3021 /* LoadSetupViewController.m */; };
 		FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */; };
 		FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE99B69318FCA16300CA3021 /* StepperTableViewCell.m */; };
@@ -30,7 +31,6 @@
 		FEA785A2190C3F090084CA04 /* Assassin.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A1190C3F090084CA04 /* Assassin.m */; };
 		FEA785A8190F0F670084CA04 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA785A7190F0F670084CA04 /* TimerViewController.m */; };
 		FEB53BFE18FB63AC00598B64 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */; };
-		FEB53C0518FB729500598B64 /* GameSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB53C0418FB729500598B64 /* GameSetup.m */; };
 		FEC75E991911B7FF00C44A3A /* WerewolfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E981911B7FF00C44A3A /* WerewolfViewController.m */; };
 		FEC75E9E1912AB5B00C44A3A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75E9D1912AB5B00C44A3A /* SettingsViewController.m */; };
 		FEC75EAA1912C38A00C44A3A /* CRBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC75EA71912C38A00C44A3A /* CRBubble.m */; };
@@ -59,7 +59,6 @@
 		FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC5618F8832200BB0B81 /* CreateGameViewController.m */; };
 		FED1DC6118F8AE5000BB0B81 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6018F8AE5000BB0B81 /* Constants.m */; };
 		FED1DC6518F8B5DA00BB0B81 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6418F8B5DA00BB0B81 /* Game.m */; };
-		FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = FED1DC6718F8BF3600BB0B81 /* Player.m */; };
 		FEF34247190894DF003AC14F /* defaultGameSetupList.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF34246190894DF003AC14F /* defaultGameSetupList.plist */; };
 /* End PBXBuildFile section */
 
@@ -86,8 +85,9 @@
 		FE809514191AEBEE001A3F3C /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
 		FE809516191AEEBE001A3F3C /* GameSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSettingsViewController.h; sourceTree = "<group>"; };
 		FE809517191AEEBE001A3F3C /* GameSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSettingsViewController.m; sourceTree = "<group>"; };
-		FE80951F191AF4EA001A3F3C /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
-		FE809520191AF4EA001A3F3C /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		FE809522191AFC9D001A3F3C /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
+		FE809524191B1264001A3F3C /* NSManagedObject+Clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Clone.h"; sourceTree = "<group>"; };
+		FE809525191B1264001A3F3C /* NSManagedObject+Clone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Clone.m"; sourceTree = "<group>"; };
 		FE99B68518FC919300CA3021 /* LoadSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadSetupViewController.h; sourceTree = "<group>"; };
 		FE99B68618FC919300CA3021 /* LoadSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadSetupViewController.m; sourceTree = "<group>"; };
 		FE99B68F18FC9F2F00CA3021 /* NSDictionary+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Common.h"; sourceTree = "<group>"; };
@@ -117,8 +117,6 @@
 		FEA785A6190F0F670084CA04 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		FEA785A7190F0F670084CA04 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		FEB53BFD18FB63AC00598B64 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FEB53C0318FB729500598B64 /* GameSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSetup.h; sourceTree = "<group>"; };
-		FEB53C0418FB729500598B64 /* GameSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSetup.m; sourceTree = "<group>"; };
 		FEC75E971911B7FF00C44A3A /* WerewolfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WerewolfViewController.h; sourceTree = "<group>"; };
 		FEC75E981911B7FF00C44A3A /* WerewolfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WerewolfViewController.m; sourceTree = "<group>"; };
 		FEC75E9C1912AB5B00C44A3A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -166,8 +164,6 @@
 		FED1DC6018F8AE5000BB0B81 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		FED1DC6318F8B5DA00BB0B81 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		FED1DC6418F8B5DA00BB0B81 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		FED1DC6618F8BF3600BB0B81 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		FED1DC6718F8BF3600BB0B81 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		FEF34246190894DF003AC14F /* defaultGameSetupList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaultGameSetupList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +233,8 @@
 				FE99B69018FC9F2F00CA3021 /* NSDictionary+Common.m */,
 				FE8094F4191AD3BD001A3F3C /* AppDelegate+CoreDataContext.h */,
 				FE8094F5191AD3BD001A3F3C /* AppDelegate+CoreDataContext.m */,
+				FE809524191B1264001A3F3C /* NSManagedObject+Clone.h */,
+				FE809525191B1264001A3F3C /* NSManagedObject+Clone.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -359,6 +357,7 @@
 				FED1DC2F18F87E7A00BB0B81 /* AppDelegate.m */,
 				FED1DC3118F87E7A00BB0B81 /* Main.storyboard */,
 				FED1DC5418F882D000BB0B81 /* View Controllers */,
+				FE809522191AFC9D001A3F3C /* Models */,
 				FED1DC6218F8B5CC00BB0B81 /* Model */,
 				FED1DC5B18F8A32800BB0B81 /* Data */,
 				FEC75E8E1910760200C44A3A /* Categories */,
@@ -429,12 +428,6 @@
 			children = (
 				FED1DC6318F8B5DA00BB0B81 /* Game.h */,
 				FED1DC6418F8B5DA00BB0B81 /* Game.m */,
-				FED1DC6618F8BF3600BB0B81 /* Player.h */,
-				FED1DC6718F8BF3600BB0B81 /* Player.m */,
-				FEB53C0318FB729500598B64 /* GameSetup.h */,
-				FEB53C0418FB729500598B64 /* GameSetup.m */,
-				FE80951F191AF4EA001A3F3C /* GameData.h */,
-				FE809520191AF4EA001A3F3C /* GameData.m */,
 				FE8094F7191AD5F9001A3F3C /* Model.xcdatamodeld */,
 				FEA7858A190C3EC90084CA04 /* Roles */,
 			);
@@ -517,6 +510,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE809523191AFC9D001A3F3C /* Models in Resources */,
 				FE38B7EC190F436E007B514B /* OpenSans-Regular.ttf in Resources */,
 				FEF34247190894DF003AC14F /* defaultGameSetupList.plist in Resources */,
 				FED1DC3818F87E7A00BB0B81 /* Images.xcassets in Resources */,
@@ -543,20 +537,18 @@
 				FEA78590190C3EDD0084CA04 /* Villager.m in Sources */,
 				FE809518191AEEBE001A3F3C /* GameSettingsViewController.m in Sources */,
 				FEC75EC81914025600C44A3A /* AlphaView.m in Sources */,
-				FED1DC6818F8BF3600BB0B81 /* Player.m in Sources */,
 				FED1DC3618F87E7A00BB0B81 /* TitleViewController.m in Sources */,
 				FE99B69418FCA16300CA3021 /* StepperTableViewCell.m in Sources */,
+				FE809526191B1264001A3F3C /* NSManagedObject+Clone.m in Sources */,
 				FE809515191AEBEE001A3F3C /* SettingsTableViewCell.m in Sources */,
 				FE99B69118FC9F2F00CA3021 /* NSDictionary+Common.m in Sources */,
 				FED1DC3018F87E7A00BB0B81 /* AppDelegate.m in Sources */,
 				FEA785A8190F0F670084CA04 /* TimerViewController.m in Sources */,
 				FEC75EB41912C42500C44A3A /* iCarousel.m in Sources */,
 				FED1DC5718F8832200BB0B81 /* CreateGameViewController.m in Sources */,
-				FE809521191AF4EA001A3F3C /* GameData.m in Sources */,
 				FEA785A2190C3F090084CA04 /* Assassin.m in Sources */,
 				FEC75EAA1912C38A00C44A3A /* CRBubble.m in Sources */,
 				FEC75E9E1912AB5B00C44A3A /* SettingsViewController.m in Sources */,
-				FEB53C0518FB729500598B64 /* GameSetup.m in Sources */,
 				FE8094F6191AD3BD001A3F3C /* AppDelegate+CoreDataContext.m in Sources */,
 				FE21C28B190B33B40048D19C /* GameViewController.m in Sources */,
 				FEC75EC519130EAB00C44A3A /* CarouselController.m in Sources */,

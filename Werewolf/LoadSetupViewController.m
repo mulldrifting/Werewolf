@@ -9,7 +9,7 @@
 #import "LoadSetupViewController.h"
 #import "CreateGameViewController.h"
 #import "AppDelegate+CoreDataContext.h"
-#import "GameData.h"
+#import "NSManagedObject+Clone.h"
 
 typedef NS_ENUM(NSInteger, gameSetupType)
 {
@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, gameSetupType)
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) NSManagedObjectContext *objectContext;
 @property (weak, nonatomic) GameData *gameData;
+@property (strong, nonatomic) NSArray *customSetups, *defaultSetups;
 
 @end
 
@@ -46,12 +47,11 @@ typedef NS_ENUM(NSInteger, gameSetupType)
         self.objectContext = context;
     }];
     
-    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"GameData"];
     NSError *error;
     self.gameData = [[self.objectContext executeFetchRequest:request error:&error] firstObject];
     
-}
+   }
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -63,8 +63,22 @@ typedef NS_ENUM(NSInteger, gameSetupType)
     // Set style bar color to default = black
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    [_tableView reloadData];
+    [self fetchGameSetups];
+    [self.tableView reloadData];
     
+}
+
+- (void)fetchGameSetups
+{
+    NSError *error;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"GameSetup"];
+    request.predicate = [NSPredicate predicateWithFormat:@"isDefault == %@", [NSNumber numberWithBool: YES]];
+    
+    self.defaultSetups = [self.objectContext executeFetchRequest:request error:&error];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"isDefault == %@", [NSNumber numberWithBool:NO]];
+    
+    self.customSetups = [self.objectContext executeFetchRequest:request error:&error];
 }
 
 #pragma mark - Button Methods
@@ -83,16 +97,16 @@ typedef NS_ENUM(NSInteger, gameSetupType)
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return number of game setups in shared data
+    
+    //return number of game setups in game data
     switch (section) {
-            
         case kCustomGameSetup:
-//            NSLog(@"%lu",(unsigned long)[[[GameData sharedData] gameSetups] count]);
-            return [[[GameData sharedData] gameSetups] count];
+
+            return [self.customSetups count];
             
         default:
 //            NSLog(@"%lu",(unsigned long)[[[GameData sharedData] defaultGameSetups] count]);
-            return [[[GameData sharedData] defaultGameSetups] count];
+            return [self.defaultSetups count];
     }
 }
 
@@ -103,11 +117,11 @@ typedef NS_ENUM(NSInteger, gameSetupType)
     switch (indexPath.section) {
             
         case kCustomGameSetup:
-            cell.textLabel.text = [[[GameData sharedData] gameSetups][indexPath.row] name];
+            cell.textLabel.text = [self.customSetups[indexPath.row] name];
             break;
             
         default:
-            cell.textLabel.text = [[[GameData sharedData] defaultGameSetups][indexPath.row] name];
+            cell.textLabel.text = [self.defaultSetups[indexPath.row] name];
             break;
     }
 
@@ -119,8 +133,22 @@ typedef NS_ENUM(NSInteger, gameSetupType)
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         // Delete the row from the data source
-        [[GameData sharedData] removeGameDataAtIndex:indexPath.row];
+//        [[GameData sharedData] removeGameDataAtIndex:indexPath.row];
+        NSString *name = [self.customSetups[indexPath.row] name];
+        
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GameSetup"];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
+        
+        NSError *error;
+        GameSetup *object = [[self.objectContext executeFetchRequest:fetchRequest error:&error] firstObject];
+        
+        [self.gameData removeGameSetupsObject:object];
+        
+        [self fetchGameSetups];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+
     }
 }
 
@@ -137,7 +165,7 @@ typedef NS_ENUM(NSInteger, gameSetupType)
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if ([[[GameData sharedData] gameSetups] count] == 0 && section == 0) {
+    if (self.customSetups.count == 0 && section == 0) {
         return 0; //hide header if section is empty
     }
     return 50; //play around with this value
@@ -184,14 +212,15 @@ typedef NS_ENUM(NSInteger, gameSetupType)
         
         if (indexPath.section == kCustomGameSetup) {
             
-            selectedSetup = [[[GameData sharedData] gameSetups] objectAtIndex:[[_tableView indexPathForSelectedRow] row]];
+            selectedSetup = [self.customSetups objectAtIndex:[[_tableView indexPathForSelectedRow] row]];
             
         } else {
             
-            selectedSetup = [[[GameData sharedData] defaultGameSetups] objectAtIndex:[[_tableView indexPathForSelectedRow] row]];
+            selectedSetup = [self.defaultSetups objectAtIndex:[[_tableView indexPathForSelectedRow] row]];
         }
         
-        destination.gameSetup = [selectedSetup copy];
+        destination.gameSetup = (GameSetup*)[selectedSetup clone];
+        destination.title = [selectedSetup name];
     }
 }
 

@@ -22,7 +22,7 @@
         self.objectContext = context;
     }];
     
-    
+    // Loading one instance of game data and initializing it with default setups
     self.gameData = [NSEntityDescription insertNewObjectForEntityForName:@"GameData"
                                                   inManagedObjectContext:self.objectContext];
     [self.gameData addInitialGameSetups];

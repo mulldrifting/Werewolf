@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GameData.h"
+#import "Models/GameData.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

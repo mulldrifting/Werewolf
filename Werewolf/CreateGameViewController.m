@@ -70,7 +70,8 @@
 // sent from Stepper Table View Cell
 - (void)setValue:(int)value forRole:(NSString*)role
 {
-    [self.gameSetup.roleNumbers setValue:[NSNumber numberWithInt:value] forKey:role];
+    NSString *key = [@"num" stringByAppendingString:role];
+    [self.gameSetup setValue:[NSNumber numberWithInt:value] forKey:key];
 }
 
 - (NSIndexPath *)actualIndexPathForTappedIndexPath:(NSIndexPath *)indexPath
@@ -134,7 +135,7 @@
         NSIndexPath *theIndexPath = [self actualIndexPathForTappedIndexPath:indexPath];
         NSString *roleString = [Constants listOfDefinedRoles][theIndexPath.row];
         cell.roleLabel.text = roleString;
-        cell.stepper.value = [[self.gameSetup.roleNumbers objectForKey:roleString] doubleValue];
+        cell.stepper.value = [[self.gameSetup valueForKey:roleString] doubleValue];
         cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)cell.stepper.value];
         
         return cell;
@@ -237,8 +238,21 @@
     
     if (buttonIndex == 1) {
         
-        GameSetup *newGameSetup = [[GameSetup alloc] initWithName:textField.text roleNumbers:self.gameSetup.roleNumbers settings:[NSMutableDictionary new]];
-        [[GameData sharedData] addNewGameSetup:newGameSetup];
+        
+        
+
+
+
+        GameSetup *newSetup = [NSEntityDescription insertNewObjectForEntityForName:@"GameSetup"
+                                                            inManagedObjectContext:self.gameSetup.managedObjectContext];
+        newSetup.name = textField.text;
+        
+        
+        NSError *error;
+        [self.gameSetup.managedObjectContext save:&error];
+        
+//        GameSetup *newGameSetup = [[GameSetup alloc] initWithName:textField.text roleNumbers:self.gameSetup.roleNumbers settings:[NSMutableDictionary new]];
+//        [[GameData sharedData] addNewGameSetup:newGameSetup];
     }
 }
 
