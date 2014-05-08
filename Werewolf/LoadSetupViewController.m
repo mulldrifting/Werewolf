@@ -43,13 +43,15 @@ typedef NS_ENUM(NSInteger, gameSetupType)
     [self.view addGestureRecognizer:swipeToGoBack];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
-        self.objectContext = context;
-    }];
+    self.objectContext = appDelegate.objectContext;
+//    [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
+//        self.objectContext = context;
+//    }];
     
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"GameData"];
-    NSError *error;
-    self.gameData = [[self.objectContext executeFetchRequest:request error:&error] firstObject];
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"GameData"];
+//    NSError *error;
+//    self.gameData = [[self.objectContext executeFetchRequest:request error:&error] firstObject];
+    self.gameData = appDelegate.gameData;
     
    }
 

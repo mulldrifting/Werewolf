@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "AppDelegate+CoreDataContext.h"
 #import "Game.h"
 #import "GameSetup.h"
 #import "GameData.h"
@@ -26,6 +27,8 @@
 {
     GameSetup *defaultSetup;
     Game *game;
+    GameData *gameData;
+    NSManagedObjectContext *objectContext;
 }
 @end
 
@@ -34,8 +37,12 @@
 - (void)setUp
 {
     [super setUp];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    objectContext = appDelegate.objectContext;
+    gameData = appDelegate.gameData;
 
-    for (GameSetup *setup in [[GameData sharedData] defaultGameSetups]) {
+    for (GameSetup *setup in gameData.gameSetups) {
         if ([setup.name isEqualToString:@"5P Special"]) {
             defaultSetup = setup;
         }

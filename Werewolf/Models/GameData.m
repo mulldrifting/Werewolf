@@ -1,5 +1,7 @@
-#import "GameData.h"
 
+
+#import "GameData.h"
+#import "GameSetup.h"
 
 @interface GameData ()
 

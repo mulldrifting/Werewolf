@@ -4,6 +4,6 @@
 
 @interface GameSetup : _GameSetup {}
 
--(int)numPlayers;
+- (int)numPlayers;
 
 @end

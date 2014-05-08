@@ -17,24 +17,22 @@
 -(int)numPlayers
 {
     int total = 0;
-    int numRole = 0;
+//    int numRole = 0;
     
-    NSDictionary *attributes = [self attributesByName];
+    NSEntityDescription *gameSetupEntity = [NSEntityDescription entityForName:@"GameSetup" inManagedObjectContext:self.managedObjectContext];
+    
+    NSDictionary *attributes = [gameSetupEntity attributesByName];
     for (NSString *attribute in attributes) {
         
-        
-        
-        if () {
-            <#statements#>
+        if ([[attribute substringToIndex:3] isEqualToString:@"num"]) {
+            id value = [self valueForKey:attribute];
+            total += [value intValue];
+            NSLog(@"attribute %@ = %@", attribute, value);
         }
         
-        id value = [myManagedObject valueForKey: attribute];
-        NSLog(@"attribute %@ = %@", attribute, value);
     }
     
-    for (<#type *object#> in <#collection#>) {
-        <#statements#>
-    }
+    
     
 //    for (NSString *key in [self.roleNumbers allKeys]) {
 //        numRole = [[self.roleNumbers objectForKey:key] intValue];
