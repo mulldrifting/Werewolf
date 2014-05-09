@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import "Game.h"
-#import "GameSetup.h"
 #import "GameData.h"
 #import "Player.h"
 #import "Role.h"

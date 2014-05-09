@@ -80,6 +80,7 @@
         // post an NSNotifcation for "SettingsChanged"
     }];
 }
+
 /*
 #pragma mark - Navigation
 
